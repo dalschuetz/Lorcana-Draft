@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxgovepg5hgyw"]
+
+[ext_resource type="Texture2D" uid="uid://tg3wy7342bww" path="res://Assets/CardBack.png" id="1_dskg3"]
+
+[node name="OpponentDeck" type="Node2D"]
+
+[node name="DeckImage" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, 5.96046e-08)
+scale = Vector2(0.663333, 0.663333)
+texture = ExtResource("1_dskg3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+offset_left = -6.4
+offset_top = -52.0
+offset_right = 33.6
+offset_bottom = -12.0
+scale = Vector2(1.5, 1.5)
+text = "0"
