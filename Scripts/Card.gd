@@ -5,6 +5,9 @@ signal hovered_off
 
 var hand_position
 var card_slot_card_is_in
+var strength
+var willpower
+var lore
 
 func _ready() -> void:
 	#All cards must be a child of CardManager

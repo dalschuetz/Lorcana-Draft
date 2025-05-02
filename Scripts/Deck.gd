@@ -34,6 +34,9 @@ func draw_card():
 	var new_card = card_scene.instantiate()
 	var card_image_path = str("res://Assets/CardFronts/" + card_drawn_name + ".jpg")
 	new_card.get_node("CardImage").texture = load(card_image_path)
+	new_card.strength = card_database_reference.CARDS[card_drawn_name][5]
+	new_card.willpower = card_database_reference.CARDS[card_drawn_name][6]
+	new_card.lore = card_database_reference.CARDS[card_drawn_name][7]
 	$"../CardManager".add_child(new_card)
 	new_card.name = "Card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)

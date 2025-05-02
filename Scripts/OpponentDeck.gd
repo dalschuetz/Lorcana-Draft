@@ -31,6 +31,8 @@ func draw_card():
 	var card_image_path = str("res://Assets/CardFronts/" + card_drawn_name + ".jpg")
 	new_card.get_node("CardImage").texture = load(card_image_path)
 	new_card.strength = card_database_reference.CARDS[card_drawn_name][5]
+	new_card.willpower = card_database_reference.CARDS[card_drawn_name][6]
+	new_card.lore = card_database_reference.CARDS[card_drawn_name][7]
 	
 	# Add the card to the CardManager
 	$"../CardManager".add_child(new_card)
