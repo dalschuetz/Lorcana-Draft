@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uwybykqnjfoj"
-path="res://.godot/imported/goofy.jpg-688bc898256236005f908b551c87fe3e.ctex"
+uid="uid://b0wv44hdl3v7h"
+path="res://.godot/imported/hades king of olympus.jpg-f8adbcf050421ba77780f93e7c04891f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardFronts/goofy.jpg"
-dest_files=["res://.godot/imported/goofy.jpg-688bc898256236005f908b551c87fe3e.ctex"]
+source_file="res://Assets/CardFronts/hades king of olympus.jpg"
+dest_files=["res://.godot/imported/hades king of olympus.jpg-f8adbcf050421ba77780f93e7c04891f.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@ const CARD_SCENE_PATH = "res://Scenes/Card.tscn"
 const CARD_DRAW_SPEED = .25
 const STARTING_HAND_SIZE = 7
 
-var player_deck = ["ariel", "hades", "goofy", "ariel2", "cinderella", "goofy", "ariel", "goofy", "hades", "cinderella", "ariel2", "ariel2", "goofy", "hades", "ariel"]
+var player_deck = ["ariel on human legs", "ariel spectacular singer", "cinderella gentle and kind", "goofy musketeer", "hades king of olympus", "goofy musketeer", "goofy musketeer", "cinderella gentle and kind", "cinderella gentle and kind"]
 var card_database_reference
 var drawn_card_this_turn = false
 

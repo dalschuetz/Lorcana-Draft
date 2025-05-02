@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rj4bpxmurmer"
-path="res://.godot/imported/ariel2.jpg-204a42cc641bc2e100bcda49faa0676f.ctex"
+uid="uid://cykjdvospmirm"
+path="res://.godot/imported/cinderella gentle and kind.jpg-dfd698d849bb376740b9669b8275c61b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardFronts/ariel2.jpg"
-dest_files=["res://.godot/imported/ariel2.jpg-204a42cc641bc2e100bcda49faa0676f.ctex"]
+source_file="res://Assets/CardFronts/cinderella gentle and kind.jpg"
+dest_files=["res://.godot/imported/cinderella gentle and kind.jpg-dfd698d849bb376740b9669b8275c61b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cykjdvospmirm"
-path="res://.godot/imported/cinderella.jpg-4c8706e474addd312e9aec42ccecab34.ctex"
+uid="uid://uwybykqnjfoj"
+path="res://.godot/imported/goofy musketeer.jpg-28564e2fb31b955c653393dbcbc587c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardFronts/cinderella.jpg"
-dest_files=["res://.godot/imported/cinderella.jpg-4c8706e474addd312e9aec42ccecab34.ctex"]
+source_file="res://Assets/CardFronts/goofy musketeer.jpg"
+dest_files=["res://.godot/imported/goofy musketeer.jpg-28564e2fb31b955c653393dbcbc587c7.ctex"]
 
 [params]
 

@@ -1,3707 +1,3707 @@
-const CARDS = {
-    "ariel on human legs": [1, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "VOICELESS This character can't ⟳ to sing songs.", "static", 3, 4, 2, 4, true, 0, 0, 0],
-    "ariel spectacular singer": [2, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing songs.)\nMUSICAL DEBUT When you play this character, look
+const CARDS = { #id, images:full, color, abilities:fullText, abilities:type, strength, willpower, lore, cost, inkwell, drying, inked, tapped
+	"ariel on human legs": [1, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "VOICELESS This character can't ⟳ to sing songs.", "static", 3, 4, 2, 4, true, 0, 0, 0],
+	"ariel spectacular singer": [2, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing songs.)\nMUSICAL DEBUT When you play this character, look
 at the top 4 cards of your deck. You may reveal a song
 card and put it into your hand. Put the rest on the
 bottom of your deck in any order.", "keyword, triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "cinderella gentle and kind": [3, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
+	"cinderella gentle and kind": [3, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
 songs.)\nA WONDERFUL DREAM ⟳ — Remove up to 3
 damage from chosen Princess character.", "keyword, activated", 2, 5, 2, 4, true, 0, 0, 0],
-    "goofy musketeer": [670, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Bodyguard (This character may enter play exerted. An
+	"goofy musketeer": [670, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Bodyguard (This character may enter play exerted. An
 opposing character who challenges one of your characters
 must choose one with Bodyguard if able.)\nAND TWO FOR TEA! When you play this character, you
 may remove up to 2 damage from each of your Musketeer
 characters.", "keyword, triggered", 3, 6, 1, 5, true, 0, 0, 0],
-    "hades king of olympus": [205, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Shift 6 (You may pay 6 ⬡ to play this on top of one
+	"hades king of olympus": [205, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Shift 6 (You may pay 6 ⬡ to play this on top of one
 of your characters named Hades.)\nSINISTER PLOT This character gets +1 ◊ for each
 other Villain character you have in play.", "keyword, static", 6, 7, 1, 8, false, 0, 0, 0],
-    "hades lord of the underworld": [6, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "WELL OF SOULS When you play this character,
+	"hades lord of the underworld": [6, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "WELL OF SOULS When you play this character,
 return a character card from your discard to your
 hand.", "triggered", 3, 2, 1, 4, false, 0, 0, 0],
-    "heihei boat snack": [667, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Support (Whenever this character quests, you may
+	"heihei boat snack": [667, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Support (Whenever this character quests, you may
 add their ¤ to chosen character's ¤ this turn.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
-    "lefou bumbler": [8, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "LOYAL If you have a character named Gaston in
+	"lefou bumbler": [8, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "LOYAL If you have a character named Gaston in
 play, you pay 1 ⬡ less to play this character.", "static", 1, 2, 2, 2, true, 0, 0, 0],
-    "lilo making a wish": [9, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "", "", 1, 1, 2, 1, false, 0, 0, 0],
-    "maximus palace horse": [10, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"lilo making a wish": [9, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "", "", 1, 1, 2, 1, false, 0, 0, 0],
+	"maximus palace horse": [10, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nSupport (Whenever this character quests, you may
 add their ¤ to another chosen character's ¤ this
 turn.)", "keyword, keyword", 4, 5, 1, 5, true, 0, 0, 0],
-    "maximus relentless pursuer": [11, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "HORSE KICK When you play this character,
+	"maximus relentless pursuer": [11, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "HORSE KICK When you play this character,
 chosen character gets -2 ¤ this turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "mickey mouse true friend": [12, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "", "", 3, 3, 2, 3, true, 0, 0, 0],
-    "minnie mouse beloved princess": [13, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "moana of motunui": [14, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "WE CAN FIX IT Whenever this character quests,
+	"mickey mouse true friend": [12, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "", "", 3, 3, 2, 3, true, 0, 0, 0],
+	"minnie mouse beloved princess": [13, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"moana of motunui": [14, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "WE CAN FIX IT Whenever this character quests,
 you may ready your other Princess characters. They
 can't quest for the rest of this turn.", "triggered", 1, 6, 3, 5, true, 0, 0, 0],
-    "mr smee loyal first mate": [15, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "", "", 2, 5, 1, 3, true, 0, 0, 0],
-    "prince phillip dragonslayer": [16, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "HEROISM When this character challenges and is
+	"mr smee loyal first mate": [15, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "", "", 2, 5, 1, 3, true, 0, 0, 0],
+	"prince phillip dragonslayer": [16, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "HEROISM When this character challenges and is
 banished, you may banish the challenged character.", "triggered", 3, 3, 2, 4, false, 0, 0, 0],
-    "pumbaa friendly warthog": [17, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "", "", 3, 5, 1, 4, true, 0, 0, 0],
-    "rapunzel gifted with healing": [1190, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "GLEAM AND GLOW When you play this character,
+	"pumbaa friendly warthog": [17, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "", "", 3, 5, 1, 4, true, 0, 0, 0],
+	"rapunzel gifted with healing": [1190, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "GLEAM AND GLOW When you play this character,
 remove up to 3 damage from one of your
 characters. Draw a card for each 1 damage
 removed this way.", "triggered", 1, 5, 2, 4, true, 0, 0, 0],
-    "sebastian court composer": [19, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing songs.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "simba protective cub": [20, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"sebastian court composer": [19, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing songs.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
+	"simba protective cub": [20, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 2, 3, 1, 2, true, 0, 0, 0],
-    "stitch carefree surfer": [206, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "OHANA When you play this character, if you
+	"stitch carefree surfer": [206, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "OHANA When you play this character, if you
 have 2 or more other characters in play, you may
 draw 2 cards.", "triggered", 4, 8, 2, 7, true, 0, 0, 0],
-    "stitch new dog": [22, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "stitch rock star": [688, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"stitch new dog": [22, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"stitch rock star": [688, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Stitch.)\nADORING FANS Whenever you play a character
 with cost 2 or less, you may exert them to draw a
 card.", "keyword, triggered", 3, 5, 3, 6, true, 0, 0, 0],
-    "timon grub rustler": [24, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "TASTES LIKE CHICKEN When you play this
+	"timon grub rustler": [24, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "TASTES LIKE CHICKEN When you play this
 character, you may remove up to 1 damage from
 chosen character.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "be our guest": [25, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"be our guest": [25, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "control your temper": [26, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "hakuna matata": [27, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this
+	"control your temper": [26, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"hakuna matata": [27, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "healing glow": [28, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "just in time": [29, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "part of your world": [30, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this song
+	"healing glow": [28, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"just in time": [29, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"part of your world": [30, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "you have forgotten me": [31, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "", "", 0, 0, 0, 4, true, 0, 0, 0],
-    "dinglehopper": [32, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "STRAIGHTEN HAIR ⟳ — Remove up to 1 damage
+	"you have forgotten me": [31, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "", "", 0, 0, 0, 4, true, 0, 0, 0],
+	"dinglehopper": [32, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "STRAIGHTEN HAIR ⟳ — Remove up to 1 damage
 from chosen character.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "lantern": [33, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "BIRTHDAY LIGHTS ⟳ — You pay 1 ⬡ less for the next
+	"lantern": [33, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "BIRTHDAY LIGHTS ⟳ — You pay 1 ⬡ less for the next
 character you play this turn.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "ursula's shell necklace": [34, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "NOW, SING! Whenever you play a song, you may pay
+	"ursula's shell necklace": [34, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "NOW, SING! Whenever you play a song, you may pay
 1 ⬡ to draw a card.", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "anna heir to arendelle": [35, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "LOVING HEART When you play this character,
+	"anna heir to arendelle": [35, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "LOVING HEART When you play this character,
 if you have a character named Elsa in play, choose
 an opposing character. The chosen character
 doesn't ready at the start of their next turn.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "archimedes highly educated owl": [36, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "dr facilier agent provocateur": [37, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of
+	"archimedes highly educated owl": [36, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"dr facilier agent provocateur": [37, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of
 one of your characters named Dr. Facilier.)\nINTO THE SHADOWS Whenever one of your
 other characters is banished in a challenge, you
 may return that card to your hand.", "keyword, triggered", 4, 5, 3, 7, false, 0, 0, 0],
-    "dr facilier charlatan": [38, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Challenger +2 (While challenging, this character
+	"dr facilier charlatan": [38, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 0, 4, 1, 2, true, 0, 0, 0],
-    "dr facilier remarkable gentleman": [39, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "DREAMS MADE REAL Whenever you play a
+	"dr facilier remarkable gentleman": [39, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "DREAMS MADE REAL Whenever you play a
 song, you may look at the top 2 cards of your
 deck. Put one on the top of your deck and the
 other on the bottom.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "elsa queen regent": [40, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "elsa snow queen": [661, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amethyst", "FREEZE ⟳ — Exert chosen opposing character.", "activated", 2, 3, 1, 3, true, 0, 0, 0],
-    "elsa spirit of winter": [207, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amethyst", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
+	"elsa queen regent": [40, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"elsa snow queen": [661, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amethyst", "FREEZE ⟳ — Exert chosen opposing character.", "activated", 2, 3, 1, 3, true, 0, 0, 0],
+	"elsa spirit of winter": [207, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amethyst", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
 your characters named Elsa.)\nDEEP FREEZE When you play this character, exert up
 to 2 chosen characters. They can't ready at the start of
 their next turn.", "keyword, triggered", 4, 6, 3, 8, false, 0, 0, 0],
-    "flotsam ursula's spy": [43, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Rush (This character can challenge the turn they're
+	"flotsam ursula's spy": [43, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Rush (This character can challenge the turn they're
 played.)\nDEXTEROUS LUNGE Your characters named
 Jetsam gain Rush.", "keyword, static", 3, 4, 2, 5, false, 0, 0, 0],
-    "jafar keeper of secrets": [44, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "HIDDEN WONDERS This character gets +1 ¤
+	"jafar keeper of secrets": [44, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "HIDDEN WONDERS This character gets +1 ¤
 for each card in your hand.", "static", 0, 5, 2, 4, true, 0, 0, 0],
-    "jafar wicked sorcerer": [45, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Challenger +3 (While challenging, this character
+	"jafar wicked sorcerer": [45, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Challenger +3 (While challenging, this character
 gets +3 ¤.)", "keyword", 2, 5, 1, 4, true, 0, 0, 0],
-    "jetsam ursula's spy": [46, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"jetsam ursula's spy": [46, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nSINISTER SLITHER Your characters named
 Flotsam gain Evasive.", "keyword, static", 3, 3, 1, 4, true, 0, 0, 0],
-    "magic broom bucket brigade": [47, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "SWEEP When you play this character, you may
+	"magic broom bucket brigade": [47, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "SWEEP When you play this character, you may
 shuffle a card from any discard into its player's
 deck.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "maleficent biding her time": [48, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "", "", 1, 1, 2, 1, false, 0, 0, 0],
-    "maleficent sorceress": [49, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "CAST MY SPELL! When you play this character,
+	"maleficent biding her time": [48, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "", "", 1, 1, 2, 1, false, 0, 0, 0],
+	"maleficent sorceress": [49, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "CAST MY SPELL! When you play this character,
 you may draw a card.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "marshmallow persistent guardian": [50, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "DURABLE When this character is banished in a
+	"marshmallow persistent guardian": [50, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "DURABLE When this character is banished in a
 challenge, you may return this card to your hand.", "triggered", 5, 5, 1, 6, false, 0, 0, 0],
-    "mickey mouse wayward sorcerer": [208, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "ANIMATE BROOM You pay 1 ⬡ less to play Broom
+	"mickey mouse wayward sorcerer": [208, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "ANIMATE BROOM You pay 1 ⬡ less to play Broom
 characters.\nCEASELESS WORKER Whenever one of your Broom
 characters is banished in a challenge, you may return
 that card to your hand.", "static, triggered", 3, 4, 2, 4, true, 0, 0, 0],
-    "olaf friendly snowman": [52, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "pascal rapunzel's companion": [53, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "CAMOUFLAGE While you have another character
+	"olaf friendly snowman": [52, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"pascal rapunzel's companion": [53, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "CAMOUFLAGE While you have another character
 in play, this character gains Evasive. (Only characters
 with Evasive can challenge them.)", "static", 1, 1, 1, 1, true, 0, 0, 0],
-    "rafiki mysterious sage": [54, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"rafiki mysterious sage": [54, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)", "keyword", 3, 3, 1, 3, false, 0, 0, 0],
-    "sven official ice deliverer": [55, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "", "", 5, 7, 1, 6, true, 0, 0, 0],
-    "the queen wicked and vain": [56, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "I SUMMON THEE ⟳ — Draw a card.", "activated", 4, 5, 1, 5, true, 0, 0, 0],
-    "the wardrobe belle's confidant": [57, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "tinker bell peter pan's ally": [58, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"sven official ice deliverer": [55, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "", "", 5, 7, 1, 6, true, 0, 0, 0],
+	"the queen wicked and vain": [56, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "I SUMMON THEE ⟳ — Draw a card.", "activated", 4, 5, 1, 5, true, 0, 0, 0],
+	"the wardrobe belle's confidant": [57, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"tinker bell peter pan's ally": [58, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nLOYAL AND DEVOTED Your characters named
 Peter Pan gain Challenger +1. (They get +1 ¤
 while challenging.)", "keyword, static", 3, 3, 2, 5, false, 0, 0, 0],
-    "ursula power hungry": [59, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "IT'S TOO EASY! When you play this character,
+	"ursula power hungry": [59, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "IT'S TOO EASY! When you play this character,
 each opponent loses 1 lore. You may draw a card
 for each 1 lore lost this way.", "triggered", 2, 8, 3, 7, false, 0, 0, 0],
-    "yzma alchemist": [668, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amethyst", "YOU'RE EXCUSED Whenever this character
+	"yzma alchemist": [668, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amethyst", "YOU'RE EXCUSED Whenever this character
 quests, look at the top card of your deck. Put it
 on either the top or the bottom of your deck.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "zeus god of lightning": [61, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "Rush (This character can challenge the turn they're
+	"zeus god of lightning": [61, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "Rush (This character can challenge the turn they're
 played.)\nChallenger +4 (While challenging, this character gets
 +4 ¤.)", "keyword, keyword", 0, 4, 2, 4, false, 0, 0, 0],
-    "befuddle": [62, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "freeze": [63, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "friends on the other side": [64, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song
+	"befuddle": [62, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"freeze": [63, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"friends on the other side": [64, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "reflection": [65, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song
+	"reflection": [65, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "magic mirror": [66, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "SPEAK! ⟳, 4 ⬡ — Draw a card.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "ursula's cauldron": [67, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "PEER INTO THE DEPTHS ⟳ — Look at the top 2
+	"magic mirror": [66, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "SPEAK! ⟳, 4 ⬡ — Draw a card.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
+	"ursula's cauldron": [67, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "PEER INTO THE DEPTHS ⟳ — Look at the top 2
 cards of your deck. Put one on the top of your deck
 and the other on the bottom.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "white rabbit's pocket watch": [68, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "I'M LATE! ⟳, 1 ⬡ — Chosen character gains Rush
+	"white rabbit's pocket watch": [68, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "I'M LATE! ⟳, 1 ⬡ — Chosen character gains Rush
 this turn. (They can challenge the turn they're played.)", "activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "aladdin prince ali": [69, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"aladdin prince ali": [69, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "beast wolfsbane": [70, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "Rush (This character can challenge the turn they're
+	"beast wolfsbane": [70, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "Rush (This character can challenge the turn they're
 played.)\nROAR When you play this character, exert all opposing
 damaged characters.", "keyword, triggered", 4, 4, 2, 5, false, 0, 0, 0],
-    "cheshire cat not all there": [71, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "LOSE SOMETHING? When this character is
+	"cheshire cat not all there": [71, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "LOSE SOMETHING? When this character is
 challenged and banished, banish the challenging
 character.", "triggered", 0, 3, 2, 3, true, 0, 0, 0],
-    "cruella de vil miserable as usual": [662, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Emerald", "YOU'LL BE SORRY! When this character is
+	"cruella de vil miserable as usual": [662, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Emerald", "YOU'LL BE SORRY! When this character is
 challenged and banished, you may return chosen
 character to their player's hand.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "duke of weselton opportunistic official": [73, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "flynn rider charming rogue": [74, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "HERE COMES THE SMOLDER Whenever this
+	"duke of weselton opportunistic official": [73, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"flynn rider charming rogue": [74, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "HERE COMES THE SMOLDER Whenever this
 character is challenged, the challenging player
 chooses and discards a card.", "triggered", 1, 2, 2, 2, true, 0, 0, 0],
-    "genie on the job": [209, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Emerald", "Evasive (Only characters with Evasive can challenge this
+	"genie on the job": [209, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Emerald", "Evasive (Only characters with Evasive can challenge this
 character.)\nDISAPPEAR When you play this character, you may
 return chosen character to their player's hand.", "keyword, triggered", 3, 4, 2, 6, false, 0, 0, 0],
-    "genie powers unleashed": [678, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Emerald", "Shift 6 (You may pay 6 ⬡ to play this on top of one of your
+	"genie powers unleashed": [678, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Emerald", "Shift 6 (You may pay 6 ⬡ to play this on top of one of your
 characters named Genie.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nPHENOMENAL COSMIC POWER! Whenever this character
 quests, you may play an action with cost 5 or less for free.", "keyword, keyword, triggered", 3, 5, 3, 8, false, 0, 0, 0],
-    "genie the ever impressive": [77, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "hans scheming prince": [78, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "", "", 3, 3, 3, 4, true, 0, 0, 0],
-    "horace no-good scoundrel": [79, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "iago loud-mouthed parrot": [80, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "YOU GOT A PROBLEM? ⟳ — Chosen character
+	"genie the ever impressive": [77, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"hans scheming prince": [78, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "", "", 3, 3, 3, 4, true, 0, 0, 0],
+	"horace no-good scoundrel": [79, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"iago loud-mouthed parrot": [80, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "YOU GOT A PROBLEM? ⟳ — Chosen character
 gains Reckless during their next turn. (They can't
 quest and must challenge if able.)", "activated", 1, 4, 1, 3, true, 0, 0, 0],
-    "jasper common crook": [81, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "PUPPYNAPPING Whenever this character
+	"jasper common crook": [81, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "PUPPYNAPPING Whenever this character
 quests, chosen opposing character can't quest
 during their next turn.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "john silver alien pirate": [82, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "PICK YOUR FIGHTS When you play this character
+	"john silver alien pirate": [82, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "PICK YOUR FIGHTS When you play this character
 and whenever he quests, chosen opposing character
 gains Reckless during their next turn. (They can't
 quest and must challenge if able.)", "triggered", 5, 5, 2, 6, true, 0, 0, 0],
-    "jumba jookiba renegade scientist": [83, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "", "", 4, 5, 2, 5, true, 0, 0, 0],
-    "kuzco temperamental emperor": [1198, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Emerald", "Ward (Opponents can't choose this character except to
+	"jumba jookiba renegade scientist": [83, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "", "", 4, 5, 2, 5, true, 0, 0, 0],
+	"kuzco temperamental emperor": [1198, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Emerald", "Ward (Opponents can't choose this character except to
 challenge.)\nNO TOUCHY! When this character is challenged and
 banished, you may banish the challenging character.", "keyword, triggered", 2, 4, 3, 5, false, 0, 0, 0],
-    "lady tremaine wicked stepmother": [85, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "DO IT AGAIN! When you play this character,
+	"lady tremaine wicked stepmother": [85, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "DO IT AGAIN! When you play this character,
 you may return an action card from your discard
 to your hand.", "triggered", 1, 5, 1, 6, false, 0, 0, 0],
-    "mad hatter gracious host": [86, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "TEA PARTY Whenever this character is challenged,
+	"mad hatter gracious host": [86, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "TEA PARTY Whenever this character is challenged,
 you may draw a card.", "triggered", 2, 4, 3, 5, true, 0, 0, 0],
-    "megara pulling the strings": [87, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "WONDER BOY When you play this character,
+	"megara pulling the strings": [87, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "WONDER BOY When you play this character,
 chosen character gets +2 ¤ this turn.", "triggered", 2, 1, 1, 2, true, 0, 0, 0],
-    "mickey mouse artful rogue": [210, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"mickey mouse artful rogue": [210, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Mickey Mouse.)\nMISDIRECTION Whenever you play an action, chosen
 opposing character can't quest during their next turn.", "keyword, triggered", 6, 5, 2, 7, false, 0, 0, 0],
-    "mickey mouse steamboat pilot": [89, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "mother gothel selfish manipulator": [90, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "SKIP THE DRAMA, STAY WITH MAMA While this
+	"mickey mouse steamboat pilot": [89, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"mother gothel selfish manipulator": [90, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "SKIP THE DRAMA, STAY WITH MAMA While this
 character is exerted, opposing characters can't
 quest.", "static", 3, 6, 2, 6, true, 0, 0, 0],
-    "peter pan never landing": [91, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"peter pan never landing": [91, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "tamatoa drab little crab": [92, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "", "", 1, 4, 1, 2, true, 0, 0, 0],
-    "tinker bell most helpful": [93, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"tamatoa drab little crab": [92, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "", "", 1, 4, 1, 2, true, 0, 0, 0],
+	"tinker bell most helpful": [93, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nPIXIE DUST When you play this character,
 chosen character gains Evasive this turn.", "keyword, triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "do it again": [94, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "mother knows best": [95, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 3 or more can ⟳ to sing this
+	"do it again": [94, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"mother knows best": [95, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "stampede": [96, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "steal from the rich": [97, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 5, false, 0, 0, 0],
-    "sudden chill": [98, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
+	"stampede": [96, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"steal from the rich": [97, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 5, false, 0, 0, 0],
+	"sudden chill": [98, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "the beast is mine": [99, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "vicious betrayal": [100, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "dr facilier's cards": [101, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "THE CARDS WILL TELL ⟳ — You pay 1 ⬡ less for the
+	"the beast is mine": [99, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"vicious betrayal": [100, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"dr facilier's cards": [101, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "THE CARDS WILL TELL ⟳ — You pay 1 ⬡ less for the
 next action you play this turn.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "stolen scimitar": [102, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SLASH ⟳ — Chosen character gets +1 ¤ this turn.
+	"stolen scimitar": [102, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SLASH ⟳ — Chosen character gets +1 ¤ this turn.
 If a character named Aladdin is chosen, he gets +2 ¤
 instead.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "abu mischievous monkey": [103, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 3, 2, 2, 3, true, 0, 0, 0],
-    "aladdin heroic outlaw": [211, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"abu mischievous monkey": [103, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 3, 2, 2, 3, true, 0, 0, 0],
+	"aladdin heroic outlaw": [211, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Aladdin.)\nDARING EXPLOIT During your turn, whenever this character
 banishes another character in a challenge, you gain 2 lore and
 each opponent loses 2 lore.", "keyword, triggered", 5, 5, 2, 7, true, 0, 0, 0],
-    "aladdin street rat": [105, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "IMPROVISE When you play this character, each
+	"aladdin street rat": [105, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "IMPROVISE When you play this character, each
 opponent loses 1 lore.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "captain colonel's lieutenant": [106, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
-    "captain hook ruthless pirate": [107, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "Rush (This character can challenge the turn they're
+	"captain colonel's lieutenant": [106, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
+	"captain hook ruthless pirate": [107, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "Rush (This character can challenge the turn they're
 played.)\nYOU COWARD! While this character is exerted,
 opposing characters with Evasive gain Reckless. (They
 can't quest and must challenge if able.)", "keyword, static", 5, 5, 2, 7, false, 0, 0, 0],
-    "donald duck boisterous fowl": [108, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "elsa ice surfer": [109, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "THAT'S NO BLIZZARD Whenever you play a
+	"donald duck boisterous fowl": [108, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"elsa ice surfer": [109, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "THAT'S NO BLIZZARD Whenever you play a
 character named Anna, ready this character. This
 character can't quest for the rest of this turn.", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "gaston arrogant hunter": [682, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Ruby", "Reckless (This character can't quest and must
+	"gaston arrogant hunter": [682, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 4, 2, 0, 2, true, 0, 0, 0],
-    "goofy daredevil": [111, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"goofy daredevil": [111, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 4, 2, 5, true, 0, 0, 0],
-    "lefou instigator": [112, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "FAN THE FLAMES When you play this character,
+	"lefou instigator": [112, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "FAN THE FLAMES When you play this character,
 ready chosen character. They can't quest for the
 rest of this turn.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "maleficent monstrous dragon": [663, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Ruby", "DRAGON FIRE When you play this character, you
+	"maleficent monstrous dragon": [663, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Ruby", "DRAGON FIRE When you play this character, you
 may banish chosen opposing character.", "triggered", 7, 5, 2, 9, true, 0, 0, 0],
-    "maui hero to all": [212, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Ruby", "Rush (This character can challenge the turn they're
+	"maui hero to all": [212, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Ruby", "Rush (This character can challenge the turn they're
 played.)\nReckless (This character can't quest and must
 challenge each turn if able.)", "keyword, keyword", 6, 5, 0, 5, true, 0, 0, 0],
-    "mickey mouse brave little tailor": [1191, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
+	"mickey mouse brave little tailor": [1191, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
 this character.)", "keyword", 5, 5, 4, 8, true, 0, 0, 0],
-    "minnie mouse always classy": [116, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "moana chosen by the ocean": [117, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "THIS IS NOT WHO YOU ARE When you play
+	"minnie mouse always classy": [116, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"moana chosen by the ocean": [117, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "THIS IS NOT WHO YOU ARE When you play
 this character, you may banish chosen character
 named Te Kā.", "triggered", 2, 6, 2, 5, true, 0, 0, 0],
-    "mulan imperial soldier": [118, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "LEAD BY EXAMPLE During your turn, whenever
+	"mulan imperial soldier": [118, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "LEAD BY EXAMPLE During your turn, whenever
 this character banishes another character in a
 challenge, your other characters get +1 ◊ this
 turn.", "triggered", 4, 5, 1, 5, true, 0, 0, 0],
-    "peter pan fearless fighter": [119, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn
+	"peter pan fearless fighter": [119, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 3, 2, 1, 3, false, 0, 0, 0],
-    "pongo ol' rascal": [120, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"pongo ol' rascal": [120, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 2, 3, 2, 4, true, 0, 0, 0],
-    "rapunzel letting down her hair": [121, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "TANGLE When you play this character, each
+	"rapunzel letting down her hair": [121, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "TANGLE When you play this character, each
 opponent loses 1 lore.", "triggered", 5, 4, 2, 6, false, 0, 0, 0],
-    "scar fiery usurper": [122, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
-    "scar shameless firebrand": [123, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 6 (You may pay 6 ⬡ to play this on top of one of your
+	"scar fiery usurper": [122, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
+	"scar shameless firebrand": [123, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 6 (You may pay 6 ⬡ to play this on top of one of your
 characters named Scar.)\nROUSING SPEECH When you play this character, ready
 your characters with cost 3 or less. They can't quest for the
 rest of this turn.", "keyword, triggered", 6, 6, 1, 8, false, 0, 0, 0],
-    "sergeant tibbs courageous cat": [124, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "stitch abomination": [679, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Ruby", "", "", 4, 6, 3, 6, true, 0, 0, 0],
-    "te ka the burning one": [126, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "Reckless (This character can't quest and must
+	"sergeant tibbs courageous cat": [124, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"stitch abomination": [679, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Ruby", "", "", 4, 6, 3, 6, true, 0, 0, 0],
+	"te ka the burning one": [126, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 8, 6, 0, 6, false, 0, 0, 0],
-    "tigger wonderful thing": [127, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
+	"tigger wonderful thing": [127, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
 this character.)", "keyword", 4, 4, 2, 6, true, 0, 0, 0],
-    "be prepared": [128, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "(A character with cost 7 or more can ⟳ to sing this
+	"be prepared": [128, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "(A character with cost 7 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 7, false, 0, 0, 0],
-    "cut to the chase": [129, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "dragon fire": [1187, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Ruby", "", "", 0, 0, 0, 5, false, 0, 0, 0],
-    "fan the flames": [131, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "he's got a sword": [132, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "tangle": [133, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "poisoned apple": [134, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "TAKE A BITE... 1 ⬡, Banish this item — Exert chosen
+	"cut to the chase": [129, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"dragon fire": [1187, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Ruby", "", "", 0, 0, 0, 5, false, 0, 0, 0],
+	"fan the flames": [131, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"he's got a sword": [132, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"tangle": [133, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"poisoned apple": [134, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "TAKE A BITE... 1 ⬡, Banish this item — Exert chosen
 character. If a Princess character is chosen, banish her
 instead.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "shield of virtue": [135, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "FIREPROOF ⟳, 3 ⬡ — Ready chosen character. They
+	"shield of virtue": [135, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "FIREPROOF ⟳, 3 ⬡ — Ready chosen character. They
 can't quest for the rest of this turn.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "sword of truth": [136, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "FINAL ENCHANTMENT Banish this item — Banish
+	"sword of truth": [136, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "FINAL ENCHANTMENT Banish this item — Banish
 chosen Villain character.", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "ariel whoseit collector": [137, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "LOOK AT THIS STUFF Whenever you play an
+	"ariel whoseit collector": [137, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "LOOK AT THIS STUFF Whenever you play an
 item, you may ready this character.", "triggered", 3, 3, 1, 4, false, 0, 0, 0],
-    "aurora briar rose": [138, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "DISARMING BEAUTY When you play this
+	"aurora briar rose": [138, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "DISARMING BEAUTY When you play this
 character, chosen character gets -2 ¤ this turn.", "triggered", 2, 5, 1, 4, true, 0, 0, 0],
-    "aurora dreaming guardian": [213, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"aurora dreaming guardian": [213, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Aurora.)\nPROTECTIVE EMBRACE Your other characters gain Ward.
 (Opponents can't choose them except to challenge.)", "keyword, static", 3, 5, 2, 5, true, 0, 0, 0],
-    "aurora regal princess": [140, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "belle inventive engineer": [141, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "TINKER Whenever this character quests, you
+	"aurora regal princess": [140, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"belle inventive engineer": [141, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "TINKER Whenever this character quests, you
 pay 1 ⬡ less for the next item you play this turn.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "belle strange but special": [214, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Sapphire", "READ A BOOK During your turn, you may put an additional
+	"belle strange but special": [214, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Sapphire", "READ A BOOK During your turn, you may put an additional
 card from your hand into your inkwell facedown.\nMY FAVORITE PART! While you have 10 or more cards in
 your inkwell, this character gets +4 ◊.", "static, static", 2, 4, 1, 4, true, 0, 0, 0],
-    "chief tui respected leader": [143, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"chief tui respected leader": [143, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 6, 3, 7, true, 0, 0, 0],
-    "donald duck strutting his stuff": [144, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"donald duck strutting his stuff": [144, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 4, 3, 2, 5, true, 0, 0, 0],
-    "flounder voice of reason": [145, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "gramma tala storyteller": [146, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "I WILL BE WITH YOU When this character is
+	"flounder voice of reason": [145, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"gramma tala storyteller": [146, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "I WILL BE WITH YOU When this character is
 banished, you may put this card into your inkwell
 facedown and exerted.", "triggered", 1, 1, 1, 2, true, 0, 0, 0],
-    "hades infernal schemer": [147, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "IS THERE A DOWNSIDE TO THIS? When you
+	"hades infernal schemer": [147, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "IS THERE A DOWNSIDE TO THIS? When you
 play this character, you may put chosen opposing
 character into their player's inkwell facedown.", "triggered", 3, 6, 2, 7, false, 0, 0, 0],
-    "jasmine disguised": [148, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "", "", 3, 3, 2, 3, true, 0, 0, 0],
-    "jasmine queen of agrabah": [149, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"jasmine disguised": [148, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "", "", 3, 3, 2, 3, true, 0, 0, 0],
+	"jasmine queen of agrabah": [149, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Jasmine.)\nCARETAKER When you play this character and
 whenever she quests, you may remove up to 2
 damage from each of your characters.", "keyword, triggered", 2, 5, 2, 5, true, 0, 0, 0],
-    "maleficent sinister visitor": [150, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "", "", 3, 4, 2, 4, true, 0, 0, 0],
-    "maleficent uninvited": [680, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Sapphire", "", "", 3, 6, 3, 5, true, 0, 0, 0],
-    "maurice world-famous inventor": [152, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "GIVE IT A TRY Whenever this character quests,
+	"maleficent sinister visitor": [150, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "", "", 3, 4, 2, 4, true, 0, 0, 0],
+	"maleficent uninvited": [680, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Sapphire", "", "", 3, 6, 3, 5, true, 0, 0, 0],
+	"maurice world-famous inventor": [152, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "GIVE IT A TRY Whenever this character quests,
 you pay 2 ⬡ less for the next item you play this turn.\nIT WORKS! Whenever you play an item, you may
 draw a card.", "triggered, triggered", 2, 7, 2, 6, true, 0, 0, 0],
-    "merlin self-appointed mentor": [153, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"merlin self-appointed mentor": [153, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 4, 1, 4, true, 0, 0, 0],
-    "mickey mouse detective": [666, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Sapphire", "GET A CLUE When you play this character,
+	"mickey mouse detective": [666, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Sapphire", "GET A CLUE When you play this character,
 you may put the top card of your deck into your
 inkwell facedown and exerted.", "triggered", 1, 3, 1, 3, false, 0, 0, 0],
-    "mufasa king of the pride lands": [155, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "", "", 4, 6, 3, 6, true, 0, 0, 0],
-    "philoctetes trainer of heroes": [156, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"mufasa king of the pride lands": [155, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "", "", 4, 6, 3, 6, true, 0, 0, 0],
+	"philoctetes trainer of heroes": [156, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 1, 1, 2, true, 0, 0, 0],
-    "robin hood unrivaled archer": [664, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Sapphire", "FEED THE POOR When you play this character, if an
+	"robin hood unrivaled archer": [664, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Sapphire", "FEED THE POOR When you play this character, if an
 opponent has more cards in their hand than you, draw a card.\nGOOD SHOT During your turn, this character has Evasive.
 (They can challenge characters with Evasive.)", "triggered, static", 4, 4, 2, 6, true, 0, 0, 0],
-    "scar mastermind": [158, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "INSIDIOUS PLOT When you play this character,
+	"scar mastermind": [158, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "INSIDIOUS PLOT When you play this character,
 chosen opposing character gets -5 ¤ this turn.", "triggered", 5, 4, 2, 6, true, 0, 0, 0],
-    "tamatoa so shiny": [159, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "WHAT HAVE WE HERE? When you play this character
+	"tamatoa so shiny": [159, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "WHAT HAVE WE HERE? When you play this character
 and whenever he quests, you may return an item card
 from your discard to your hand.\nGLAM This character gets +1 ◊ for each item you have
 in play.", "triggered, static", 5, 8, 1, 8, true, 0, 0, 0],
-    "triton the sea king": [160, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "", "", 5, 9, 2, 7, true, 0, 0, 0],
-    "develop your brain": [161, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "if it's not baroque": [162, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "let it go": [1188, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
-    "one jump ahead": [164, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 2, false, 0, 0, 0],
-    "work together": [165, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "coconut basket": [166, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "CONSIDER THE COCONUT Whenever you play a character,
+	"triton the sea king": [160, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "", "", 5, 9, 2, 7, true, 0, 0, 0],
+	"develop your brain": [161, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"if it's not baroque": [162, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"let it go": [1188, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
+	"one jump ahead": [164, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 2, false, 0, 0, 0],
+	"work together": [165, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"coconut basket": [166, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "CONSIDER THE COCONUT Whenever you play a character,
 you may remove up to 2 damage from chosen character.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "eye of the fates": [167, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "SEE THE FUTURE ⟳ — Chosen character gets +1 ◊
+	"eye of the fates": [167, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "SEE THE FUTURE ⟳ — Chosen character gets +1 ◊
 this turn.", "activated", 0, 0, 0, 4, true, 0, 0, 0],
-    "fishbone quill": [168, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "GO AHEAD AND SIGN ⟳ — Put any card from your
+	"fishbone quill": [168, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "GO AHEAD AND SIGN ⟳ — Put any card from your
 hand into your inkwell facedown.", "activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "magic golden flower": [169, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "HEALING POLLEN Banish this item — Remove up to 3
+	"magic golden flower": [169, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "HEALING POLLEN Banish this item — Remove up to 3
 damage from chosen character.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "scepter of arendelle": [170, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "COMMAND ⟳ — Chosen character gains Support
+	"scepter of arendelle": [170, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "COMMAND ⟳ — Chosen character gains Support
 this turn. (Whenever they quest, you may add their ¤
 to another chosen character's ¤ this turn.)", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "aladdin cornered swordsman": [171, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "", "", 2, 1, 2, 2, true, 0, 0, 0],
-    "beast hardheaded": [172, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "BREAK When you play this character, you may
+	"aladdin cornered swordsman": [171, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "", "", 2, 1, 2, 2, true, 0, 0, 0],
+	"beast hardheaded": [172, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "BREAK When you play this character, you may
 banish chosen item.", "triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "captain hook captain of the jolly roger": [173, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "DOUBLE THE POWDER! When you play this
+	"captain hook captain of the jolly roger": [173, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "DOUBLE THE POWDER! When you play this
 character, you may return an action card named
 Fire the Cannons! from your discard to your hand.", "triggered", 3, 4, 1, 4, false, 0, 0, 0],
-    "captain hook forceful duelist": [665, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Steel", "Challenger +2 (When challenging, this character gets
+	"captain hook forceful duelist": [665, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Steel", "Challenger +2 (When challenging, this character gets
 +2 ¤.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
-    "captain hook thinking a happy thought": [175, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"captain hook thinking a happy thought": [175, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Captain Hook.)\nChallenger +3 (While challenging, this character
 gets +3 ¤.)\nSTOLEN DUST Characters with cost 3 or less can't
 challenge this character.", "keyword, keyword, static", 2, 5, 1, 5, false, 0, 0, 0],
-    "cerberus three-headed dog": [176, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "", "", 5, 6, 1, 5, true, 0, 0, 0],
-    "donald duck musketeer": [671, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"cerberus three-headed dog": [176, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "", "", 5, 6, 1, 5, true, 0, 0, 0],
+	"donald duck musketeer": [671, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nSTAY ALERT! During your turn, your Musketeer
 characters gain Evasive. (They can challenge
 characters with Evasive.)", "keyword, static", 2, 5, 1, 4, true, 0, 0, 0],
-    "gantu galactic federation captain": [178, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "UNDER ARREST Characters with cost 2 or less
+	"gantu galactic federation captain": [178, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "UNDER ARREST Characters with cost 2 or less
 can't challenge your characters.", "static", 6, 6, 2, 8, true, 0, 0, 0],
-    "goons maleficent's underlings": [179, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "hans thirteenth in line": [180, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "STAGE A LITTLE ACCIDENT Whenever this
+	"goons maleficent's underlings": [179, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"hans thirteenth in line": [180, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "STAGE A LITTLE ACCIDENT Whenever this
 character quests, you may deal 1 damage to
 chosen character.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "hercules true hero": [181, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"hercules true hero": [181, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 3, 3, 1, 3, true, 0, 0, 0],
-    "kristoff official ice master": [182, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 3, 3, 2, 3, true, 0, 0, 0],
-    "kronk right-hand man": [183, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "", "", 6, 6, 2, 6, true, 0, 0, 0],
-    "lilo galactic hero": [184, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "", "", 4, 2, 2, 3, true, 0, 0, 0],
-    "maui demigod": [681, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Steel", "", "", 8, 8, 3, 8, true, 0, 0, 0],
-    "mickey mouse musketeer": [669, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"kristoff official ice master": [182, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 3, 3, 2, 3, true, 0, 0, 0],
+	"kronk right-hand man": [183, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "", "", 6, 6, 2, 6, true, 0, 0, 0],
+	"lilo galactic hero": [184, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "", "", 4, 2, 2, 3, true, 0, 0, 0],
+	"maui demigod": [681, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Steel", "", "", 8, 8, 3, 8, true, 0, 0, 0],
+	"mickey mouse musketeer": [669, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nALL FOR ONE Your other Musketeer characters
 get +1 ¤.", "keyword, static", 2, 7, 2, 6, true, 0, 0, 0],
-    "prince eric dashing and brave": [187, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "Challenger +2 (While challenging, this character
+	"prince eric dashing and brave": [187, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "simba future king": [188, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "GUESS WHAT? When you play this character, you
+	"simba future king": [188, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "GUESS WHAT? When you play this character, you
 may draw a card, then choose and discard a card.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "simba returned king": [215, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Steel", "Challenger +4 (When challenging, this character gets
+	"simba returned king": [215, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Steel", "Challenger +4 (When challenging, this character gets
 +4 ¤.)\nPOUNCE During your turn, this character gains Evasive.
 (They can challenge characters with Evasive.)", "keyword, static", 4, 6, 2, 7, true, 0, 0, 0],
-    "simba rightful heir": [190, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "I KNOW WHAT I HAVE TO DO During your
+	"simba rightful heir": [190, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "I KNOW WHAT I HAVE TO DO During your
 turn, whenever this character banishes another
 character in a challenge, you gain 1 lore.", "triggered", 3, 5, 2, 5, false, 0, 0, 0],
-    "starkey hook's henchman": [191, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "AYE AYE, CAPTAIN While you have a Captain
+	"starkey hook's henchman": [191, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "AYE AYE, CAPTAIN While you have a Captain
 character in play, this character gets +1 ◊.", "static", 5, 4, 1, 5, true, 0, 0, 0],
-    "te ka heartless": [192, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "SEEK THE HEART During your turn, whenever
+	"te ka heartless": [192, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "SEEK THE HEART During your turn, whenever
 this character banishes another character in a
 challenge, you gain 2 lore.", "triggered", 5, 5, 2, 6, true, 0, 0, 0],
-    "tinker bell giant fairy": [216, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
+	"tinker bell giant fairy": [216, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
 characters named Tinker Bell.)\nROCK THE BOAT When you play this character, deal 1
 damage to each opposing character.\nPUNY PIRATE! During your turn, whenever this character
 banishes another character in a challenge, you may deal 2
 damage to chosen opposing character.", "keyword, triggered, triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "tinker bell tiny tactician": [194, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "BATTLE PLANS ⟳ — Draw a card, then choose
+	"tinker bell tiny tactician": [194, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "BATTLE PLANS ⟳ — Draw a card, then choose
 and discard a card.", "activated", 2, 4, 1, 3, true, 0, 0, 0],
-    "a whole new world": [195, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "(A character with cost 5 or more can ⟳ to sing this
+	"a whole new world": [195, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "(A character with cost 5 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 5, false, 0, 0, 0],
-    "break": [196, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "fire the cannons": [197, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "grab your sword": [198, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "(A character with cost 5 or more can ⟳ to sing this song for
+	"break": [196, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"fire the cannons": [197, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"grab your sword": [198, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "(A character with cost 5 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 5, false, 0, 0, 0],
-    "ransack": [199, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "smash": [200, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "beast's mirror": [201, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "SHOW ME ⟳, 3 ⬡ — If you have no cards in your
+	"ransack": [199, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"smash": [200, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"beast's mirror": [201, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "SHOW ME ⟳, 3 ⬡ — If you have no cards in your
 hand, draw a card.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "frying pan": [202, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "CLANG! Banish this item — Chosen character can't
+	"frying pan": [202, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "CLANG! Banish this item — Chosen character can't
 challenge during their next turn.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "musketeer tabard": [203, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "ALL FOR ONE AND ONE FOR ALL Whenever one of
+	"musketeer tabard": [203, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "ALL FOR ONE AND ONE FOR ALL Whenever one of
 your characters with Bodyguard is banished, you may
 draw a card.", "triggered", 0, 0, 0, 4, false, 0, 0, 0],
-    "plasma blaster": [204, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "QUICK SHOT ⟳, 2 ⬡ — Deal 1 damage to chosen
+	"plasma blaster": [204, "https://api.lorcana.ravensburger.com/images/en/set1/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "QUICK SHOT ⟳, 2 ⬡ — Deal 1 damage to chosen
 character.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "bashful hopeless romantic": [217, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "OH, GOSH! This character can't quest unless you
+	"bashful hopeless romantic": [217, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "OH, GOSH! This character can't quest unless you
 have another Seven Dwarfs character in play.", "static", 2, 5, 3, 4, true, 0, 0, 0],
-    "christopher robin adventurer": [218, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "WE'LL ALWAYS BE TOGETHER Whenever you ready
+	"christopher robin adventurer": [218, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "WE'LL ALWAYS BE TOGETHER Whenever you ready
 this character, if you have 2 or more other characters
 in play, gain 2 lore.", "triggered", 2, 6, 2, 6, true, 0, 0, 0],
-    "cinderella ballroom sensation": [421, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 3 (This character counts as cost 3 to sing songs.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
-    "cobra bubbles just a social worker": [220, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "", "", 5, 9, 2, 7, true, 0, 0, 0],
-    "doc leader of the seven dwarfs": [221, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "SHARE AND SHARE ALIKE Whenever this
+	"cinderella ballroom sensation": [421, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 3 (This character counts as cost 3 to sing songs.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
+	"cobra bubbles just a social worker": [220, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "", "", 5, 9, 2, 7, true, 0, 0, 0],
+	"doc leader of the seven dwarfs": [221, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "SHARE AND SHARE ALIKE Whenever this
 character quests, you pay 1 ⬡ less for the next
 character you play this turn.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "dopey always playful": [222, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "ODD ONE OUT When this character is banished,
+	"dopey always playful": [222, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "ODD ONE OUT When this character is banished,
 your other Seven Dwarfs characters get +2 ¤
 until the start of your next turn.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "eudora accomplished seamstress": [223, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "", "", 1, 9, 2, 5, true, 0, 0, 0],
-    "gaston baritone bully": [224, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
+	"eudora accomplished seamstress": [223, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "", "", 1, 9, 2, 5, true, 0, 0, 0],
+	"gaston baritone bully": [224, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
 songs.)", "keyword", 3, 3, 1, 3, true, 0, 0, 0],
-    "grand duke advisor to the king": [225, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "YES, YOUR MAJESTY Your Prince, Princess, King,
+	"grand duke advisor to the king": [225, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "YES, YOUR MAJESTY Your Prince, Princess, King,
 and Queen characters get +1 ¤.", "static", 2, 2, 1, 2, true, 0, 0, 0],
-    "grumpy bad-tempered": [226, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "THERE'S TROUBLE A-BREWIN' Your other Seven
+	"grumpy bad-tempered": [226, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "THERE'S TROUBLE A-BREWIN' Your other Seven
 Dwarfs characters get +1 ¤.", "static", 3, 4, 1, 4, true, 0, 0, 0],
-    "happy good-natured": [227, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "Support (Whenever this character quests, you
+	"happy good-natured": [227, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 5, 2, 5, true, 0, 0, 0],
-    "king louie jungle vip": [228, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "LAY IT ON THE LINE Whenever another character
+	"king louie jungle vip": [228, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "LAY IT ON THE LINE Whenever another character
 is banished, you may remove up to 2 damage
 from this character.", "triggered", 3, 8, 2, 7, true, 0, 0, 0],
-    "mickey mouse friendly face": [676, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "GLAD YOU'RE HERE! Whenever this character
+	"mickey mouse friendly face": [676, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "GLAD YOU'RE HERE! Whenever this character
 quests, you pay 3 ⬡ less for the next character
 you play this turn.", "triggered", 1, 6, 3, 6, true, 0, 0, 0],
-    "mufasa betrayed leader": [230, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "THE SUN WILL SET When this character is
+	"mufasa betrayed leader": [230, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "THE SUN WILL SET When this character is
 banished, you may reveal the top card of your
 deck. If it's a character card, you may play that
 character for free and they enter play exerted.
 Otherwise, put it on the top of your deck.", "triggered", 3, 3, 2, 5, true, 0, 0, 0],
-    "mulan free spirit": [231, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Support (Whenever this character quests, you
+	"mulan free spirit": [231, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 3, 2, 3, true, 0, 0, 0],
-    "mulan reflecting": [232, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of
+	"mulan reflecting": [232, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of
 one of your characters named Mulan.)\nHONOR TO THE ANCESTORS Whenever this
 character quests, you may reveal the top card of
 your deck. If it's a song card, you may play it for
 free. Otherwise, put it on the top of your deck.", "keyword, triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "nana darling family pet": [233, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "NURSEMAID Whenever you play a Floodborn
+	"nana darling family pet": [233, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "NURSEMAID Whenever you play a Floodborn
 character, you may remove all damage from
 chosen character.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "piglet very small animal": [234, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "", "", 2, 4, 2, 3, true, 0, 0, 0],
-    "rapunzel gifted artist": [689, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"piglet very small animal": [234, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "", "", 2, 4, 2, 3, true, 0, 0, 0],
+	"rapunzel gifted artist": [689, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Rapunzel.)\nLET YOUR POWER SHINE Whenever you remove 1 or
 more damage from one of your characters, you
 may draw a card.", "keyword, triggered", 0, 6, 2, 5, true, 0, 0, 0],
-    "rapunzel sunshine": [236, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "MAGIC HAIR ⟳ — Remove up to 2 damage from
+	"rapunzel sunshine": [236, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "MAGIC HAIR ⟳ — Remove up to 2 damage from
 chosen character.", "activated", 1, 4, 1, 2, true, 0, 0, 0],
-    "sleepy nodding off": [237, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "YAWN! This character enters play exerted.", "static", 2, 3, 2, 2, true, 0, 0, 0],
-    "sneezy very allergic": [238, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "AH-CHOO! Whenever you play this character or
+	"sleepy nodding off": [237, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "YAWN! This character enters play exerted.", "static", 2, 3, 2, 2, true, 0, 0, 0],
+	"sneezy very allergic": [238, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "AH-CHOO! Whenever you play this character or
 another Seven Dwarfs character, you may give
 chosen character -1 ¤ this turn.", "triggered", 1, 4, 1, 2, true, 0, 0, 0],
-    "snow white lost in the forest": [239, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "I WON'T HURT YOU When you play this character,
+	"snow white lost in the forest": [239, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "I WON'T HURT YOU When you play this character,
 you may remove up to 2 damage from chosen
 character.", "triggered", 2, 3, 1, 2, true, 0, 0, 0],
-    "snow white unexpected houseguest": [240, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "HOW DO YOU DO? You pay 1 ⬡ less to play Seven
+	"snow white unexpected houseguest": [240, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "HOW DO YOU DO? You pay 1 ⬡ less to play Seven
 Dwarfs characters.", "static", 1, 2, 1, 2, false, 0, 0, 0],
-    "snow white well wisher": [422, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one
+	"snow white well wisher": [422, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one
 of your characters named Snow White.)\nWISHES COME TRUE Whenever this character
 quests, you may return a character card from your
 discard to your hand.", "keyword, triggered", 3, 5, 2, 6, false, 0, 0, 0],
-    "the queen commanding presence": [242, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
+	"the queen commanding presence": [242, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
 your characters named The Queen.)\nWHO IS THE FAIREST? Whenever this character
 quests, chosen opposing character gets -4 ¤ this
 turn and chosen character gets +4 ¤ this turn.", "keyword, triggered", 4, 3, 2, 5, true, 0, 0, 0],
-    "the queen regal monarch": [243, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "hold still": [244, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "last stand": [245, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "painting the roses red": [246, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"the queen regal monarch": [243, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"hold still": [244, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"last stand": [245, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"painting the roses red": [246, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "world's greatest criminal mind": [247, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this
+	"world's greatest criminal mind": [247, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "zero to hero": [248, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"zero to hero": [248, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, false, 0, 0, 0],
-    "dragon gem": [249, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "BRING BACK TO LIFE ⟳, 3 ⬡ — Return a character
+	"dragon gem": [249, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "BRING BACK TO LIFE ⟳, 3 ⬡ — Return a character
 card with Support from your discard to your hand.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "sleepy's flute": [250, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "A SILLY SONG ⟳ — If you played a song this turn, gain
+	"sleepy's flute": [250, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "A SILLY SONG ⟳ — If you played a song this turn, gain
 1 lore.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "arthur wizard's apprentice": [423, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amethyst", "STUDENT Whenever this character quests, you
+	"arthur wizard's apprentice": [423, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amethyst", "STUDENT Whenever this character quests, you
 may return another chosen character of yours to
 your hand to gain 2 lore.", "triggered", 1, 3, 1, 3, false, 0, 0, 0],
-    "blue fairy rewarding good deeds": [252, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
+	"blue fairy rewarding good deeds": [252, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
 character.)\nETHEREAL GLOW Whenever you play a Floodborn
 character, you may draw a card.", "keyword, triggered", 1, 1, 1, 2, true, 0, 0, 0],
-    "chip the teacup gentle soul": [253, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "dr facilier savvy opportunist": [254, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"chip the teacup gentle soul": [253, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"dr facilier savvy opportunist": [254, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 4, 2, 1, 4, true, 0, 0, 0],
-    "elsa gloves off": [677, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amethyst", "Challenger +3 (While challenging, this character
+	"elsa gloves off": [677, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amethyst", "Challenger +3 (While challenging, this character
 gets +3 ¤.)", "keyword", 3, 4, 1, 4, true, 0, 0, 0],
-    "fairy godmother here to help": [256, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "", "", 3, 7, 2, 5, true, 0, 0, 0],
-    "fairy godmother mystic armorer": [257, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "Shift 2 (You may pay 2 ⬡ to play this on top of one of your
+	"fairy godmother here to help": [256, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "", "", 3, 7, 2, 5, true, 0, 0, 0],
+	"fairy godmother mystic armorer": [257, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "Shift 2 (You may pay 2 ⬡ to play this on top of one of your
 characters named Fairy Godmother.)\nFORGET THE COACH, HERE'S A SWORD Whenever this
 character quests, your characters gain Challenger +3 and
 “When this character is banished in a challenge, return
 this card to your hand” this turn. (They get +3 ¤ while
 challenging.)", "keyword, triggered", 3, 4, 2, 5, true, 0, 0, 0],
-    "fairy godmother pure heart": [258, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "JUST LEAVE IT TO ME Whenever you play a
+	"fairy godmother pure heart": [258, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "JUST LEAVE IT TO ME Whenever you play a
 character named Cinderella, you may exert
 chosen character.", "triggered", 3, 4, 1, 3, true, 0, 0, 0],
-    "heihei persistent presence": [259, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "HE'S BACK! When this character is banished in a
+	"heihei persistent presence": [259, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "HE'S BACK! When this character is banished in a
 challenge, return this card to your hand.", "triggered", 2, 1, 1, 2, true, 0, 0, 0],
-    "jiminy cricket pinocchio's conscience": [260, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
+	"jiminy cricket pinocchio's conscience": [260, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
 character.)\nTHAT STILL, SMALL VOICE When you play this character,
 if you have a character named Pinocchio in play, you
 may draw a card.", "keyword, triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "kuzco wanted llama": [261, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "OK, WHERE AM I? When this character is
+	"kuzco wanted llama": [261, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "OK, WHERE AM I? When this character is
 banished, you may draw a card.", "triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "madam mim fox": [262, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "CHASING THE RABBIT When you play this
+	"madam mim fox": [262, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "CHASING THE RABBIT When you play this
 character, banish her or return another chosen
 character of yours to your hand.\nRush (This character can challenge the turn
 they're played.)", "triggered, keyword", 4, 3, 1, 3, true, 0, 0, 0],
-    "madam mim purple dragon": [424, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"madam mim purple dragon": [424, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nI WIN, I WIN! When you play this character, banish
 her or return another 2 chosen characters of yours
 to your hand.", "keyword, triggered", 5, 7, 4, 7, true, 0, 0, 0],
-    "madam mim rival of merlin": [264, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"madam mim rival of merlin": [264, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Madam Mim.)\nGRUESOME AND GRIM ⟳ — Play a character with
 cost 4 or less for free. They gain Rush. At the end
 of the turn, banish them. (They can challenge the
 turn they're played.)", "keyword, activated", 2, 5, 2, 5, true, 0, 0, 0],
-    "madam mim snake": [265, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "JUST YOU WAIT When you play this character,
+	"madam mim snake": [265, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "JUST YOU WAIT When you play this character,
 banish her or return another chosen character of
 yours to your hand.", "triggered", 3, 3, 1, 2, true, 0, 0, 0],
-    "merlin crab": [266, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "READY OR NOT! When you play this character
+	"merlin crab": [266, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "READY OR NOT! When you play this character
 and when he leaves play, chosen character gains
 Challenger +3 this turn. (They get +3 ¤ while
 challenging.)", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "merlin goat": [267, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "HERE I COME! When you play this character and
+	"merlin goat": [267, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "HERE I COME! When you play this character and
 when he leaves play, gain 1 lore.", "triggered", 4, 3, 1, 4, true, 0, 0, 0],
-    "merlin rabbit": [268, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "HOPPITY HIP! When you play this character and
+	"merlin rabbit": [268, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "HOPPITY HIP! When you play this character and
 when he leaves play, you may draw a card.", "triggered", 2, 3, 1, 4, false, 0, 0, 0],
-    "merlin shapeshifter": [269, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "BATTLE OF WITS Whenever one of your other
+	"merlin shapeshifter": [269, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "BATTLE OF WITS Whenever one of your other
 characters is returned to your hand from play,
 this character gets +1 ◊ this turn.", "triggered", 1, 5, 1, 4, true, 0, 0, 0],
-    "merlin squirrel": [270, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "LOOK BEFORE YOU LEAP When you play this
+	"merlin squirrel": [270, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "LOOK BEFORE YOU LEAP When you play this
 character and when he leaves play, look at the
 top card of your deck. Put it on either the top or
 the bottom of your deck.", "triggered", 2, 1, 1, 2, true, 0, 0, 0],
-    "peter pan's shadow not sewn on": [271, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"peter pan's shadow not sewn on": [271, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nRush (This character can challenge the turn
 they're played.)\nTIPTOE Your other characters with Rush gain
 Evasive.", "keyword, keyword, static", 2, 3, 2, 4, false, 0, 0, 0],
-    "pinocchio star attraction": [272, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "", "", 1, 1, 3, 2, false, 0, 0, 0],
-    "pinocchio on the run": [273, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
+	"pinocchio star attraction": [272, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "", "", 1, 1, 3, 2, false, 0, 0, 0],
+	"pinocchio on the run": [273, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
 your characters named Pinocchio.)\nLISTEN TO YOUR CONSCIENCE When you play this
 character, you may return chosen character or item with
 cost 3 or less to their player's hand.", "keyword, triggered", 3, 3, 2, 5, false, 0, 0, 0],
-    "pinocchio talkative puppet": [690, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amethyst", "TELLING LIES When you play this character, you
+	"pinocchio talkative puppet": [690, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amethyst", "TELLING LIES When you play this character, you
 may exert chosen opposing character.", "triggered", 1, 1, 1, 2, false, 0, 0, 0],
-    "winnie the pooh hunny wizard": [275, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "", "", 5, 5, 2, 5, true, 0, 0, 0],
-    "yzma scary beyond all reason": [276, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"winnie the pooh hunny wizard": [275, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "", "", 5, 5, 2, 5, true, 0, 0, 0],
+	"yzma scary beyond all reason": [276, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Yzma.)\nCRUEL IRONY When you play this character,
 shuffle another chosen character card into their
 player's deck. That player draws 2 cards.", "keyword, triggered", 4, 4, 2, 6, true, 0, 0, 0],
-    "yzma without beauty sleep": [277, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "gruesome and grim": [278, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this
+	"yzma without beauty sleep": [277, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"gruesome and grim": [278, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "i'm stuck": [279, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "legend of the sword in the stone": [280, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this song for
+	"i'm stuck": [279, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"legend of the sword in the stone": [280, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "binding contract": [281, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "FOR ALL ETERNITY ⟳, ⟳ one of your characters —
+	"binding contract": [281, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "FOR ALL ETERNITY ⟳, ⟳ one of your characters —
 Exert chosen character.", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "croquet mallet": [282, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "HURTLING HEDGEHOG Banish this item — Chosen
+	"croquet mallet": [282, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "HURTLING HEDGEHOG Banish this item — Chosen
 character gains Rush this turn. (They can challenge the
 turn they're played.)", "activated", 0, 0, 0, 1, false, 0, 0, 0],
-    "perplexing signposts": [283, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "TO WONDERLAND Banish this item — Return chosen
+	"perplexing signposts": [283, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "TO WONDERLAND Banish this item — Return chosen
 character of yours to your hand.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "the sorcerer's spellbook": [284, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "KNOWLEDGE ⟳, 1 ⬡ — Gain 1 lore.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "arthur trained swordsman": [285, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "", "", 4, 3, 2, 4, true, 0, 0, 0],
-    "beast relentless": [426, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Emerald", "SECOND WIND Whenever an opposing character is
+	"the sorcerer's spellbook": [284, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "KNOWLEDGE ⟳, 1 ⬡ — Gain 1 lore.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
+	"arthur trained swordsman": [285, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "", "", 4, 3, 2, 4, true, 0, 0, 0],
+	"beast relentless": [426, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Emerald", "SECOND WIND Whenever an opposing character is
 damaged, you may ready this character.", "triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "belle bookworm": [287, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "USE YOUR IMAGINATION While an opponent has
+	"belle bookworm": [287, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "USE YOUR IMAGINATION While an opponent has
 no cards in their hand, this character gets +2 ◊.", "static", 2, 4, 1, 3, false, 0, 0, 0],
-    "belle hidden archer": [288, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"belle hidden archer": [288, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Belle.)\nTHORNY ARROWS Whenever this character is challenged,
 the challenging character's player discards all cards in their
 hand.", "keyword, triggered", 3, 3, 3, 5, false, 0, 0, 0],
-    "bucky squirrel squeak tutor": [673, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Emerald", "SQUEAK Whenever you play a Floodborn character,
+	"bucky squirrel squeak tutor": [673, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Emerald", "SQUEAK Whenever you play a Floodborn character,
 if you used Shift to play them, each opponent
 chooses and discards a card.", "triggered", 1, 1, 1, 3, true, 0, 0, 0],
-    "cheshire cat always grinning": [290, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "cheshire cat from the shadows": [291, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"cheshire cat always grinning": [290, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"cheshire cat from the shadows": [291, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Cheshire Cat.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nWICKED SMILE ⟳ — Banish chosen damaged character.", "keyword, keyword, activated", 5, 6, 2, 8, true, 0, 0, 0],
-    "daisy duck secret agent": [292, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "THWART Whenever this character quests, each
+	"daisy duck secret agent": [292, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "THWART Whenever this character quests, each
 opponent chooses and discards a card.", "triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "donald duck perfect gentleman": [293, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"donald duck perfect gentleman": [293, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Donald Duck.)\nALLOW ME At the start of your turn, each player
 may draw a card.", "keyword, triggered", 2, 5, 2, 4, true, 0, 0, 0],
-    "donald duck sleepwalker": [294, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "STARTLED AWAKE Whenever you play an action,
+	"donald duck sleepwalker": [294, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "STARTLED AWAKE Whenever you play an action,
 this character gets +2 ¤ this turn.", "triggered", 0, 5, 1, 3, true, 0, 0, 0],
-    "dr facilier fortune teller": [295, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"dr facilier fortune teller": [295, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nYOU'RE IN MY WORLD Whenever this character
 quests, chosen opposing character can't quest
 during their next turn.", "keyword, triggered", 4, 4, 3, 7, true, 0, 0, 0],
-    "enchantress unexpected judge": [296, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "TRUE FORM While being challenged, this
+	"enchantress unexpected judge": [296, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "TRUE FORM While being challenged, this
 character gets +2 ¤.", "static", 1, 1, 2, 2, true, 0, 0, 0],
-    "flynn rider confident vagabond": [297, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "flynn rider his own biggest fan": [298, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
+	"flynn rider confident vagabond": [297, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"flynn rider his own biggest fan": [298, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
 your characters named Flynn Rider.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nONE LAST, BIG SCORE This character gets -1 ◊ for each
 card in your opponents' hands.", "keyword, keyword, static", 2, 3, 4, 4, false, 0, 0, 0],
-    "gaston scheming suitor": [299, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "YES, I'M INTIMIDATING While one or more
+	"gaston scheming suitor": [299, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "YES, I'M INTIMIDATING While one or more
 opponents have no cards in their hands, this
 character gets +3 ¤.", "static", 1, 3, 1, 2, true, 0, 0, 0],
-    "little john loyal friend": [300, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "", "", 6, 6, 2, 6, true, 0, 0, 0],
-    "lucifer cunning cat": [301, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "MOUSE CATCHER When you play this character,
+	"little john loyal friend": [300, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "", "", 6, 6, 2, 6, true, 0, 0, 0],
+	"lucifer cunning cat": [301, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "MOUSE CATCHER When you play this character,
 each opponent chooses and discards either 2
 cards or 1 action card.", "triggered", 2, 2, 2, 5, false, 0, 0, 0],
-    "pain underworld imp": [302, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "COMING, YOUR MOST LUGUBRIOUSNESS While this
+	"pain underworld imp": [302, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "COMING, YOUR MOST LUGUBRIOUSNESS While this
 character has 5 ¤ or more, he gets +2 ◊.", "static", 1, 4, 1, 2, true, 0, 0, 0],
-    "panic underworld imp": [303, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "I CAN HANDLE IT When you play this character,
+	"panic underworld imp": [303, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "I CAN HANDLE IT When you play this character,
 chosen character gets +2 ¤ this turn. If the chosen
 character is named Pain, he gets +4 ¤ instead.", "triggered", 2, 3, 2, 3, false, 0, 0, 0],
-    "pete bad guy": [425, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"pete bad guy": [425, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nTAKE THAT! Whenever you play an action, this
 character gets +2 ¤ this turn.\nWHO'S NEXT? While this character has 7 ¤ or
 more, he gets +2 ◊.", "keyword, triggered, static", 3, 4, 2, 5, true, 0, 0, 0],
-    "prince john greediest of all": [305, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Ward (Opponents can't choose this character except to
+	"prince john greediest of all": [305, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Ward (Opponents can't choose this character except to
 challenge.)\nI SENTENCE YOU Whenever your opponent discards
 1 or more cards, you may draw a card for each card
 discarded.", "keyword, triggered", 1, 2, 2, 3, false, 0, 0, 0],
-    "queen of hearts quick-tempered": [306, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ROYAL RAGE When you play this character, deal 1
+	"queen of hearts quick-tempered": [306, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ROYAL RAGE When you play this character, deal 1
 damage to chosen damaged opposing character.", "triggered", 1, 2, 2, 2, false, 0, 0, 0],
-    "ratigan criminal mastermind": [307, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"ratigan criminal mastermind": [307, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 4, 1, 2, 4, true, 0, 0, 0],
-    "ray easygoing firefly": [308, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"ray easygoing firefly": [308, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 3, 3, 5, true, 0, 0, 0],
-    "the queen disguised peddler": [309, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "A PERFECT DISGUISE ⟳, Choose and discard a
+	"the queen disguised peddler": [309, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "A PERFECT DISGUISE ⟳, Choose and discard a
 character card — Gain lore equal to the discarded
 character's ◊.", "activated", 2, 3, 0, 3, false, 0, 0, 0],
-    "tiana true princess": [310, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 5, 3, 3, 5, true, 0, 0, 0],
-    "virana fang chief": [311, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "", "", 5, 5, 2, 5, true, 0, 0, 0],
-    "bibbidi bobbidi boo": [312, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "(A character with cost 3 or more can ⟳ to sing this song for
+	"tiana true princess": [310, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 5, 3, 3, 5, true, 0, 0, 0],
+	"virana fang chief": [311, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "", "", 5, 5, 2, 5, true, 0, 0, 0],
+	"bibbidi bobbidi boo": [312, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "(A character with cost 3 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "bounce": [313, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "hypnotize": [314, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "improvise": [315, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "pack tactics": [316, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 0, 0, 4, true, 0, 0, 0],
-    "ring the bell": [317, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "ratigan's marvelous trap": [318, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SNAP! BOOM! TWANG! Banish this item — Each
+	"bounce": [313, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"hypnotize": [314, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"improvise": [315, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"pack tactics": [316, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 0, 0, 4, true, 0, 0, 0],
+	"ring the bell": [317, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"ratigan's marvelous trap": [318, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SNAP! BOOM! TWANG! Banish this item — Each
 opponent loses 2 lore.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "baloo fun-loving bear": [319, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "boun precocious entrepreneur": [320, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "card soldiers full deck": [321, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "", "", 5, 5, 2, 5, true, 0, 0, 0],
-    "donald duck not again": [322, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"baloo fun-loving bear": [319, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"boun precocious entrepreneur": [320, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"card soldiers full deck": [321, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "", "", 5, 5, 2, 5, true, 0, 0, 0],
+	"donald duck not again": [322, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nPHOOEY! This character gets +1 ◊ for each 1
 damage on him.", "keyword, static", 1, 5, 1, 5, true, 0, 0, 0],
-    "felicia always hungry": [323, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "Reckless (This character can't quest and must
+	"felicia always hungry": [323, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 3, 1, 0, 1, true, 0, 0, 0],
-    "fidget ratigan's henchman": [324, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"fidget ratigan's henchman": [324, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "honest john not that honest": [325, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "EASY STREET Whenever you play a Floodborn
+	"honest john not that honest": [325, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "EASY STREET Whenever you play a Floodborn
 character, each opponent loses 1 lore.", "triggered", 2, 3, 1, 3, false, 0, 0, 0],
-    "lady tremaine imperious queen": [427, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one
+	"lady tremaine imperious queen": [427, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one
 of your characters named Lady Tremaine.)\nPOWER TO RULE AT LAST When you play this
 character, each opponent chooses and banishes
 one of their characters.", "keyword, triggered", 3, 4, 2, 6, false, 0, 0, 0],
-    "lady tremaine overbearing matriarch": [327, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "NOT FOR YOU When you play this character, each
+	"lady tremaine overbearing matriarch": [327, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "NOT FOR YOU When you play this character, each
 opponent with more lore than you loses 1 lore.", "triggered", 2, 2, 1, 2, false, 0, 0, 0],
-    "lumiere hotheaded candelabra": [328, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "", "", 7, 7, 2, 7, true, 0, 0, 0],
-    "minnie mouse stylish surfer": [329, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"lumiere hotheaded candelabra": [328, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "", "", 7, 7, 2, 7, true, 0, 0, 0],
+	"minnie mouse stylish surfer": [329, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 1, 3, 2, 3, true, 0, 0, 0],
-    "minnie mouse wide-eyed diver": [674, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
+	"minnie mouse wide-eyed diver": [674, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
 your characters named Minnie Mouse.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nUNDERSEA ADVENTURE Whenever you play a second
 action in a turn, this character gets +2 ◊ this turn.", "keyword, keyword, triggered", 2, 3, 1, 4, true, 0, 0, 0],
-    "minnie mouse zipping around": [331, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "mother gothel withered and wicked": [332, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "WHAT HAVE YOU DONE?! This character enters
+	"minnie mouse zipping around": [331, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"mother gothel withered and wicked": [332, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "WHAT HAVE YOU DONE?! This character enters
 play with 3 damage.", "static", 3, 4, 1, 2, true, 0, 0, 0],
-    "mulan soldier in training": [333, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Rush (This character can challenge the turn
+	"mulan soldier in training": [333, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 4, 3, 1, 4, false, 0, 0, 0],
-    "namaari nemesis": [334, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "THIS SHOULDN'T TAKE LONG ⟳, Banish this
+	"namaari nemesis": [334, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "THIS SHOULDN'T TAKE LONG ⟳, Banish this
 character — Banish chosen character.", "activated", 3, 3, 1, 4, false, 0, 0, 0],
-    "queen of hearts impulsive ruler": [335, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn
+	"queen of hearts impulsive ruler": [335, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "queen of hearts sensing weakness": [336, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of
+	"queen of hearts sensing weakness": [336, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of
 one of your characters named Queen of Hearts.)\nLET THE GAME BEGIN Whenever one of your
 characters challenges another character, you may
 draw a card.", "keyword, triggered", 4, 3, 1, 5, true, 0, 0, 0],
-    "ratigan very large mouse": [337, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "THIS IS MY KINGDOM When you play this character,
+	"ratigan very large mouse": [337, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "THIS IS MY KINGDOM When you play this character,
 exert chosen opposing character with 3 ¤ or less.
 Choose one of your characters and ready them. They
 can't quest for the rest of this turn.", "triggered", 3, 3, 2, 5, false, 0, 0, 0],
-    "raya headstrong": [338, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "NOTE TO SELF, DON'T DIE During your turn, whenever
+	"raya headstrong": [338, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "NOTE TO SELF, DON'T DIE During your turn, whenever
 this character banishes another character in a
 challenge, you may ready this character. She can't
 quest for the rest of this turn.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "raya leader of heart": [339, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"raya leader of heart": [339, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Raya.)\nCHAMPION OF KUMANDRA Whenever this
 character challenges a damaged character, she
 takes no damage from the challenge.", "keyword, triggered", 5, 3, 2, 6, true, 0, 0, 0],
-    "raya warrior of kumandra": [340, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
-    "scar vicious cheater": [341, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
+	"raya warrior of kumandra": [340, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
+	"scar vicious cheater": [341, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nDADDY ISN'T HERE TO SAVE YOU During your
 turn, whenever this character banishes another
 character in a challenge, you may ready this
 character. He can't quest for the rest of this turn.", "keyword, triggered", 6, 5, 2, 7, false, 0, 0, 0],
-    "shere khan menacing predator": [428, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Ruby", "DON'T INSULT MY INTELLIGENCE Whenever one of
+	"shere khan menacing predator": [428, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Ruby", "DON'T INSULT MY INTELLIGENCE Whenever one of
 your characters challenges another character, gain
 1 lore.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "tigger one of a kind": [343, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "ENERGETIC Whenever you play an action, this
+	"tigger one of a kind": [343, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "ENERGETIC Whenever you play an action, this
 character gets +2 ¤ this turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "tuk tuk wrecking ball": [344, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "Reckless (This character can't quest and must
+	"tuk tuk wrecking ball": [344, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 4, 5, 0, 4, false, 0, 0, 0],
-    "go the distance": [345, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this
+	"go the distance": [345, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "teeth and ambitions": [346, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this song for
+	"teeth and ambitions": [346, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "the most diabolical scheme": [347, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "(A character with cost 3 or more can ⟳ to sing this song
+	"the most diabolical scheme": [347, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "(A character with cost 3 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "what did you call me": [348, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "you can fly": [349, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this
+	"what did you call me": [348, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"you can fly": [349, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "dinner bell": [350, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "YOU KNOW WHAT HAPPENS ⟳, 2 ⬡ — Draw cards
+	"dinner bell": [350, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "YOU KNOW WHAT HAPPENS ⟳, 2 ⬡ — Draw cards
 equal to the damage on chosen character of yours,
 then banish them.", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "peter pan's dagger": [351, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "Your characters with Evasive get +1 ¤.", "static", 0, 0, 0, 2, false, 0, 0, 0],
-    "sword in the stone": [352, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "⟳, 2 ⬡ — Chosen character gets +1 ¤ this turn for
+	"peter pan's dagger": [351, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "Your characters with Evasive get +1 ¤.", "static", 0, 0, 0, 2, false, 0, 0, 0],
+	"sword in the stone": [352, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "⟳, 2 ⬡ — Chosen character gets +1 ¤ this turn for
 each 1 damage on them.", "activated", 0, 0, 0, 1, false, 0, 0, 0],
-    "alice growing girl": [429, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Sapphire", "GOOD ADVICE Your other characters gain Support.
+	"alice growing girl": [429, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Sapphire", "GOOD ADVICE Your other characters gain Support.
 (Whenever they quest, you may add their ¤ to
 another chosen character's ¤ this turn.)\nWHAT DID I DO? While this character has 10 ¤ or
 more, she gets +4 ◊.", "static, static", 1, 4, 1, 3, true, 0, 0, 0],
-    "basil great mouse detective": [354, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"basil great mouse detective": [354, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Basil.)\nTHERE'S ALWAYS A CHANCE If you used Shift to play this
 character, you may draw 2 cards when he enters play.", "keyword, triggered", 3, 4, 3, 6, true, 0, 0, 0],
-    "basil of baker street": [355, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Support (Whenever this character quests, you may
+	"basil of baker street": [355, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Support (Whenever this character quests, you may
 add their ¤ to another chosen character's ¤ this
 turn.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "basil perceptive investigator": [356, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 3, 4, 2, 4, true, 0, 0, 0],
-    "caterpillar calm and collected": [357, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "", "", 1, 3, 3, 3, true, 0, 0, 0],
-    "cogsworth grandfather clock": [358, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
+	"basil perceptive investigator": [356, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 3, 4, 2, 4, true, 0, 0, 0],
+	"caterpillar calm and collected": [357, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "", "", 1, 3, 3, 3, true, 0, 0, 0],
+	"cogsworth grandfather clock": [358, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
 your characters named Cogsworth.)\nWard (Opponents can't choose this character except to
 challenge.)\nUNWIND Your other characters gain Resist +1 (Damage
 dealt to them is reduced by 1.)", "keyword, keyword, static", 2, 5, 2, 5, true, 0, 0, 0],
-    "cogsworth talking clock": [359, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "WAIT A MINUTE Your characters with Reckless
+	"cogsworth talking clock": [359, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "WAIT A MINUTE Your characters with Reckless
 gain “⟳ — Gain 1 lore.”", "static", 2, 3, 1, 2, true, 0, 0, 0],
-    "cruella de vil fashionable cruiser": [360, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "NOW GET GOING During your turn, this character
+	"cruella de vil fashionable cruiser": [360, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "NOW GET GOING During your turn, this character
 gains Evasive. (They can challenge characters
 with Evasive.)", "static", 3, 2, 1, 2, true, 0, 0, 0],
-    "cruella de vil perfectly wretched": [361, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
+	"cruella de vil perfectly wretched": [361, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
 your characters named Cruella De Vil.)\nOH, NO YOU DON'T Whenever this character quests,
 chosen opposing character gets -2 ¤ this turn.", "keyword, triggered", 4, 3, 2, 5, true, 0, 0, 0],
-    "duke weaselton small-time crook": [362, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"duke weaselton small-time crook": [362, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 1, 2, 2, 2, true, 0, 0, 0],
-    "gaston intellectual powerhouse": [363, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"gaston intellectual powerhouse": [363, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Gaston.)\nDEVELOPED BRAIN When you play this character,
 look at the top 3 cards of your deck. You may put
 one into your hand. Put the rest on the bottom of
 your deck in any order.", "keyword, triggered", 4, 4, 3, 6, false, 0, 0, 0],
-    "grand pabbie oldest and wisest": [364, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "ANCIENT INSIGHT Whenever you remove 1 or
+	"grand pabbie oldest and wisest": [364, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "ANCIENT INSIGHT Whenever you remove 1 or
 more damage from one of your characters, gain
 2 lore.", "triggered", 3, 6, 3, 7, false, 0, 0, 0],
-    "hiram flaversham toymaker": [365, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "ARTIFICER When you play this character and
+	"hiram flaversham toymaker": [365, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "ARTIFICER When you play this character and
 whenever he quests, you may banish one of your
 items to draw 2 cards.", "triggered", 1, 6, 1, 4, true, 0, 0, 0],
-    "james role model": [366, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "NEVER, EVER LOSE SIGHT When this character is
+	"james role model": [366, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "NEVER, EVER LOSE SIGHT When this character is
 banished, you may put this card into your inkwell
 facedown and exerted.", "triggered", 3, 3, 2, 4, false, 0, 0, 0],
-    "jasmine heir of agrabah": [367, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "I'M A FAST LEARNER When you play this
+	"jasmine heir of agrabah": [367, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "I'M A FAST LEARNER When you play this
 character, remove up to 1 damage from chosen
 character of yours.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "judy hopps optimistic officer": [368, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "DON'T CALL ME CUTE When you play this
+	"judy hopps optimistic officer": [368, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "DON'T CALL ME CUTE When you play this
 character, you may banish chosen item. Its player
 draws a card.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "mrs judson housekeeper": [369, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "TIDY UP Whenever you play a Floodborn
+	"mrs judson housekeeper": [369, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "TIDY UP Whenever you play a Floodborn
 character, you may put the top card of your deck
 into your inkwell facedown and exerted.", "triggered", 1, 5, 2, 4, false, 0, 0, 0],
-    "nick wilde wily fox": [370, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "IT'S CALLED A HUSTLE When you play this
+	"nick wilde wily fox": [370, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "IT'S CALLED A HUSTLE When you play this
 character, you may return an item card named
 Pawpsicle from your discard to your hand.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "noi orphaned thief": [371, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "HIDE AND SEEK While you have an item in play,
+	"noi orphaned thief": [371, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "HIDE AND SEEK While you have an item in play,
 this character gains Resist +1 and Ward. (Damage
 dealt to this character is reduced by 1. Opponents
 can't choose this character except to challenge.)", "static", 1, 2, 2, 2, true, 0, 0, 0],
-    "owl logical lecturer": [372, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "prince charming heir to the throne": [373, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "", "", 3, 3, 3, 4, true, 0, 0, 0],
-    "rabbit reluctant host": [374, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 4, 6, 2, 5, true, 0, 0, 0],
-    "sisu divine water dragon": [430, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Sapphire", "I TRUST YOU Whenever this character quests, look
+	"owl logical lecturer": [372, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"prince charming heir to the throne": [373, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "", "", 3, 3, 3, 4, true, 0, 0, 0],
+	"rabbit reluctant host": [374, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 4, 6, 2, 5, true, 0, 0, 0],
+	"sisu divine water dragon": [430, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Sapphire", "I TRUST YOU Whenever this character quests, look
 at the top 2 cards of your deck. You may put one
 into your hand. Put the rest on the bottom of your
 deck in any order.", "triggered", 2, 4, 2, 4, false, 0, 0, 0],
-    "the nokk water spirit": [376, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"the nokk water spirit": [376, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 4, 3, 1, 4, true, 0, 0, 0],
-    "winnie the pooh having a think": [377, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "HUNNY POT Whenever this character quests,
+	"winnie the pooh having a think": [377, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "HUNNY POT Whenever this character quests,
 you may put a card from your hand into your
 inkwell facedown.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "falling down the rabbit hole": [378, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "four dozen eggs": [691, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
+	"falling down the rabbit hole": [378, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"four dozen eggs": [691, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "launch": [380, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "nothing to hide": [381, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "fang crossbow": [382, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "CAREFUL AIM ⟳, 2 ⬡ — Chosen character gets -2 ¤
+	"launch": [380, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"nothing to hide": [381, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"fang crossbow": [382, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "CAREFUL AIM ⟳, 2 ⬡ — Chosen character gets -2 ¤
 this turn.\nSTAY BACK! ⟳, Banish this item — Banish chosen
 Dragon character.", "activated, activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "gumbo pot": [383, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "THE BEST I'VE EVER TASTED ⟳ — Remove 1 damage
+	"gumbo pot": [383, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "THE BEST I'VE EVER TASTED ⟳ — Remove 1 damage
 each from up to 2 chosen characters.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "maurice's workshop": [384, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "LOOKING FOR THIS? Whenever you play another item,
+	"maurice's workshop": [384, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "LOOKING FOR THIS? Whenever you play another item,
 you may pay 1 ⬡ to draw a card.", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "pawpsicle": [385, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "JUMBO POP When you play this item, you may draw a card.\nTHAT'S REDWOOD Banish this item — Remove up to 2 damage
+	"pawpsicle": [385, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "JUMBO POP When you play this item, you may draw a card.\nTHAT'S REDWOOD Banish this item — Remove up to 2 damage
 from chosen character.", "triggered, activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "sardine can": [386, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "FLIGHT CABIN Your exerted characters gain Ward.
+	"sardine can": [386, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "FLIGHT CABIN Your exerted characters gain Ward.
 (Opponents can't choose them except to challenge.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "beast forbidding recluse": [387, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "YOU'RE NOT WELCOME HERE When you play this
+	"beast forbidding recluse": [387, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "YOU'RE NOT WELCOME HERE When you play this
 character, you may deal 1 damage to chosen
 character.", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "beast selfless protector": [388, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "SHIELD ANOTHER Whenever one of your other
+	"beast selfless protector": [388, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "SHIELD ANOTHER Whenever one of your other
 characters would be dealt damage, put that many
 damage counters on this character instead.", "triggered", 2, 8, 1, 6, true, 0, 0, 0],
-    "beast tragic hero": [389, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"beast tragic hero": [389, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Beast.)\nIT'S BETTER THIS WAY At the start of your turn, if this
 character has no damage, draw a card. Otherwise, he gets
 +4 ¤ this turn.", "keyword, triggered", 3, 5, 2, 5, true, 0, 0, 0],
-    "benja guardian of the dragon gem": [390, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "WE HAVE A CHOICE When you play this character,
+	"benja guardian of the dragon gem": [390, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "WE HAVE A CHOICE When you play this character,
 you may banish chosen item.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "chief bogo respected officer": [391, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "INSUBORDINATION! Whenever you play a Floodborn
+	"chief bogo respected officer": [391, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "INSUBORDINATION! Whenever you play a Floodborn
 character, deal 1 damage to each opposing
 character.", "triggered", 2, 4, 2, 4, false, 0, 0, 0],
-    "cinderella knight in training": [672, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Steel", "HAVE COURAGE When you play this character,
+	"cinderella knight in training": [672, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Steel", "HAVE COURAGE When you play this character,
 you may draw a card, then choose and discard a
 card.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "cinderella stouthearted": [1192, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"cinderella stouthearted": [1192, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Cinderella.)\nResist +2 (Damage dealt to this character is reduced by 2.)\nTHE SINGING SWORD Whenever you play a song, this
 character can challenge ready characters this turn.", "keyword, keyword, triggered", 5, 5, 3, 7, true, 0, 0, 0],
-    "donald duck deep-sea diver": [394, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "", "", 6, 5, 1, 5, true, 0, 0, 0],
-    "eli la bouff big daddy": [395, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 2, 5, 2, 4, true, 0, 0, 0],
-    "goofy knight for a day": [396, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "", "", 10, 10, 4, 9, true, 0, 0, 0],
-    "hercules divine hero": [431, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one
+	"donald duck deep-sea diver": [394, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "", "", 6, 5, 1, 5, true, 0, 0, 0],
+	"eli la bouff big daddy": [395, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 2, 5, 2, 4, true, 0, 0, 0],
+	"goofy knight for a day": [396, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "", "", 10, 10, 4, 9, true, 0, 0, 0],
+	"hercules divine hero": [431, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one
 of your characters named Hercules.)\nResist +2 (Damage dealt to this character is
 reduced by 2.)", "keyword, keyword", 6, 3, 2, 6, true, 0, 0, 0],
-    "hercules hero in training": [398, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "jafar dreadnought": [399, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Shift 2 (You may pay 2 ⬡ to play this on top of
+	"hercules hero in training": [398, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"jafar dreadnought": [399, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Shift 2 (You may pay 2 ⬡ to play this on top of
 one of your characters named Jafar.)\nNOW WHERE WERE WE? During your turn,
 whenever this character banishes another
 character in a challenge, you may draw a card.", "keyword, triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "jafar royal vizier": [400, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I DON'T TRUST HIM, SIRE During your turn, this
+	"jafar royal vizier": [400, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I DON'T TRUST HIM, SIRE During your turn, this
 character gains Evasive. (They can challenge
 characters with Evasive.)", "static", 3, 2, 1, 2, true, 0, 0, 0],
-    "kronk junior chipmunk": [401, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"kronk junior chipmunk": [401, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nSCOUT LEADER During your turn, whenever
 this character banishes another character in a
 challenge, you may deal 2 damage to chosen
 character.", "keyword, triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "lawrence jealous manservant": [402, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "PAYBACK While this character has no damage,
+	"lawrence jealous manservant": [402, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "PAYBACK While this character has no damage,
 he gets +4 ¤.", "static", 0, 4, 2, 3, true, 0, 0, 0],
-    "li shang archery instructor": [403, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "ARCHERY LESSON Whenever this character
+	"li shang archery instructor": [403, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "ARCHERY LESSON Whenever this character
 quests, your characters gain Evasive this turn.
 (They can challenge characters with Evasive.)", "triggered", 3, 6, 2, 5, true, 0, 0, 0],
-    "magic broom industrial model": [404, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "MAKE IT SHINE When you play this character,
+	"magic broom industrial model": [404, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "MAKE IT SHINE When you play this character,
 chosen character gains Resist +1 until the start of
 your next turn. (Damage dealt to them is reduced by 1.)", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "namaari morning mist": [432, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"namaari morning mist": [432, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if
 able.)\nBLADES This character can challenge ready
 characters.", "keyword, static", 2, 4, 1, 4, false, 0, 0, 0],
-    "pacha village leader": [406, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "", "", 4, 8, 2, 6, true, 0, 0, 0],
-    "prince naveen penniless royal": [407, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "queen of hearts capricious monarch": [408, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "OFF WITH THEIR HEADS! Whenever an opposing
+	"pacha village leader": [406, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "", "", 4, 8, 2, 6, true, 0, 0, 0],
+	"prince naveen penniless royal": [407, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"queen of hearts capricious monarch": [408, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "OFF WITH THEIR HEADS! Whenever an opposing
 character is banished, you may ready this
 character.", "triggered", 5, 6, 1, 7, true, 0, 0, 0],
-    "robin hood capable fighter": [675, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Steel", "SKIRMISH ⟳ — Deal 1 damage to chosen
+	"robin hood capable fighter": [675, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Steel", "SKIRMISH ⟳ — Deal 1 damage to chosen
 character.", "activated", 1, 3, 1, 2, false, 0, 0, 0],
-    "the huntsman reluctant enforcer": [410, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "CHANGE OF HEART Whenever this character
+	"the huntsman reluctant enforcer": [410, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "CHANGE OF HEART Whenever this character
 quests, you may draw a card, then choose and
 discard a card.", "triggered", 1, 1, 2, 2, true, 0, 0, 0],
-    "the prince never gives up": [411, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"the prince never gives up": [411, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nResist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword, keyword", 1, 3, 2, 3, true, 0, 0, 0],
-    "tiana celebrating princess": [412, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "Resist +2 (Damage dealt to this character is
+	"tiana celebrating princess": [412, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "Resist +2 (Damage dealt to this character is
 reduced by 2.)\nWHAT YOU GIVE IS WHAT YOU GET While this
 character is exerted and you have no cards in
 your hand, opponents can't play actions.", "keyword, static", 1, 4, 2, 4, false, 0, 0, 0],
-    "tiana diligent waitress": [413, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "charge": [414, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "let the storm rage on": [415, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
+	"tiana diligent waitress": [413, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"charge": [414, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"let the storm rage on": [415, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "pick a fight": [416, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "strength of a raging fire": [417, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this song for
+	"pick a fight": [416, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"strength of a raging fire": [417, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "last cannon": [418, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "ARM YOURSELF 1 ⬡, Banish this item — Chosen
+	"last cannon": [418, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "ARM YOURSELF 1 ⬡, Banish this item — Chosen
 character gains Challenger +3 this turn. (They get +3 ¤
 while challenging.)", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "mouse armor": [419, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "PROTECTION ⟳ — Chosen character gains Resist +1
+	"mouse armor": [419, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "PROTECTION ⟳ — Chosen character gains Resist +1
 until the start of your next turn. (Damage dealt to them
 is reduced by 1.)", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "weight set": [420, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "TRAINING Whenever you play a character with 4 ¤ or
+	"weight set": [420, "https://api.lorcana.ravensburger.com/images/en/set2/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "TRAINING Whenever you play a character with 4 ¤ or
 more, you may pay 1 ⬡ to draw a card.", "triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "baloo von bruinwald xiii": [433, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"baloo von bruinwald xiii": [433, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nLET'S MAKE LIKE A TREE When this character is
 banished, gain 2 lore.", "keyword, triggered", 0, 3, 1, 3, false, 0, 0, 0],
-    "bernard brand-new agent": [434, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "I'LL CHECK IT OUT At the end of your turn, if this
+	"bernard brand-new agent": [434, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "I'LL CHECK IT OUT At the end of your turn, if this
 character is exerted, you may ready another
 chosen character of yours.", "triggered", 1, 5, 2, 4, true, 0, 0, 0],
-    "chernabog evildoer": [641, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "THE POWER OF EVIL For each character card
+	"chernabog evildoer": [641, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "THE POWER OF EVIL For each character card
 in your discard, you pay 1 ⬡ less to play this
 character.\nSUMMON THE SPIRITS When you play this
 character, shuffle all character cards from your
 discard into your deck.", "static, triggered", 9, 9, 3, 10, false, 0, 0, 0],
-    "dalmatian puppy tail wagger": [440, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8e03f18744bcae87f8952cf54c6df4c27b961569.jpg", "Amber", "WHERE DID THEY ALL COME FROM? You may have
+	"dalmatian puppy tail wagger": [440, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8e03f18744bcae87f8952cf54c6df4c27b961569.jpg", "Amber", "WHERE DID THEY ALL COME FROM? You may have
 up to 99 copies of Dalmatian Puppy - Tail Wagger
 in your deck.", "static", 2, 3, 1, 2, true, 0, 0, 0],
-    "joshua sweet the doctor": [441, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"joshua sweet the doctor": [441, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 1, 5, 2, 4, true, 0, 0, 0],
-    "kida atlantean": [442, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "kida protector of atlantis": [642, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"kida atlantean": [442, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"kida protector of atlantis": [642, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Kida.)\nPERHAPS WE CAN SAVE OUR FUTURE When you play
 this character, all characters get -3 ¤ until the
 start of your next turn.", "keyword, triggered", 3, 5, 2, 5, true, 0, 0, 0],
-    "lucky the 15th puppy": [444, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "GOOD AS NEW ⟳ — Reveal the top 3 cards of your deck.
+	"lucky the 15th puppy": [444, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "GOOD AS NEW ⟳ — Reveal the top 3 cards of your deck.
 You may put each character card with cost 2 or less into
 your hand. Put the rest on the bottom of your deck in any
 order.\nPUPPY LOVE Whenever this character quests, if you have 4
 or more other characters in play, your other characters get
 +1 ◊ this turn.", "activated, triggered", 2, 3, 1, 4, false, 0, 0, 0],
-    "minnie mouse musical artist": [445, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Singer 3 (This character counts as cost 3 to sing songs.)\nENTOURAGE Whenever you play a character with
+	"minnie mouse musical artist": [445, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Singer 3 (This character counts as cost 3 to sing songs.)\nENTOURAGE Whenever you play a character with
 Bodyguard, you may remove up to 2 damage from
 chosen character.", "keyword, triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "miss bianca rescue aid society agent": [446, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing
+	"miss bianca rescue aid society agent": [446, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing
 songs.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "mr snoops inept businessman": [447, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "", "", 4, 8, 2, 6, true, 0, 0, 0],
-    "nani protective sister": [448, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"mr snoops inept businessman": [447, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "", "", 4, 8, 2, 6, true, 0, 0, 0],
+	"nani protective sister": [448, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 3, 6, 2, 5, true, 0, 0, 0],
-    "orville ace pilot": [449, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 1, 4, 1, 2, true, 0, 0, 0],
-    "patch intimidating pup": [450, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "BARK ⟳ — Chosen character gets -2 ¤ until the
+	"orville ace pilot": [449, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 1, 4, 1, 2, true, 0, 0, 0],
+	"patch intimidating pup": [450, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "BARK ⟳ — Chosen character gets -2 ¤ until the
 start of your next turn.", "activated", 3, 4, 1, 4, true, 0, 0, 0],
-    "perdita devoted mother": [451, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "COME ALONG, CHILDREN When you play this
+	"perdita devoted mother": [451, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "COME ALONG, CHILDREN When you play this
 character and whenever she quests, you may play
 a character with cost 2 or less from your discard
 for free.", "triggered", 1, 6, 2, 6, false, 0, 0, 0],
-    "piglet pooh pirate captain": [945, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amber", "AND I'M THE CAPTAIN! While you have 2 or more
+	"piglet pooh pirate captain": [945, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amber", "AND I'M THE CAPTAIN! While you have 2 or more
 other characters in play, this character gets +2 ◊.", "static", 2, 2, 1, 2, true, 0, 0, 0],
-    "pluto determined defender": [453, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"pluto determined defender": [453, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Pluto.)\nBodyguard (This character may enter play exerted. An
 opposing character who challenges one of your characters
 must choose one with Bodyguard if able.)\nGUARD DOG At the start of your turn, remove up to 3
 damage from this character.", "keyword, keyword, triggered", 3, 8, 2, 7, true, 0, 0, 0],
-    "pluto friendly pooch": [454, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "GOOD DOG ⟳ — You pay 1 ⬡ less for the next
+	"pluto friendly pooch": [454, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "GOOD DOG ⟳ — You pay 1 ⬡ less for the next
 character you play this turn.", "activated", 0, 2, 1, 1, false, 0, 0, 0],
-    "pongo determined father": [455, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "TWILIGHT BARK Once per turn, you may pay 2 ⬡
+	"pongo determined father": [455, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "TWILIGHT BARK Once per turn, you may pay 2 ⬡
 to reveal the top card of your deck. If it's a
 character card, put it into your hand. Otherwise,
 put it on the bottom of your deck.", "activated", 3, 2, 1, 3, true, 0, 0, 0],
-    "queen of hearts wonderland empress": [456, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "ALL WAYS HERE ARE MY WAYS Whenever this
+	"queen of hearts wonderland empress": [456, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "ALL WAYS HERE ARE MY WAYS Whenever this
 character quests, your other Villain characters get
 +1 ◊ this turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "rolly hungry pup": [457, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "Support (Whenever this character quests, you
+	"rolly hungry pup": [457, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 3, 1, 3, true, 0, 0, 0],
-    "tinker bell generous fairy": [458, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "MAKE A NEW FRIEND When you play this character,
+	"tinker bell generous fairy": [458, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "MAKE A NEW FRIEND When you play this character,
 look at the top 4 cards of your deck. You may reveal
 a character card and put it into your hand. Put the
 rest on the bottom of your deck in any order.", "triggered", 1, 4, 1, 4, false, 0, 0, 0],
-    "wendy darling talented sailor": [459, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "", "", 1, 3, 2, 2, true, 0, 0, 0],
-    "99 puppies": [460, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "", "", 0, 0, 0, 5, false, 0, 0, 0],
-    "boss's orders": [461, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "heal what has been hurt": [462, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "quick patch": [463, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "the bare necessities": [464, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"wendy darling talented sailor": [459, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "", "", 1, 3, 2, 2, true, 0, 0, 0],
+	"99 puppies": [460, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "", "", 0, 0, 0, 5, false, 0, 0, 0],
+	"boss's orders": [461, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"heal what has been hurt": [462, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "(A character with cost 3 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
+	"quick patch": [463, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"the bare necessities": [464, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "cleansing rainwater": [465, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "ANCIENT POWER Banish this item — Remove up to 2
+	"cleansing rainwater": [465, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "ANCIENT POWER Banish this item — Remove up to 2
 damage from each of your characters.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "heart of atlantis": [466, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "LIFE GIVER ⟳ — You pay 2 ⬡ less for the next
+	"heart of atlantis": [466, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "LIFE GIVER ⟳ — You pay 2 ⬡ less for the next
 character you play this turn.", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "wildcat's wrench": [467, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "REBUILD ⟳ — Remove up to 2 damage from chosen
+	"wildcat's wrench": [467, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "REBUILD ⟳ — Remove up to 2 damage from chosen
 location.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "never land mermaid lagoon": [468, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "", "", 0, 4, 1, 1, true, 0, 0, 0],
-    "pride lands pride rock": [643, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "WE ARE ALL CONNECTED Characters get +2 ⛉ while here.\nLION HOME If you have a Prince or King character here, you pay 1 ⬡ less
+	"never land mermaid lagoon": [468, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "", "", 0, 4, 1, 1, true, 0, 0, 0],
+	"pride lands pride rock": [643, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "WE ARE ALL CONNECTED Characters get +2 ⛉ while here.\nLION HOME If you have a Prince or King character here, you pay 1 ⬡ less
 to play characters.", "static, static", 0, 7, 1, 2, false, 0, 0, 0],
-    "tiana's palace jazz restaurant": [470, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "NIGHT OUT Characters can't be challenged while here.", "static", 0, 8, 1, 3, false, 0, 0, 0],
-    "alice tea alchemist": [471, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "CURIOUSER AND CURIOUSER ⟳ — Exert chosen
+	"tiana's palace jazz restaurant": [470, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "NIGHT OUT Characters can't be challenged while here.", "static", 0, 8, 1, 3, false, 0, 0, 0],
+	"alice tea alchemist": [471, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "CURIOUSER AND CURIOUSER ⟳ — Exert chosen
 opposing character and all other opposing
 characters with the same name.", "activated", 4, 4, 2, 6, true, 0, 0, 0],
-    "chernabog's followers creatures of evil": [472, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "RESTLESS SOULS Whenever this character quests,
+	"chernabog's followers creatures of evil": [472, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "RESTLESS SOULS Whenever this character quests,
 you may banish them to draw a card.", "triggered", 2, 1, 1, 1, true, 0, 0, 0],
-    "diablo faithful pet": [473, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "LOOKING FOR AURORA Whenever you play a
+	"diablo faithful pet": [473, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "LOOKING FOR AURORA Whenever you play a
 character named Maleficent, you may look at the
 top card of your deck. Put it on either the top or the
 bottom of your deck.", "triggered", 2, 1, 1, 1, true, 0, 0, 0],
-    "genie supportive friend": [474, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "THREE WISHES Whenever this character quests,
+	"genie supportive friend": [474, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "THREE WISHES Whenever this character quests,
 you may shuffle this card into your deck to draw 3
 cards.", "triggered", 3, 5, 1, 4, false, 0, 0, 0],
-    "hydros ice titan": [475, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "BLIZZARD ⟳ — Exert chosen character.", "activated", 2, 2, 2, 3, true, 0, 0, 0],
-    "iago pretty polly": [476, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"hydros ice titan": [475, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "BLIZZARD ⟳ — Exert chosen character.", "activated", 2, 2, 2, 3, true, 0, 0, 0],
+	"iago pretty polly": [476, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "jafar lamp thief": [477, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "I AM YOUR MASTER NOW When you play this
+	"jafar lamp thief": [477, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "I AM YOUR MASTER NOW When you play this
 character, look at the top 2 cards of your deck.
 Put one on the top of your deck and the other on
 the bottom.", "triggered", 2, 2, 2, 3, true, 0, 0, 0],
-    "jafar striking illusionist": [644, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"jafar striking illusionist": [644, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Jafar.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nPOWER BEYOND MEASURE During your turn, while this
 character is exerted, whenever you draw a card, gain 1 lore.", "keyword, keyword, triggered", 4, 5, 1, 7, true, 0, 0, 0],
-    "lena sabrewing rebellious teenager": [479, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"lena sabrewing rebellious teenager": [479, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)", "keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "magic broom dancing duster": [480, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "POWER CLEAN When you play this character, if
+	"magic broom dancing duster": [480, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "POWER CLEAN When you play this character, if
 you have a Sorcerer character in play, you may
 exert chosen opposing character. They can't
 ready at the start of their next turn.", "triggered", 3, 3, 1, 6, false, 0, 0, 0],
-    "magic broom swift cleaner": [481, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Rush (This character can challenge the turn they're
+	"magic broom swift cleaner": [481, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Rush (This character can challenge the turn they're
 played.)\nCLEAN THIS, CLEAN THAT When you play this character,
 you may shuffle all Broom cards from your discard into
 your deck.", "keyword, triggered", 4, 4, 2, 5, false, 0, 0, 0],
-    "magic broom the big sweeper": [482, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "CLEAN SWEEP While this character is at a
+	"magic broom the big sweeper": [482, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "CLEAN SWEEP While this character is at a
 location, it gets +2 ¤.", "static", 1, 5, 1, 3, true, 0, 0, 0],
-    "magic carpet flying rug": [483, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
+	"magic carpet flying rug": [483, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
 character.)\nFIND THE WAY ⟳ — Move a character of yours to a location
 for free.", "keyword, activated", 2, 1, 1, 2, true, 0, 0, 0],
-    "magica de spell ambitious witch": [484, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "magica de spell the midas touch": [485, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"magica de spell ambitious witch": [484, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"magica de spell the midas touch": [485, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Magica De Spell.)\nALL MINE Whenever this character quests, gain lore
 equal to the cost of one of your items in play.", "keyword, triggered", 4, 6, 0, 7, false, 0, 0, 0],
-    "magica de spell thieving sorceress": [486, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "TELEKINESIS ⟳ — Return chosen item with cost
+	"magica de spell thieving sorceress": [486, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "TELEKINESIS ⟳ — Return chosen item with cost
 equal to or less than this character's ¤ to its
 player's hand.", "activated", 3, 4, 2, 4, true, 0, 0, 0],
-    "maleficent mistress of all evil": [645, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "DARK KNOWLEDGE Whenever this character quests,
+	"maleficent mistress of all evil": [645, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "DARK KNOWLEDGE Whenever this character quests,
 you may draw a card.\nDIVINATION During your turn, whenever you draw a
 card, you may move 1 damage counter from chosen
 character to chosen opposing character.", "triggered, triggered", 2, 3, 2, 5, true, 0, 0, 0],
-    "mama odie voice of wisdom": [488, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "LISTEN TO YOUR MAMA NOW Whenever this
+	"mama odie voice of wisdom": [488, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "LISTEN TO YOUR MAMA NOW Whenever this
 character quests, you may move up to 2 damage
 counters from chosen character to chosen
 opposing character.", "triggered", 3, 6, 2, 6, false, 0, 0, 0],
-    "pua potbellied buddy": [489, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "ALWAYS THERE When this character is banished,
+	"pua potbellied buddy": [489, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "ALWAYS THERE When this character is banished,
 you may shuffle this card into your deck.", "triggered", 2, 2, 2, 2, true, 0, 0, 0],
-    "rafiki mystical fighter": [490, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Challenger +3 (While challenging, this character gets
+	"rafiki mystical fighter": [490, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Challenger +3 (While challenging, this character gets
 +3 ¤.)\nANCIENT SKILLS Whenever he challenges a Hyena
 character, this character takes no damage from the
 challenge.", "keyword, triggered", 0, 2, 1, 1, true, 0, 0, 0],
-    "stratos tornado titan": [491, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"stratos tornado titan": [491, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nCYCLONE ⟳ — Gain lore equal to the number of
 Titan characters you have in play.", "keyword, activated", 4, 4, 0, 5, true, 0, 0, 0],
-    "the firebird force of destruction": [492, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "", "", 6, 2, 1, 4, true, 0, 0, 0],
-    "the queen hateful rival": [493, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "treasure guardian protector of the cave": [494, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "WHO DISTURBS MY SLUMBER? This character can't
+	"the firebird force of destruction": [492, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "", "", 6, 2, 1, 4, true, 0, 0, 0],
+	"the queen hateful rival": [493, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"treasure guardian protector of the cave": [494, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "WHO DISTURBS MY SLUMBER? This character can't
 challenge or quest unless it is at a location.", "static", 6, 6, 2, 4, false, 0, 0, 0],
-    "ursula sea witch": [495, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "YOU'RE TOO LATE Whenever this character
+	"ursula sea witch": [495, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "YOU'RE TOO LATE Whenever this character
 quests, chosen opposing character can't ready at
 the start of their next turn.", "triggered", 3, 3, 1, 3, false, 0, 0, 0],
-    "bestow a gift": [496, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "it calls me": [497, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song
+	"bestow a gift": [496, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"it calls me": [497, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "last-ditch effort": [498, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "the boss is on a roll": [499, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song for
+	"last-ditch effort": [498, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"the boss is on a roll": [499, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "the lamp": [500, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "GOOD OR EVIL Banish this item — If you have a
+	"the lamp": [500, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "GOOD OR EVIL Banish this item — If you have a
 character named Jafar in play, draw 2 cards. If you
 have a character named Genie in play, return chosen
 character with cost 4 or less to their player's hand.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "the sorcerer's hat": [646, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "INCREDIBLE ENERGY ⟳, 1 ⬡ — Name a card, then reveal
+	"the sorcerer's hat": [646, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "INCREDIBLE ENERGY ⟳, 1 ⬡ — Name a card, then reveal
 the top card of your deck. If it's the named card, put that
 card into your hand. Otherwise, put it on the top of your
 deck.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "forbidden mountain maleficent's castle": [502, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "", "", 0, 6, 1, 2, true, 0, 0, 0],
-    "the queen's castle mirror chamber": [503, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "USING THE MIRROR At the start of your turn, for each character you have here,
+	"forbidden mountain maleficent's castle": [502, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "", "", 0, 6, 1, 2, true, 0, 0, 0],
+	"the queen's castle mirror chamber": [503, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "USING THE MIRROR At the start of your turn, for each character you have here,
 you may draw a card.", "triggered", 0, 7, 2, 4, true, 0, 0, 0],
-    "the sorcerer's tower wondrous workspace": [504, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "BROOM CLOSET Your characters named Magic Broom may move here for free.\nMAGICAL POWER Characters get +1 ◊ while here.", "static, static", 0, 7, 0, 3, true, 0, 0, 0],
-    "cubby mighty lost boy": [505, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "THE BEAR Whenever this character moves to a
+	"the sorcerer's tower wondrous workspace": [504, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "BROOM CLOSET Your characters named Magic Broom may move here for free.\nMAGICAL POWER Characters get +1 ◊ while here.", "static, static", 0, 7, 0, 3, true, 0, 0, 0],
+	"cubby mighty lost boy": [505, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "THE BEAR Whenever this character moves to a
 location, he gets +3 ¤ this turn.", "triggered", 3, 5, 1, 4, true, 0, 0, 0],
-    "cursed merfolk ursula's handiwork": [506, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "POOR SOULS Whenever this character is challenged,
+	"cursed merfolk ursula's handiwork": [506, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "POOR SOULS Whenever this character is challenged,
 each opponent chooses and discards a card.", "triggered", 0, 1, 2, 1, false, 0, 0, 0],
-    "don karnage prince of pirates": [507, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"don karnage prince of pirates": [507, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 4, 4, 2, 5, true, 0, 0, 0],
-    "flotsam riffraff": [508, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "EERIE PAIR Your characters named Jetsam get
+	"flotsam riffraff": [508, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "EERIE PAIR Your characters named Jetsam get
 +3 ¤.", "static", 5, 2, 1, 3, true, 0, 0, 0],
-    "friar tuck priest of nottingham": [509, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "YOU THIEVING SCOUNDREL When you play this
+	"friar tuck priest of nottingham": [509, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "YOU THIEVING SCOUNDREL When you play this
 character, the player or players with the most
 cards in their hand chooses and discards a card.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "helga sinclair femme fatale": [510, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"helga sinclair femme fatale": [510, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Helga Sinclair.)\nTHIS CHANGES EVERYTHING Whenever this
 character quests, you may deal 3 damage to
 chosen damaged character.", "keyword, triggered", 4, 4, 2, 5, false, 0, 0, 0],
-    "helga sinclair vengeful partner": [511, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "NOTHING PERSONAL When this character is
+	"helga sinclair vengeful partner": [511, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "NOTHING PERSONAL When this character is
 challenged and banished, banish the challenging
 character.", "triggered", 2, 1, 1, 2, true, 0, 0, 0],
-    "jetsam riffraff": [512, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "Ward (Opponents can't choose this character except to
+	"jetsam riffraff": [512, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "Ward (Opponents can't choose this character except to
 challenge.)\nEERIE PAIR Your characters named Flotsam gain Ward.", "keyword, static", 2, 2, 2, 3, true, 0, 0, 0],
-    "kit cloudkicker tough guy": [684, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Emerald", "SKYSURFING When you play this character, you
+	"kit cloudkicker tough guy": [684, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Emerald", "SKYSURFING When you play this character, you
 may return chosen opposing character with 2 ¤
 or less to their player's hand.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "lyle tiberius rourke cunning mercenary": [514, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "WELL, NOW YOU KNOW When you play this character,
+	"lyle tiberius rourke cunning mercenary": [514, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "WELL, NOW YOU KNOW When you play this character,
 chosen opposing character gains Reckless during their
 next turn. (They can't quest and must challenge if able.)\nTHANKS FOR VOLUNTEERING Whenever one of your
 other characters is banished, each opponent loses 1 lore.", "triggered, triggered", 2, 4, 1, 3, false, 0, 0, 0],
-    "milo thatch clever cartographer": [515, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "milo thatch king of atlantis": [516, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
+	"milo thatch clever cartographer": [515, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"milo thatch king of atlantis": [516, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
 your characters named Milo Thatch.)\nTAKE THEM BY SURPRISE When this character is
 banished, return all opposing characters to their
 players' hands.", "keyword, triggered", 4, 4, 3, 7, false, 0, 0, 0],
-    "morph space goo": [647, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "MIMICRY You may play any character with Shift on
+	"morph space goo": [647, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "MIMICRY You may play any character with Shift on
 this character as if this character had any name.", "static", 2, 1, 1, 2, true, 0, 0, 0],
-    "peter pan lost boy leader": [518, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "I CAME TO LISTEN TO THE STORIES Once per turn,
+	"peter pan lost boy leader": [518, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "I CAME TO LISTEN TO THE STORIES Once per turn,
 when this character moves to a location, gain lore
 equal to that location's ◊.", "triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "prince john phony king": [519, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "COLLECT TAXES Whenever this character quests,
+	"prince john phony king": [519, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "COLLECT TAXES Whenever this character quests,
 each opponent with more lore than you loses 2 lore.", "triggered", 2, 4, 2, 5, false, 0, 0, 0],
-    "robin hood daydreamer": [520, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "", "", 4, 5, 4, 6, true, 0, 0, 0],
-    "shenzi hyena pack leader": [521, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "I'LL HANDLE THIS While this character is at a location, she
+	"robin hood daydreamer": [520, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "", "", 4, 5, 4, 6, true, 0, 0, 0],
+	"shenzi hyena pack leader": [521, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "I'LL HANDLE THIS While this character is at a location, she
 gets +3 ¤.\nWHAT'S THE HURRY? While this character is at a location,
 whenever she challenges another character, you may draw
 a card.", "static, triggered", 0, 6, 1, 4, true, 0, 0, 0],
-    "sir hiss aggravating asp": [522, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"sir hiss aggravating asp": [522, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 1, 1, 2, true, 0, 0, 0],
-    "skippy energetic rabbit": [523, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"skippy energetic rabbit": [523, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "starkey devious pirate": [524, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "", "", 6, 6, 3, 7, true, 0, 0, 0],
-    "stitch covert agent": [525, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Evasive (Only characters with Evasive can challenge this
+	"starkey devious pirate": [524, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "", "", 6, 6, 3, 7, true, 0, 0, 0],
+	"stitch covert agent": [525, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Evasive (Only characters with Evasive can challenge this
 character.)\nHIDE While this character is at a location, he gains
 Ward. (Opponents can't choose them except to
 challenge.)", "keyword, static", 3, 3, 2, 5, true, 0, 0, 0],
-    "ursula deceiver": [1193, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Emerald", "YOU'LL NEVER EVEN MISS IT When you play this
+	"ursula deceiver": [1193, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Emerald", "YOU'LL NEVER EVEN MISS IT When you play this
 card, chosen opponent reveals their hand and
 discards a song card of your choice.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "ursula deceiver of all": [648, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "WHAT A DEAL Whenever this character sings a song,
+	"ursula deceiver of all": [648, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "WHAT A DEAL Whenever this character sings a song,
 you may play that song again from your discard for
 free, then put it on the bottom of your deck.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "wildcat mechanic": [528, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"wildcat mechanic": [528, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nDISASSEMBLE ⟳ — Banish chosen item.", "keyword, activated", 2, 3, 1, 3, true, 0, 0, 0],
-    "zazu steward of the pride lands": [529, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "IT'S TIME TO GO! While this character is at a
+	"zazu steward of the pride lands": [529, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "IT'S TIME TO GO! While this character is at a
 location, he gets +1 ◊.", "static", 2, 1, 1, 1, true, 0, 0, 0],
-    "has set my heart": [530, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
+	"has set my heart": [530, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "i will find my way": [531, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 1 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "strike a good match": [532, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
+	"i will find my way": [531, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 1 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
+	"strike a good match": [532, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "airfoil": [533, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "I GOT TO BE GOING ⟳ — If you've played 2 or more
+	"airfoil": [533, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "I GOT TO BE GOING ⟳ — If you've played 2 or more
 actions this turn, draw a card.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "robin's bow": [534, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "FOREST'S GIFT ⟳ — Deal 1 damage to chosen damaged
+	"robin's bow": [534, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "FOREST'S GIFT ⟳ — Deal 1 damage to chosen damaged
 character or location.\nA BIT OF A LARK Whenever a character of yours named Robin
 Hood quests, you may ready this item.", "activated, triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "starlight vial": [535, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "EFFICIENT ENERGY ⟳ — You pay 2 ⬡ less for the next
+	"starlight vial": [535, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "EFFICIENT ENERGY ⟳ — You pay 2 ⬡ less for the next
 action you play this turn.\nTRAP 2 ⬡, Banish this item — Draw 2 cards, then choose
 and discard a card.", "activated, activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "de vil manor cruella's estate": [536, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 4, 1, 1, true, 0, 0, 0],
-    "fang river city": [537, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "SURROUNDED BY WATER Characters gain Ward and Evasive while here. (Opponents can't
+	"de vil manor cruella's estate": [536, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "", "", 0, 4, 1, 1, true, 0, 0, 0],
+	"fang river city": [537, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "SURROUNDED BY WATER Characters gain Ward and Evasive while here. (Opponents can't
 choose them except to challenge. Only characters with Evasive can challenge them.)", "static", 0, 6, 2, 4, true, 0, 0, 0],
-    "kuzco's palace home of the emperor": [649, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "CITY WALLS Whenever a character is challenged and banished while here,
+	"kuzco's palace home of the emperor": [649, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "CITY WALLS Whenever a character is challenged and banished while here,
 banish the challenging character.", "triggered", 0, 7, 1, 3, true, 0, 0, 0],
-    "ariel adventurous collector": [539, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge this
+	"ariel adventurous collector": [539, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge this
 character.)\nINSPIRING VOICE Whenever you play a song, chosen
 character of yours gains Evasive until the start of your next
 turn.", "keyword, triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "billy bones keeper of the map": [540, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
-    "captain hook master swordsman": [650, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "NEMESIS During your turn, whenever this character
+	"billy bones keeper of the map": [540, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
+	"captain hook master swordsman": [650, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "NEMESIS During your turn, whenever this character
 banishes another character in a challenge, ready this
 character. He can't quest for the rest of this turn.\nMAN-TO-MAN Characters named Peter Pan lose
 Evasive and can't gain Evasive.", "triggered, static", 5, 4, 1, 5, true, 0, 0, 0],
-    "della duck unstoppable mom": [542, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Reckless (This character can't quest and must
+	"della duck unstoppable mom": [542, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 3, 3, 0, 2, false, 0, 0, 0],
-    "heihei accidental explorer": [543, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "MINDLESS WANDERING Once per turn, when this
+	"heihei accidental explorer": [543, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Ruby", "MINDLESS WANDERING Once per turn, when this
 character moves to a location, each opponent
 loses 1 lore.", "triggered", 3, 2, 1, 2, true, 0, 0, 0],
-    "hydra deadly serpent": [544, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "WATCH THE TEETH Whenever this character is
+	"hydra deadly serpent": [544, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "WATCH THE TEETH Whenever this character is
 dealt damage, deal that much damage to chosen
 opposing character.", "triggered", 6, 5, 2, 6, false, 0, 0, 0],
-    "jim hawkins space traveler": [545, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "THIS IS IT! When you play this character, you may play a
+	"jim hawkins space traveler": [545, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "THIS IS IT! When you play this character, you may play a
 location with cost 4 or less for free.\nTAKE THE HELM Whenever you play a location, this
 character may move there for free.", "triggered, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "jim hawkins thrill seeker": [546, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "kakamora menacing sailor": [547, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "PLUNDER When you play this character, each
+	"jim hawkins thrill seeker": [546, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"kakamora menacing sailor": [547, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "PLUNDER When you play this character, each
 opponent loses 1 lore.", "triggered", 3, 2, 1, 3, false, 0, 0, 0],
-    "madame medusa the boss": [548, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "THAT TERRIBLE WOMAN When you play this
+	"madame medusa the boss": [548, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "THAT TERRIBLE WOMAN When you play this
 character, banish chosen opposing character with
 3 ¤ or less.", "triggered", 4, 4, 1, 6, false, 0, 0, 0],
-    "maui soaring demigod": [549, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Reckless (This character can't quest and must challenge
+	"maui soaring demigod": [549, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Reckless (This character can't quest and must challenge
 each turn if able.)\nIN MA BELLY Whenever a character of yours named
 HeiHei quests, this character gets +1 ◊ and loses
 Reckless this turn.", "keyword, triggered", 5, 2, 0, 3, false, 0, 0, 0],
-    "maui whale": [550, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "THIS MISSION IS CURSED This character can't
+	"maui whale": [550, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "THIS MISSION IS CURSED This character can't
 ready at the start of your turn.\nI GOT YOUR BACK 2 ⬡ — Ready this character.
 He can't quest for the rest of this turn.", "static, activated", 8, 8, 1, 7, true, 0, 0, 0],
-    "milo thatch spirited scholar": [551, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "I'M YOUR MAN! While this character is at a
+	"milo thatch spirited scholar": [551, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "I'M YOUR MAN! While this character is at a
 location, he gets +2 ¤.", "static", 2, 2, 1, 2, true, 0, 0, 0],
-    "moana born leader": [552, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"moana born leader": [552, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Moana.)\nWELCOME TO MY BOAT Whenever this character
 quests while at a location, ready all other characters
 here. They can't quest for the rest of this turn.", "keyword, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "moana undeterred voyager": [553, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"moana undeterred voyager": [553, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 4, 1, 4, true, 0, 0, 0],
-    "nutsy vulture henchman": [554, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "peter pan never land hero": [555, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn they're
+	"nutsy vulture henchman": [554, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"peter pan never land hero": [555, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "Rush (This character can challenge the turn they're
 played.)\nOVER HERE, TINK While you have a character named
 Tinker Bell in play, this character gets +2 ¤.", "keyword, static", 1, 3, 2, 3, true, 0, 0, 0],
-    "peter pan pirate's bane": [651, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
+	"peter pan pirate's bane": [651, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
 characters named Peter Pan.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nYOU'RE NEXT! Whenever he challenges a Pirate character,
 this character takes no damage from the challenge.", "keyword, keyword, triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "prince eric expert helmsman": [557, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "SURPRISE MANEUVER When this character is
+	"prince eric expert helmsman": [557, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "SURPRISE MANEUVER When this character is
 banished, you may banish chosen character.", "triggered", 2, 2, 2, 4, false, 0, 0, 0],
-    "scroop backstabber": [558, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "BRUTE While this character has damage, he gets
+	"scroop backstabber": [558, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "BRUTE While this character has damage, he gets
 +3 ¤.", "static", 2, 5, 2, 5, true, 0, 0, 0],
-    "simba scrappy cub": [559, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "", "", 1, 1, 3, 2, false, 0, 0, 0],
-    "slightly lost boy": [560, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "THE FOX If you have a character named Peter Pan in
+	"simba scrappy cub": [559, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "", "", 1, 1, 3, 2, false, 0, 0, 0],
+	"slightly lost boy": [560, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "THE FOX If you have a character named Peter Pan in
 play, you pay 1 ⬡ less to play this character.\nEvasive (Only characters with Evasive can challenge
 this character.)", "static, keyword", 4, 3, 1, 4, true, 0, 0, 0],
-    "stitch little rocket": [561, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
+	"stitch little rocket": [561, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 3, 1, 1, 2, false, 0, 0, 0],
-    "trigger not-so-sharp shooter": [562, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "OLD BETSY Your characters named Nutsy get +1 ◊.", "static", 3, 1, 1, 2, true, 0, 0, 0],
-    "webby vanderquack enthusiastic duck": [563, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "divebomb": [564, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "i've got a dream": [565, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "on your feet now": [566, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "voyage": [567, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "maui's fish hook": [568, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "IT'S MAUI TIME! If you have a character named Maui in play,
+	"trigger not-so-sharp shooter": [562, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "OLD BETSY Your characters named Nutsy get +1 ◊.", "static", 3, 1, 1, 2, true, 0, 0, 0],
+	"webby vanderquack enthusiastic duck": [563, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"divebomb": [564, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"i've got a dream": [565, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 2 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
+	"on your feet now": [566, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"voyage": [567, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"maui's fish hook": [568, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "IT'S MAUI TIME! If you have a character named Maui in play,
 you may use this item's Shapeshift ability for free.\nSHAPESHIFT ⟳, 2 ⬡ — Choose one:
 • Chosen character gains Evasive until the start of your next
 turn. (Only characters with Evasive can challenge them.)
 • Chosen character gets +3 ¤ this turn.", "static, activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "sumerian talisman": [569, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "SOURCE OF MAGIC During your turn, whenever one of your
+	"sumerian talisman": [569, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "SOURCE OF MAGIC During your turn, whenever one of your
 characters is banished in a challenge, you may draw a card.", "triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "agrabah marketplace": [570, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "", "", 0, 5, 2, 3, true, 0, 0, 0],
-    "jolly roger hook's ship": [685, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Ruby", "LOOK ALIVE, YOU SWABS! Characters gain Rush while here. (They can challenge
+	"agrabah marketplace": [570, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "", "", 0, 5, 2, 3, true, 0, 0, 0],
+	"jolly roger hook's ship": [685, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Ruby", "LOOK ALIVE, YOU SWABS! Characters gain Rush while here. (They can challenge
 the turn they're played.)\nALL HANDS ON DECK! Your Pirate characters may move here for free.", "static, static", 0, 5, 0, 1, false, 0, 0, 0],
-    "rls legacy solar galleon": [652, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "THIS IS OUR SHIP Characters gain Evasive while here. (Only characters with Evasive can
+	"rls legacy solar galleon": [652, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "THIS IS OUR SHIP Characters gain Evasive while here. (Only characters with Evasive can
 challenge them.)\nHEAVE TOGETHER NOW If you have a character here, you pay 2 ⬡ less to move a
 character of yours here.", "static, static", 0, 8, 2, 4, false, 0, 0, 0],
-    "audrey ramirez the engineer": [573, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"audrey ramirez the engineer": [573, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nSPARE PARTS Whenever this character quests,
 ready one of your items.", "keyword, triggered", 2, 5, 2, 5, true, 0, 0, 0],
-    "captain amelia first in command": [574, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "DISCIPLINE During your turn, this character gains
+	"captain amelia first in command": [574, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "DISCIPLINE During your turn, this character gains
 Evasive. (They can challenge characters with
 Evasive.)", "static", 1, 5, 1, 3, true, 0, 0, 0],
-    "dewey showy nephew": [575, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"dewey showy nephew": [575, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 3, 2, 3, true, 0, 0, 0],
-    "flintheart glomgold lone cheater": [576, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "THEY'LL NEVER SEE IT COMING! During your turn,
+	"flintheart glomgold lone cheater": [576, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "THEY'LL NEVER SEE IT COMING! During your turn,
 this character gains Evasive. (They can challenge
 characters with Evasive.)", "static", 3, 4, 2, 4, true, 0, 0, 0],
-    "genie cramped in the lamp": [577, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "gramma tala keeper of ancient stories": [578, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "THERE WAS ONLY OCEAN When you play this
+	"genie cramped in the lamp": [577, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"gramma tala keeper of ancient stories": [578, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "THERE WAS ONLY OCEAN When you play this
 character, look at the top 2 cards of your deck. You
 may put one into your hand. Put the rest on the
 bottom of your deck in any order.", "triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "gramma tala spirit of the ocean": [653, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one
+	"gramma tala spirit of the ocean": [653, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one
 of your characters named Gramma Tala.)\nDO YOU KNOW WHO YOU ARE? Whenever a card is
 put into your inkwell, gain 1 lore.", "keyword, triggered", 4, 8, 2, 7, true, 0, 0, 0],
-    "gyro gearloose gadget whiz": [580, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "NOW TRY TO KEEP UP ⟳ — Put an item card from
+	"gyro gearloose gadget whiz": [580, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "NOW TRY TO KEEP UP ⟳ — Put an item card from
 your discard on the top of your deck.", "activated", 1, 4, 1, 3, true, 0, 0, 0],
-    "huey savvy nephew": [581, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "Support (Whenever this character quests, you may add
+	"huey savvy nephew": [581, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "Support (Whenever this character quests, you may add
 their ¤ to another chosen character's ¤ this turn.)\nTHREE NEPHEWS Whenever this character quests, if you
 have characters named Dewey and Louie in play, you
 may draw 3 cards.", "keyword, triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "king louie bandleader": [582, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "", "", 7, 7, 3, 7, true, 0, 0, 0],
-    "kit cloudkicker navigator": [583, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"king louie bandleader": [582, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "", "", 7, 7, 3, 7, true, 0, 0, 0],
+	"kit cloudkicker navigator": [583, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Kit Cloudkicker.)\nWard (Opponents can't choose this character
 except to challenge.)", "keyword, keyword", 2, 5, 3, 6, true, 0, 0, 0],
-    "kit cloudkicker spunky bear cub": [584, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"kit cloudkicker spunky bear cub": [584, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 0, 1, 1, 1, true, 0, 0, 0],
-    "louie chill nephew": [585, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"louie chill nephew": [585, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 4, 2, 4, true, 0, 0, 0],
-    "maid marian delightful dreamer": [586, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "HIGHBORN LADY When you play this character,
+	"maid marian delightful dreamer": [586, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "HIGHBORN LADY When you play this character,
 chosen character gets -2 ¤ this turn.", "triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "mama odie mystical maven": [587, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "THIS GOING TO BE GOOD Whenever you play a song,
+	"mama odie mystical maven": [587, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "THIS GOING TO BE GOOD Whenever you play a song,
 you may put the top card of your deck into your inkwell
 facedown and exerted.", "triggered", 1, 3, 1, 3, false, 0, 0, 0],
-    "pluto mickey's clever friend": [588, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "rufus orphanage cat": [589, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "TOO OLD TO BE CHASING MICE When this
+	"pluto mickey's clever friend": [588, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"rufus orphanage cat": [589, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "TOO OLD TO BE CHASING MICE When this
 character is banished, you may put this card into
 your inkwell facedown and exerted.", "triggered", 4, 5, 1, 5, true, 0, 0, 0],
-    "scrooge mcduck richest duck in the world": [654, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "I'M GOING HOME! During your turn, this character
+	"scrooge mcduck richest duck in the world": [654, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "I'M GOING HOME! During your turn, this character
 gains Evasive. (They can challenge characters with
 Evasive.)\nI DIDN'T GET RICH BY BEING STUPID During your turn,
 whenever this character banishes another character
 in a challenge, you may play an item for free.", "static, triggered", 3, 5, 1, 5, false, 0, 0, 0],
-    "scrooge mcduck uncle moneybags": [955, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Sapphire", "TREASURE FINDER Whenever this character
+	"scrooge mcduck uncle moneybags": [955, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Sapphire", "TREASURE FINDER Whenever this character
 quests, you pay 1 ⬡ less for the next item you
 play this turn.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "the queen mirror seeker": [592, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "CALCULATING AND VAIN Whenever this character
+	"the queen mirror seeker": [592, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "CALCULATING AND VAIN Whenever this character
 quests, you may look at the top 3 cards of your
 deck and put them back in any order.", "triggered", 2, 5, 1, 4, true, 0, 0, 0],
-    "tinker bell very clever fairy": [593, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "I CAN USE THAT Whenever one of your items is
+	"tinker bell very clever fairy": [593, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "I CAN USE THAT Whenever one of your items is
 banished, you may put that card into your inkwell
 facedown and exerted.", "triggered", 3, 4, 2, 5, true, 0, 0, 0],
-    "wendy darling authority on peter pan": [594, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"wendy darling authority on peter pan": [594, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nSupport (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword, keyword", 3, 1, 2, 3, true, 0, 0, 0],
-    "distract": [595, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "friend like me": [596, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this
+	"distract": [595, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"friend like me": [596, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
-    "how far i'll go": [686, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
+	"how far i'll go": [686, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, false, 0, 0, 0],
-    "repair": [598, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "aurelian gyrosensor": [599, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "SEEKING KNOWLEDGE Whenever one of your characters
+	"repair": [598, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"aurelian gyrosensor": [599, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "SEEKING KNOWLEDGE Whenever one of your characters
 quests, you may look at the top card of your deck. Put it
 on either the top or the bottom of your deck.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "heart of te fiti": [600, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "CREATE LIFE ⟳, 2 ⬡ — Put the top card of your deck
+	"heart of te fiti": [600, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "CREATE LIFE ⟳, 2 ⬡ — Put the top card of your deck
 into your inkwell facedown and exerted.", "activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "lucky dime": [601, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "NUMBER ONE ⟳, 2 ⬡ — Choose a character of yours
+	"lucky dime": [601, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "NUMBER ONE ⟳, 2 ⬡ — Choose a character of yours
 and gain lore equal to their ◊.", "activated", 0, 0, 0, 7, false, 0, 0, 0],
-    "scrooge's top hat": [602, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "BUSINESS EXPERTISE ⟳ — You pay 1 ⬡ less for the
+	"scrooge's top hat": [602, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "BUSINESS EXPERTISE ⟳ — You pay 1 ⬡ less for the
 next item you play this turn.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "vault door": [603, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "SEALED AWAY Your locations and characters at
+	"vault door": [603, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "SEALED AWAY Your locations and characters at
 locations gain Resist +1. (Damage dealt to them is
 reduced by 1.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "belle's house maurice's workshop": [655, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "LABORATORY If you have a character here, you pay 1 ⬡ less to play items.", "static", 0, 6, 0, 1, true, 0, 0, 0],
-    "mcduck manor scrooge's mansion": [605, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "", "", 0, 9, 2, 4, true, 0, 0, 0],
-    "motunui island paradise": [606, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "REINCARNATION Whenever a character is banished while here, you may
+	"belle's house maurice's workshop": [655, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "LABORATORY If you have a character here, you pay 1 ⬡ less to play items.", "static", 0, 6, 0, 1, true, 0, 0, 0],
+	"mcduck manor scrooge's mansion": [605, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "", "", 0, 9, 2, 4, true, 0, 0, 0],
+	"motunui island paradise": [606, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "REINCARNATION Whenever a character is banished while here, you may
 put that card into your inkwell facedown and exerted.", "triggered", 0, 5, 1, 2, true, 0, 0, 0],
-    "chief tui proud of motunui": [607, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "", "", 3, 4, 2, 4, true, 0, 0, 0],
-    "eeyore overstuffed donkey": [608, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"chief tui proud of motunui": [607, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "", "", 3, 4, 2, 4, true, 0, 0, 0],
+	"eeyore overstuffed donkey": [608, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword", 4, 5, 1, 5, true, 0, 0, 0],
-    "gustav the giant terror of the kingdom": [609, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "ALL TIED UP This character enters play exerted
+	"gustav the giant terror of the kingdom": [609, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "ALL TIED UP This character enters play exerted
 and can't ready at the start of your turn.\nBREAK FREE During your turn, whenever one of
 your other characters banishes another character
 in a challenge, you may ready this character.", "static, triggered", 6, 6, 1, 3, true, 0, 0, 0],
-    "hades hotheaded ruler": [610, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "CALL THE TITANS ⟳ — Ready your Titan characters.", "activated", 5, 5, 2, 6, true, 0, 0, 0],
-    "helga sinclair right-hand woman": [611, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "Challenger +2 (While challenging, this character
+	"hades hotheaded ruler": [610, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "CALL THE TITANS ⟳ — Ready your Titan characters.", "activated", 5, 5, 2, 6, true, 0, 0, 0],
+	"helga sinclair right-hand woman": [611, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 2, 4, 1, 3, true, 0, 0, 0],
-    "john silver greedy treasure seeker": [687, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Steel", "CHART YOUR OWN COURSE For each location you have
+	"john silver greedy treasure seeker": [687, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Steel", "CHART YOUR OWN COURSE For each location you have
 in play, this character gains Resist +1 and gets +1 ◊.
 (Damage dealt to them is reduced by 1.)", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "kida royal warrior": [613, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"kida royal warrior": [613, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)", "keyword", 2, 3, 1, 2, true, 0, 0, 0],
-    "little john resourceful outlaw": [614, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
+	"little john resourceful outlaw": [614, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
 your characters named Little John.)\nOKAY, BIG SHOT While this character is exerted, your
 characters with Bodyguard gain Resist +1 and get +1 ◊.
 (Damage dealt to them is reduced by 1.)", "keyword, static", 4, 5, 2, 6, true, 0, 0, 0],
-    "little john robin's pal": [615, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"little john robin's pal": [615, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nDISGUISED During your turn, this character gains
 Evasive. (They can challenge characters with Evasive.)", "keyword, static", 2, 4, 1, 3, true, 0, 0, 0],
-    "lythos rock titan": [616, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Resist +2 (Damage dealt to this character is
+	"lythos rock titan": [616, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Resist +2 (Damage dealt to this character is
 reduced by 2.)\nSTONE SKIN ⟳ — Chosen character gains Resist
 +2 this turn.", "keyword, activated", 4, 1, 1, 4, true, 0, 0, 0],
-    "mickey mouse stalwart explorer": [617, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "LET'S TAKE A LOOK This character gets +1 ¤ for
+	"mickey mouse stalwart explorer": [617, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "LET'S TAKE A LOOK This character gets +1 ¤ for
 each location you have in play.", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "mickey mouse trumpeter": [656, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "SOUND THE CALL ⟳, 2 ⬡ — Play a character for free.", "activated", 0, 1, 1, 4, false, 0, 0, 0],
-    "minnie mouse funky spelunker": [619, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "JOURNEY While this character is at a location,
+	"mickey mouse trumpeter": [656, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "SOUND THE CALL ⟳, 2 ⬡ — Play a character for free.", "activated", 0, 1, 1, 4, false, 0, 0, 0],
+	"minnie mouse funky spelunker": [619, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "JOURNEY While this character is at a location,
 she gets +2 ¤.", "static", 0, 3, 1, 1, true, 0, 0, 0],
-    "mr smee bumbling mate": [620, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "OH DEAR, DEAR, DEAR At the end of your turn,
+	"mr smee bumbling mate": [620, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "OH DEAR, DEAR, DEAR At the end of your turn,
 if this character is exerted and you don't have a
 Captain character in play, deal 1 damage to this
 character.", "triggered", 3, 3, 2, 2, true, 0, 0, 0],
-    "mufasa champion of the pride lands": [621, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "", "", 3, 10, 3, 7, true, 0, 0, 0],
-    "nala fierce friend": [622, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "", "", 2, 4, 2, 3, true, 0, 0, 0],
-    "pyros lava titan": [623, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "ERUPTION During your turn, whenever this
+	"mufasa champion of the pride lands": [621, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "", "", 3, 10, 3, 7, true, 0, 0, 0],
+	"nala fierce friend": [622, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "", "", 2, 4, 2, 3, true, 0, 0, 0],
+	"pyros lava titan": [623, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "ERUPTION During your turn, whenever this
 character banishes another character in a
 challenge, you may ready chosen character.", "triggered", 5, 4, 1, 5, true, 0, 0, 0],
-    "razoul palace guard": [624, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "LOOKY HERE While this character has no damage,
+	"razoul palace guard": [624, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "LOOKY HERE While this character has no damage,
 he gets +2 ¤.", "static", 1, 3, 1, 2, true, 0, 0, 0],
-    "robin hood beloved outlaw": [625, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "robin hood champion of sherwood": [657, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"robin hood beloved outlaw": [625, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"robin hood champion of sherwood": [657, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Robin Hood.)\nSKILLED COMBATANT During your turn, whenever this
 character banishes another character in a challenge, gain 2 lore.\nTHE GOOD OF OTHERS When this character is banished in a
 challenge, you may draw a card.", "keyword, triggered, triggered", 3, 6, 2, 5, true, 0, 0, 0],
-    "sheriff of nottingham corrupt official": [627, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "TAXES SHOULD HURT Whenever you discard a
+	"sheriff of nottingham corrupt official": [627, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "TAXES SHOULD HURT Whenever you discard a
 card, you may deal 1 damage to chosen opposing
 character.", "triggered", 2, 4, 1, 4, false, 0, 0, 0],
-    "simba fighting prince": [628, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "STEP DOWN OR FIGHT When you play this character and
+	"simba fighting prince": [628, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "STEP DOWN OR FIGHT When you play this character and
 whenever he banishes another character in a challenge
 during your turn, you may choose one:
 • Draw 2 cards, then choose and discard 2 cards.
 • Deal 2 damage to chosen character.", "triggered", 5, 7, 2, 7, true, 0, 0, 0],
-    "simba rightful king": [629, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "TRIUMPHANT STANCE During your turn, whenever
+	"simba rightful king": [629, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "TRIUMPHANT STANCE During your turn, whenever
 this character banishes another character in
 a challenge, chosen opposing character can't
 challenge during their next turn.", "triggered", 4, 6, 1, 5, true, 0, 0, 0],
-    "thaddeus e klang metallic leader": [630, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "MY TEETH ARE SHARPER Whenever this character
+	"thaddeus e klang metallic leader": [630, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "MY TEETH ARE SHARPER Whenever this character
 quests while at a location, you may deal 1 damage
 to chosen character.", "triggered", 3, 5, 2, 5, true, 0, 0, 0],
-    "and then along came zeus": [658, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "(A character with cost 4 or more can ⟳ to sing this song
+	"and then along came zeus": [658, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "(A character with cost 4 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 4, false, 0, 0, 0],
-    "ba-boom": [632, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "olympus would be that way": [633, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "rise of the titans": [634, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "captain hook's rapier": [635, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "GET THOSE SCURVY BRATS! During your turn, whenever
+	"ba-boom": [632, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"olympus would be that way": [633, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"rise of the titans": [634, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"captain hook's rapier": [635, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "GET THOSE SCURVY BRATS! During your turn, whenever
 one of your characters banishes another character in a
 challenge, you may pay 1 ⬡ to draw a card.\nLET'S HAVE AT IT! Your characters named Captain Hook
 gain Challenger +1. (They get +1 ¤ while challenging.)", "triggered, static", 0, 0, 0, 3, false, 0, 0, 0],
-    "gizmosuit": [636, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "CYBERNETIC ARMOR Banish this item — Chosen
+	"gizmosuit": [636, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "CYBERNETIC ARMOR Banish this item — Chosen
 character gains Resist +2 until the start of your next
 turn. (Damage dealt to them is reduced by 2.)", "activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "map of treasure planet": [637, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "KEY TO THE PORTAL ⟳ — You pay 1 ⬡ less for the next location
+	"map of treasure planet": [637, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "KEY TO THE PORTAL ⟳ — You pay 1 ⬡ less for the next location
 you play this turn.\nSHOW THE WAY You pay 1 ⬡ less to move your characters to a
 location.", "activated, static", 0, 0, 0, 3, true, 0, 0, 0],
-    "maui's place of exile hidden island": [638, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "ISOLATED Characters gain Resist +1 while here. (Damage dealt to them
+	"maui's place of exile hidden island": [638, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "ISOLATED Characters gain Resist +1 while here. (Damage dealt to them
 is reduced by 1.)", "static", 0, 5, 0, 2, true, 0, 0, 0],
-    "nottingham prince john's castle": [639, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "", "", 0, 6, 1, 2, true, 0, 0, 0],
-    "the bayou mysterious swamp": [640, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "SHOW ME THE WAY Whenever a character quests while here, you may draw a card, then
+	"nottingham prince john's castle": [639, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "", "", 0, 6, 1, 2, true, 0, 0, 0],
+	"the bayou mysterious swamp": [640, "https://api.lorcana.ravensburger.com/images/en/set3/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "SHOW ME THE WAY Whenever a character quests while here, you may draw a card, then
 choose and discard a card.", "triggered", 0, 3, 1, 1, true, 0, 0, 0],
-    "agustin madrigal clumsy dad": [692, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "alma madrigal family matriarch": [693, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "TO THE TABLE When you play this character, you may
+	"agustin madrigal clumsy dad": [692, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"alma madrigal family matriarch": [693, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "TO THE TABLE When you play this character, you may
 search your deck for a Madrigal character card and
 reveal that card to all players. Shuffle your deck and put
 that card on top of it.", "triggered", 1, 3, 2, 3, false, 0, 0, 0],
-    "ariel singing mermaid": [694, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Singer 7 (This character counts as cost 7 to sing
+	"ariel singing mermaid": [694, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Singer 7 (This character counts as cost 7 to sing
 songs.)", "keyword", 3, 3, 2, 4, true, 0, 0, 0],
-    "cinderella melody weaver": [896, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 9 (This character counts as cost 9 to sing
+	"cinderella melody weaver": [896, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 9 (This character counts as cost 9 to sing
 songs.)\nBEAUTIFUL VOICE Whenever this character sings
 a song, your other Princess characters get +1 ◊
 this turn.", "keyword, triggered", 1, 5, 2, 5, true, 0, 0, 0],
-    "cogsworth majordomo": [696, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "AS YOU WERE! Whenever this character quests,
+	"cogsworth majordomo": [696, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "AS YOU WERE! Whenever this character quests,
 you may give chosen character -2 ¤ until the
 start of your next turn.", "triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "daisy duck lovely lady": [697, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "daisy duck musketeer spy": [698, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "INFILTRATION When you play this character, each
+	"daisy duck lovely lady": [697, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"daisy duck musketeer spy": [698, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "INFILTRATION When you play this character, each
 opponent chooses and discards a card.", "triggered", 2, 3, 1, 4, true, 0, 0, 0],
-    "donald duck musketeer soldier": [699, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"donald duck musketeer soldier": [699, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nWAIT FOR ME! When you play this character,
 chosen character gets +1 ◊ this turn.", "keyword, triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "felix madrigal fun-loving family man": [700, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "", "", 2, 4, 2, 3, true, 0, 0, 0],
-    "gaston despicable dealer": [701, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "DUBIOUS RECRUITMENT ⟳ — You pay 2 ⬡ less
+	"felix madrigal fun-loving family man": [700, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "", "", 2, 4, 2, 3, true, 0, 0, 0],
+	"gaston despicable dealer": [701, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "DUBIOUS RECRUITMENT ⟳ — You pay 2 ⬡ less
 for the next character you play this turn.", "activated", 2, 4, 1, 3, false, 0, 0, 0],
-    "golden harp enchanter of the land": [702, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "STOLEN AWAY At the end of your turn, if you
+	"golden harp enchanter of the land": [702, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "STOLEN AWAY At the end of your turn, if you
 didn't play a song this turn, banish this character.", "triggered", 1, 4, 2, 1, true, 0, 0, 0],
-    "goofy musketeer swordsman": [703, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "EN GAWRSH! Whenever you play a character with
+	"goofy musketeer swordsman": [703, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "EN GAWRSH! Whenever you play a character with
 Bodyguard, ready this character. He can't quest
 for the rest of this turn.", "triggered", 3, 4, 2, 4, false, 0, 0, 0],
-    "julieta madrigal excellent cook": [704, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "SIGNATURE RECIPE When you play this character,
+	"julieta madrigal excellent cook": [704, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "SIGNATURE RECIPE When you play this character,
 you may remove up to 2 damage from chosen
 character. If you removed damage this way, you
 may draw a card.", "triggered", 1, 4, 1, 3, true, 0, 0, 0],
-    "max loyal sheepdog": [705, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "HERE BOY If you have a character named
+	"max loyal sheepdog": [705, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Amber", "HERE BOY If you have a character named
 Prince Eric in play, you pay 1 ⬡ less to play this
 character.", "static", 4, 3, 1, 3, true, 0, 0, 0],
-    "mickey mouse leader of the band": [950, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "Support (Whenever this character quests, you
+	"mickey mouse leader of the band": [950, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nSTRIKE UP THE MUSIC When you play this
 character, chosen character gains Support this
 turn.", "keyword, triggered", 2, 5, 1, 4, true, 0, 0, 0],
-    "mickey mouse musketeer captain": [707, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"mickey mouse musketeer captain": [707, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Mickey Mouse.)\nBodyguard\nSupport\nMUSKETEERS UNITED When you play this character,
 if you used Shift to play him, you may draw a card for
 each character with Bodyguard you have in play.", "keyword, keyword, keyword, triggered", 3, 6, 2, 7, false, 0, 0, 0],
-    "minnie mouse musketeer champion": [897, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"minnie mouse musketeer champion": [897, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nDRAMATIC ENTRANCE When you play this character,
 banish chosen opposing character with 5 ¤ or more.", "keyword, triggered", 1, 5, 2, 5, false, 0, 0, 0],
-    "mirabel madrigal gift of the family": [709, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "Support (Whenever this character quests, you
+	"mirabel madrigal gift of the family": [709, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nSAVING THE MIRACLE Whenever this character
 quests, your other Madrigal characters get +1 ◊
 this turn.", "keyword, triggered", 3, 5, 2, 5, false, 0, 0, 0],
-    "mirabel madrigal prophecy finder": [710, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Support (Whenever this character quests, you
+	"mirabel madrigal prophecy finder": [710, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "pluto rescue dog": [711, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "TO THE RESCUE When you play this character,
+	"pluto rescue dog": [711, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "TO THE RESCUE When you play this character,
 you may remove up to 3 damage from one of your
 characters.", "triggered", 4, 5, 2, 5, true, 0, 0, 0],
-    "prince eric seafaring prince": [712, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"prince eric seafaring prince": [712, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose a character with
 Bodyguard if able.)", "keyword", 3, 3, 1, 3, true, 0, 0, 0],
-    "prince eric ursula's groom": [713, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
+	"prince eric ursula's groom": [713, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
 characters named Prince Eric.)\nUNDER VANESSA'S SPELL While you have a character named
 Ursula in play, this character gains Bodyguard and gets
 +2 ⛉. (An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)", "keyword, static", 5, 5, 2, 6, true, 0, 0, 0],
-    "stitch alien dancer": [714, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "ursula eric's bride": [715, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "Shift: Discard a song card (You may discard a song
+	"stitch alien dancer": [714, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"ursula eric's bride": [715, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "Shift: Discard a song card (You may discard a song
 card to play this on top of one of your characters
 named Ursula.)\nVANESSA'S DESIGN Whenever this character quests,
 chosen opponent reveals their hand and discards a
 non-character card of your choice.", "keyword, triggered", 2, 4, 2, 4, false, 0, 0, 0],
-    "ursula vanessa": [716, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing songs.)", "keyword", 1, 4, 1, 2, true, 0, 0, 0],
-    "bruno's return": [717, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "first aid": [718, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "look at this family": [898, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "Sing Together 7 (Any number of your or your teammates'
+	"ursula vanessa": [716, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "Singer 4 (This character counts as cost 4 to sing songs.)", "keyword", 1, 4, 1, 2, true, 0, 0, 0],
+	"bruno's return": [717, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"first aid": [718, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"look at this family": [898, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "Sing Together 7 (Any number of your or your teammates'
 characters with total cost 7 or more may ⟳ to sing this
 song for free.)", "keyword", 0, 0, 0, 7, true, 0, 0, 0],
-    "lost in the woods": [720, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this
+	"lost in the woods": [720, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "sign the scroll": [721, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "miracle candle": [722, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "ABUELA'S GIFT Banish this item — If you have 3 or
+	"sign the scroll": [721, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"miracle candle": [722, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "ABUELA'S GIFT Banish this item — If you have 3 or
 more characters in play, gain 2 lore and remove up to 2
 damage from chosen location.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "record player": [723, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "LOOK AT THIS! Whenever you play a song, chosen
+	"record player": [723, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "LOOK AT THIS! Whenever you play a song, chosen
 character gets -2 ¤ until the start of your next turn.\nHIT PARADE Your characters named Stitch count as
 having +1 cost to sing songs.", "triggered, static", 0, 0, 0, 2, true, 0, 0, 0],
-    "atlantica concert hall": [724, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "UNDERWATER ACOUSTICS Characters count as having +2 cost to sing
+	"atlantica concert hall": [724, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "UNDERWATER ACOUSTICS Characters count as having +2 cost to sing
 songs while here.", "static", 0, 6, 0, 1, true, 0, 0, 0],
-    "the underworld river styx": [725, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "SAVE A SOUL Whenever a character quests while here, you may pay 3 ⬡
+	"the underworld river styx": [725, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "SAVE A SOUL Whenever a character quests while here, you may pay 3 ⬡
 to return a character card from your discard to your hand.", "triggered", 0, 6, 1, 2, true, 0, 0, 0],
-    "antonio madrigal animal expert": [726, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "belle accomplished mystic": [727, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"antonio madrigal animal expert": [726, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"belle accomplished mystic": [727, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Belle.)\nENHANCED HEALING When you play this character, move
 up to 3 damage counters from chosen character to chosen
 opposing character.", "keyword, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "belle untrained mystic": [728, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "HERE NOW, DON'T DO THAT When you play this
+	"belle untrained mystic": [728, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "HERE NOW, DON'T DO THAT When you play this
 character, move up to 1 damage counter from
 chosen character to chosen opposing character.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "bruno madrigal out of the shadows": [729, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "IT WAS YOUR VISION When you play this
+	"bruno madrigal out of the shadows": [729, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "IT WAS YOUR VISION When you play this
 character, chosen character gains “When this
 character is banished in a challenge, you may
 return this card to your hand” this turn.", "triggered", 4, 5, 1, 5, false, 0, 0, 0],
-    "bruno madrigal undetected uncle": [1194, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
+	"bruno madrigal undetected uncle": [1194, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
 character.)\nYOU JUST HAVE TO SEE IT ⟳ — Name a card, then reveal
 the top card of your deck. If it's the named card, put that
 card into your hand and gain 3 lore. Otherwise, put it on
 the top of your deck.", "keyword, activated", 3, 3, 1, 4, true, 0, 0, 0],
-    "camilo madrigal prankster": [731, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "MANY FORMS At the start of your turn, you may
+	"camilo madrigal prankster": [731, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "MANY FORMS At the start of your turn, you may
 choose one:
 • This character gets +1 ◊ this turn.
 • This character gains Challenger +2 this turn.
 (While challenging, this character gets +2 ¤.)", "triggered", 2, 5, 1, 4, true, 0, 0, 0],
-    "dolores madrigal easy listener": [732, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "MAGICAL INFORMANT When you play this
+	"dolores madrigal easy listener": [732, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "MAGICAL INFORMANT When you play this
 character, if an opponent has an exerted
 character in play, you may draw a card.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "elsa storm chaser": [733, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "TEMPEST ⟳ — Chosen character gains Challenger +2
+	"elsa storm chaser": [733, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "TEMPEST ⟳ — Chosen character gains Challenger +2
 and Rush this turn. (They get +2 ¤ while challenging.
 They can challenge the turn they're played.)", "activated", 1, 4, 1, 3, false, 0, 0, 0],
-    "flotsam ursula's baby": [734, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "QUICK ESCAPE When this character is banished in a
+	"flotsam ursula's baby": [734, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "QUICK ESCAPE When this character is banished in a
 challenge, return this card to your hand.\nOMINOUS PAIR Your characters named Jetsam gain “When
 this character is banished in a challenge, return this card to
 your hand.”", "triggered, static", 4, 2, 1, 3, false, 0, 0, 0],
-    "flotsam & jetsam entangling eels": [956, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Shift: Discard 2 cards (You may discard 2 cards to
+	"flotsam & jetsam entangling eels": [956, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Shift: Discard 2 cards (You may discard 2 cards to
 play this on top of one of your characters named
 Flotsam or Jetsam.)\n(This character counts as being named both
 Flotsam and Jetsam.)", "keyword, static", 5, 5, 2, 6, true, 0, 0, 0],
-    "isabela madrigal golden child": [736, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
+	"isabela madrigal golden child": [736, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "Evasive (Only characters with Evasive can challenge this
 character.)\nLADIES FIRST During your turn, if no other character
 has quested this turn, this character gets +3 ◊.\nLEAVE IT TO ME Whenever this character quests, your
 other characters can't quest for the rest of this turn.", "keyword, static, triggered", 3, 4, 1, 5, true, 0, 0, 0],
-    "jetsam ursula's baby": [737, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Challenger +2 (While challenging, this character
+	"jetsam ursula's baby": [737, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Challenger +2 (While challenging, this character
 gets +2 ¤.)\nOMINOUS PAIR Your characters named Flotsam gain
 Challenger +2.", "keyword, static", 2, 4, 1, 3, true, 0, 0, 0],
-    "luisa madrigal magically strong one": [738, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"luisa madrigal magically strong one": [738, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)", "keyword", 4, 3, 1, 4, false, 0, 0, 0],
-    "magic broom illuminary keeper": [739, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "NICE AND TIDY Whenever you play another
+	"magic broom illuminary keeper": [739, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "NICE AND TIDY Whenever you play another
 character, you may banish this character to draw
 a card.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "magic broom lively sweeper": [740, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "", "", 2, 4, 1, 3, true, 0, 0, 0],
-    "magical maid feather duster": [741, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "marshmallow terrifying snowman": [742, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "BEHEMOTH This character gets +1 ¤ for each
+	"magic broom lively sweeper": [740, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "", "", 2, 4, 1, 3, true, 0, 0, 0],
+	"magical maid feather duster": [741, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"marshmallow terrifying snowman": [742, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "BEHEMOTH This character gets +1 ¤ for each
 card in your hand.", "static", 0, 3, 1, 3, false, 0, 0, 0],
-    "mrs potts enchanted teapot": [743, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "IT'LL TURN OUT ALL RIGHT When you play this
+	"mrs potts enchanted teapot": [743, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "IT'LL TURN OUT ALL RIGHT When you play this
 character, if you have a character named Lumiere
 or Cogsworth in play, you may draw a card.", "triggered", 3, 4, 2, 4, true, 0, 0, 0],
-    "pepa madrigal weather maker": [744, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "IT LOOKS LIKE RAIN When you play this character,
+	"pepa madrigal weather maker": [744, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "IT LOOKS LIKE RAIN When you play this character,
 you may exert chosen opposing character. That
 character can't ready at the start of their next
 turn unless they're at a location.", "triggered", 1, 5, 1, 5, false, 0, 0, 0],
-    "peter pan shadow finder": [745, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"peter pan shadow finder": [745, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)\nEvasive (Only characters with Evasive can
 challenge this character.)\nFLY, OF COURSE! Your other characters with
 Evasive gain Rush.", "keyword, keyword, static", 2, 3, 1, 3, false, 0, 0, 0],
-    "pico helpful toucan": [746, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "tick-tock ever-present pursuer": [747, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"pico helpful toucan": [746, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"tick-tock ever-present pursuer": [747, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 4, 7, 1, 6, true, 0, 0, 0],
-    "ursula mad sea witch": [748, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "Challenger +2 (While challenging, this character
+	"ursula mad sea witch": [748, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "ursula sea witch queen": [954, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"ursula sea witch queen": [954, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Ursula.)\nNOW I AM THE RULER! Whenever this character quests,
 exert chosen character.\nYOU'LL LISTEN TO ME! Other characters can't exert to
 sing songs.", "keyword, triggered, static", 4, 7, 3, 7, true, 0, 0, 0],
-    "yen sid powerful sorcerer": [946, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amethyst", "TIMELY INTERVENTION When you play this
+	"yen sid powerful sorcerer": [946, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amethyst", "TIMELY INTERVENTION When you play this
 character, if you have a character named Magic
 Broom in play, you may draw a card.\nARCANE STUDY While you have 2 or more Broom
 characters in play, this character gets +2 ◊.", "triggered, static", 1, 3, 1, 2, true, 0, 0, 0],
-    "poor unfortunate souls": [751, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this
+	"poor unfortunate souls": [751, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "second star to the right": [901, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "Sing Together 10 (Any number of your or your teammates'
+	"second star to the right": [901, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "Sing Together 10 (Any number of your or your teammates'
 characters with total cost 10 or more may ⟳ to sing this
 song for free.)", "keyword", 0, 0, 0, 10, false, 0, 0, 0],
-    "swing into action": [753, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "ursula's plan": [754, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "mystical rose": [755, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "DISPEL THE ENTANGLEMENT Banish this item — Chosen
+	"swing into action": [753, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"ursula's plan": [754, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"mystical rose": [755, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "DISPEL THE ENTANGLEMENT Banish this item — Chosen
 character named Beast gets +2 ◊ this turn. If you have a
 character named Belle in play, move up to 3 damage counters
 from chosen character to chosen opposing character.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "rose lantern": [756, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "MYSTICAL PETALS ⟳, 2 ⬡ — Move 1 damage counter
+	"rose lantern": [756, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst", "MYSTICAL PETALS ⟳, 2 ⬡ — Move 1 damage counter
 from chosen character to chosen opposing character.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "triton's trident": [757, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "SYMBOL OF POWER Banish this item — Chosen
+	"triton's trident": [757, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "SYMBOL OF POWER Banish this item — Chosen
 character gets +1 ¤ this turn for each card in your
 hand.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "casa madrigal casita": [758, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "OUR HOME At the start of your turn, if you have a character here gain 1 lore.", "triggered", 0, 6, 0, 1, true, 0, 0, 0],
-    "ursula's lair eye of the storm": [951, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "SLIPPERY HALLS Whenever a character is banished in a challenge while
+	"casa madrigal casita": [758, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "OUR HOME At the start of your turn, if you have a character here gain 1 lore.", "triggered", 0, 6, 0, 1, true, 0, 0, 0],
+	"ursula's lair eye of the storm": [951, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "SLIPPERY HALLS Whenever a character is banished in a challenge while
 here, you may return them to your hand.\nSEAT OF POWER Characters named Ursula get +1 ◊ while here.", "triggered, static", 0, 6, 1, 3, false, 0, 0, 0],
-    "cri-kee lucky cricket": [760, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "SPREADING GOOD FORTUNE When you play this
+	"cri-kee lucky cricket": [760, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "SPREADING GOOD FORTUNE When you play this
 character, your other characters get +3 ¤ this
 turn.", "triggered", 3, 4, 3, 5, true, 0, 0, 0],
-    "diablo devoted herald": [902, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "Shift: Discard an action card (You may discard an action card
+	"diablo devoted herald": [902, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "Shift: Discard an action card (You may discard an action card
 to play this on top of one of your characters named Diablo.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nCIRCLE FAR AND WIDE During each opponent's turn,
 whenever they draw a card while this character is exerted,
 you may draw a card.", "keyword, keyword, triggered", 2, 2, 1, 3, false, 0, 0, 0],
-    "diablo maleficent's spy": [762, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "SCOUT AHEAD When you play this character, you
+	"diablo maleficent's spy": [762, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "SCOUT AHEAD When you play this character, you
 may look at each opponent's hand.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "gunther interior designer": [763, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "SAD-EYED PUPPY When this character is challenged
+	"gunther interior designer": [763, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "SAD-EYED PUPPY When this character is challenged
 and banished, each opponent chooses one of their
 characters and returns that card to their hand.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "gus champion of cheese": [764, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "hades double dealer": [765, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "HERE'S THE TRADE-OFF ⟳, Banish one of your
+	"gus champion of cheese": [764, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"hades double dealer": [765, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "HERE'S THE TRADE-OFF ⟳, Banish one of your
 other characters — Play a character with the same
 name as the banished character for free.", "activated", 3, 3, 1, 4, true, 0, 0, 0],
-    "heihei bumbling rooster": [766, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "FATTEN YOU UP When you play this character, if
+	"heihei bumbling rooster": [766, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "FATTEN YOU UP When you play this character, if
 an opponent has more cards in their inkwell than
 you, you may put the top card of your deck into
 your inkwell facedown and exerted.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "hera queen of the gods": [767, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "Ward (Opponents can't choose this character except to
+	"hera queen of the gods": [767, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "Ward (Opponents can't choose this character except to
 challenge.)\nPROTECTIVE GODDESS Your characters named Zeus gain
 Ward.\nYOU'RE A TRUE HERO Your characters named Hercules gain
 Evasive. (Only characters with Evasive can challenge them.)", "keyword, static, static", 1, 3, 2, 3, true, 0, 0, 0],
-    "jaq connoisseur of climbing": [768, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "SNEAKY IDEA When you play this character,
+	"jaq connoisseur of climbing": [768, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "SNEAKY IDEA When you play this character,
 chosen opposing character gains Reckless during
 their next turn. (They can't quest and must
 challenge if able.)", "triggered", 1, 4, 2, 3, true, 0, 0, 0],
-    "jasmine desert warrior": [903, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "CUNNING MANEUVER When you play this
+	"jasmine desert warrior": [903, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "CUNNING MANEUVER When you play this
 character and whenever she's challenged, each
 opponent chooses and discards a card.", "triggered", 3, 3, 2, 5, false, 0, 0, 0],
-    "megara captivating cynic": [770, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "SHADY DEAL When you play this character,
+	"megara captivating cynic": [770, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "SHADY DEAL When you play this character,
 choose and discard a card or banish this
 character.", "triggered", 3, 6, 2, 3, false, 0, 0, 0],
-    "megara liberated one": [771, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"megara liberated one": [771, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nPEOPLE ALWAYS DO CRAZY THINGS Whenever you
 play a character named Hercules, you may ready
 this character.", "keyword, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "pain immortal sidekick": [772, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "", "", 2, 4, 2, 3, true, 0, 0, 0],
-    "panic immortal sidekick": [773, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "REPORTING FOR DUTY While this character is
+	"pain immortal sidekick": [772, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "", "", 2, 4, 2, 3, true, 0, 0, 0],
+	"panic immortal sidekick": [773, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "REPORTING FOR DUTY While this character is
 exerted, if you have a character named Pain in
 play, your Villain characters can't be challenged.", "static", 3, 3, 2, 4, true, 0, 0, 0],
-    "pegasus cloud racer": [774, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"pegasus cloud racer": [774, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Pegasus.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nHOP ON! When you play this character, if you used Shift to
 play him, your characters gain Evasive until the start of your
 next turn.", "keyword, keyword, triggered", 3, 3, 2, 5, true, 0, 0, 0],
-    "pegasus gift for hercules": [775, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"pegasus gift for hercules": [775, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 1, 1, 1, 1, true, 0, 0, 0],
-    "pete born to cheat": [776, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "I CLOBBER YOU! Whenever this character quests
+	"pete born to cheat": [776, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "I CLOBBER YOU! Whenever this character quests
 while he has 5 ¤ or more, return chosen
 character with 2 ¤ or less to their player's hand.", "triggered", 2, 3, 1, 2, false, 0, 0, 0],
-    "pete rotten guy": [777, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "", "", 1, 5, 2, 4, true, 0, 0, 0],
-    "prince phillip vanquisher of foes": [778, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
+	"pete rotten guy": [777, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "", "", 1, 5, 2, 4, true, 0, 0, 0],
+	"prince phillip vanquisher of foes": [778, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
 your characters named Prince Phillip.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nSWIFT AND SURE When you play this character, banish
 all opposing damaged characters.", "keyword, keyword, triggered", 6, 6, 3, 9, true, 0, 0, 0],
-    "prince phillip warden of the woods": [779, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "SHINING BEACON Your other Hero characters
+	"prince phillip warden of the woods": [779, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "SHINING BEACON Your other Hero characters
 gain Ward. (Opponents can't choose them except
 to challenge.)", "static", 3, 4, 2, 4, false, 0, 0, 0],
-    "the fates only one eye": [780, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "ALL WILL BE SEEN When you play this character,
+	"the fates only one eye": [780, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "ALL WILL BE SEEN When you play this character,
 look at the top card of each opponent's deck.", "triggered", 2, 1, 1, 1, true, 0, 0, 0],
-    "the muses proclaimers of heroes": [781, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"the muses proclaimers of heroes": [781, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nTHE GOSPEL TRUTH Whenever you play a song,
 you may return chosen character with 2 ¤ or
 less to their player's hand.", "keyword, triggered", 2, 4, 1, 4, true, 0, 0, 0],
-    "tor florist": [782, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "", "", 4, 7, 1, 5, true, 0, 0, 0],
-    "zeus mr lightning bolts": [783, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "TARGET PRACTICE Whenever this character
+	"tor florist": [782, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "", "", 4, 7, 1, 5, true, 0, 0, 0],
+	"zeus mr lightning bolts": [783, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "TARGET PRACTICE Whenever this character
 challenges another character, he gets +¤ equal
 to the ¤ of chosen character this turn.", "triggered", 0, 5, 2, 3, true, 0, 0, 0],
-    "dodge": [784, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "make the potion": [785, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "under the sea": [786, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "Sing Together 8 (Any number of your or your teammates'
+	"dodge": [784, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"make the potion": [785, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"under the sea": [786, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "Sing Together 8 (Any number of your or your teammates'
 characters with total cost 8 or more may ⟳ to sing this song
 for free.)", "keyword", 0, 0, 0, 8, false, 0, 0, 0],
-    "ursula's trickery": [787, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "we don't talk about bruno": [904, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "(A character with cost 5 or more can ⟳ to sing this song
+	"ursula's trickery": [787, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"we don't talk about bruno": [904, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "(A character with cost 5 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
-    "hidden inkcaster": [952, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Emerald", "FRESH INK When you play this item, draw a card.\nUNEXPECTED TREASURE All cards in your hand count as
+	"hidden inkcaster": [952, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Emerald", "FRESH INK When you play this item, draw a card.\nUNEXPECTED TREASURE All cards in your hand count as
 having ◉.", "triggered, static", 0, 0, 0, 2, false, 0, 0, 0],
-    "signed contract": [790, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "FINE PRINT Whenever an opponent plays a song, you
+	"signed contract": [790, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "FINE PRINT Whenever an opponent plays a song, you
 may draw a card.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "vision slab": [791, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "DANGER REVEALED At the start of your turn, if an
+	"vision slab": [791, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "DANGER REVEALED At the start of your turn, if an
 opposing character has damage, gain 1 lore.\nTRAPPED! Damage counters can't be removed.", "triggered, static", 0, 0, 0, 3, true, 0, 0, 0],
-    "hidden cove tranquil haven": [792, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "REVITALIZING WATERS Characters get +1 ¤ and +1 ⛉ while here.", "static", 0, 6, 0, 1, true, 0, 0, 0],
-    "ursula's garden full of the unfortunate": [793, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "ABANDON HOPE While you have an exerted character here, opposing
+	"hidden cove tranquil haven": [792, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "REVITALIZING WATERS Characters get +1 ¤ and +1 ⛉ while here.", "static", 0, 6, 0, 1, true, 0, 0, 0],
+	"ursula's garden full of the unfortunate": [793, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "ABANDON HOPE While you have an exerted character here, opposing
 characters get -1 ◊.", "static", 0, 7, 1, 4, true, 0, 0, 0],
-    "beast wounded": [794, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "THAT HURTS! This character enters play with 4
+	"beast wounded": [794, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "THAT HURTS! This character enters play with 4
 damage.", "static", 2, 6, 2, 3, true, 0, 0, 0],
-    "benja bold uniter": [795, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
-    "fa zhou mulan's father": [796, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "WAR INJURY This character can't challenge.\nHEAD OF THE HOUSEHOLD ⟳ — Ready chosen
+	"benja bold uniter": [795, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "", "", 5, 3, 1, 4, true, 0, 0, 0],
+	"fa zhou mulan's father": [796, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "WAR INJURY This character can't challenge.\nHEAD OF THE HOUSEHOLD ⟳ — Ready chosen
 character named Mulan. She can't quest for the
 rest of this turn.", "static, activated", 0, 4, 1, 2, true, 0, 0, 0],
-    "flynn rider frenemy": [797, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "NARROW ADVANTAGE At the start of your turn, if
+	"flynn rider frenemy": [797, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "NARROW ADVANTAGE At the start of your turn, if
 you have a character in play with more ¤ than
 each opposing character, gain 3 lore.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "goofy super goof": [905, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "Rush (This character can challenge the turn
+	"goofy super goof": [905, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nSUPER PEANUT POWERS Whenever this character
 challenges another character, gain 2 lore.", "keyword, triggered", 2, 4, 1, 4, true, 0, 0, 0],
-    "hercules clumsy kid": [799, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Rush (This character can challenge the turn
+	"hercules clumsy kid": [799, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 3, 3, 1, 3, false, 0, 0, 0],
-    "hercules daring demigod": [800, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "Rush (This character can challenge the turn
+	"hercules daring demigod": [800, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nReckless (This character can't quest and must
 challenge each turn if able.)", "keyword, keyword", 7, 3, 0, 5, false, 0, 0, 0],
-    "khan beloved steed": [801, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "li shang general's son": [802, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "li shang valorous general": [803, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "Shift: Discard a character card (You may discard
+	"khan beloved steed": [801, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"li shang general's son": [802, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"li shang valorous general": [803, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "Shift: Discard a character card (You may discard
 a character card to play this on top of one of your
 characters named Li Shang.)\nLEAD THE CHARGE Your characters with 4 ¤ or
 more get +1 ◊.", "keyword, static", 3, 2, 1, 3, true, 0, 0, 0],
-    "lumiere fiery friend": [804, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "FERVENT ADDRESS Your other characters get +1 ¤.", "static", 2, 2, 1, 2, true, 0, 0, 0],
-    "mulan elite archer": [948, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bc15c774dca4499ea6fb42da7d216ca54f8c697e.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"lumiere fiery friend": [804, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "FERVENT ADDRESS Your other characters get +1 ¤.", "static", 2, 2, 1, 2, true, 0, 0, 0],
+	"mulan elite archer": [948, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bc15c774dca4499ea6fb42da7d216ca54f8c697e.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Mulan.)\nSTRAIGHT SHOOTER When you play this character, if you
 used Shift to play her, she gets +3 ¤ this turn.\nTRIPLE SHOT During your turn, whenever this character
 deals damage to another character in a challenge, deal the
 same amount of damage to up to 2 other chosen characters.", "keyword, triggered, triggered", 2, 6, 2, 6, true, 0, 0, 0],
-    "mulan enemy of entanglement": [953, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Ruby", "TIME TO SHINE Whenever you play an action, this
+	"mulan enemy of entanglement": [953, "https://api.lorcana.ravensburger.com/images/en/promo1/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Ruby", "TIME TO SHINE Whenever you play an action, this
 character gets +2 ¤ this turn.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "mulan injured soldier": [807, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "BATTLE WOUND This character enters play with 2
+	"mulan injured soldier": [807, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "BATTLE WOUND This character enters play with 2
 damage.", "static", 2, 3, 1, 1, true, 0, 0, 0],
-    "namaari heir of fang": [808, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "TWO-WEAPON FIGHTING During your turn,
+	"namaari heir of fang": [808, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "TWO-WEAPON FIGHTING During your turn,
 whenever this character deals damage to another
 character in a challenge, you may deal the same
 amount of damage to another chosen character.", "triggered", 2, 3, 1, 3, false, 0, 0, 0],
-    "nessus river guardian": [809, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 7, 5, 2, 6, true, 0, 0, 0],
-    "noi acrobatic baby": [810, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "FANCY FOOTWORK Whenever you play an action,
+	"nessus river guardian": [809, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 7, 5, 2, 6, true, 0, 0, 0],
+	"noi acrobatic baby": [810, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "FANCY FOOTWORK Whenever you play an action,
 this character takes no damage from challenges
 this turn.", "triggered", 4, 4, 1, 4, true, 0, 0, 0],
-    "pegasus flying steed": [811, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"pegasus flying steed": [811, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 1, 1, 2, true, 0, 0, 0],
-    "raya fierce protector": [812, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "DON'T CROSS ME Whenever this character
+	"raya fierce protector": [812, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "DON'T CROSS ME Whenever this character
 challenges another character, gain 1 lore for each
 other damaged character you have in play.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "raya guardian of the dragon gem": [813, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "WE HAVE TO COME TOGETHER When you play this
+	"raya guardian of the dragon gem": [813, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "WE HAVE TO COME TOGETHER When you play this
 character, ready chosen character of yours at a
 location. They can't quest for the rest of this turn.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "sisu daring visitor": [814, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
+	"sisu daring visitor": [814, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge
 this character.)\nBRING ON THE HEAT! When you play this character,
 banish chosen opposing character with 1 ¤ or less.", "keyword, triggered", 1, 1, 1, 3, false, 0, 0, 0],
-    "sisu emboldened warrior": [815, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "SURGE OF POWER This character gets +1 ¤ for
+	"sisu emboldened warrior": [815, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "SURGE OF POWER This character gets +1 ¤ for
 each card in opponents' hands.", "static", 1, 4, 2, 3, true, 0, 0, 0],
-    "sisu empowered sibling": [906, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Shift 6 (You may pay 6 ⬡ to play this on top of
+	"sisu empowered sibling": [906, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Shift 6 (You may pay 6 ⬡ to play this on top of
 one of your characters named Sisu.)\nI GOT THIS! When you play this character, banish
 all opposing characters with 2 ¤ or less.", "keyword, triggered", 5, 4, 3, 8, false, 0, 0, 0],
-    "tong survivor": [817, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "Reckless (This character can't quest and must
+	"tong survivor": [817, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 3, 6, 0, 4, false, 0, 0, 0],
-    "tuk tuk lively partner": [818, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"tuk tuk lively partner": [818, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nON A ROLL When you play this character, you may
 move him and one of your other characters to the
 same location for free. The other character gets
 +2 ¤ this turn.", "keyword, triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "a pirate's life": [819, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "Sing Together 6 (Any number of your or your teammates'
+	"a pirate's life": [819, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "Sing Together 6 (Any number of your or your teammates'
 characters with total cost 6 or more may ⟳ to sing this song
 for free.)", "keyword", 0, 0, 0, 6, true, 0, 0, 0],
-    "be king undisputed": [820, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 4 or more can ⟳ to sing this
+	"be king undisputed": [820, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, false, 0, 0, 0],
-    "brawl": [821, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "imperial proclamation": [822, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "CALL TO THE FRONT Whenever one of your characters
+	"brawl": [821, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"imperial proclamation": [822, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "CALL TO THE FRONT Whenever one of your characters
 challenges another character, you pay 1 ⬡ less for the next
 character you play this turn.", "triggered", 0, 0, 0, 1, true, 0, 0, 0],
-    "medallion weights": [823, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "DISCIPLINE AND STRENGTH ⟳, 2 ⬡ — Chosen character
+	"medallion weights": [823, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "DISCIPLINE AND STRENGTH ⟳, 2 ⬡ — Chosen character
 gets +2 ¤ this turn. Whenever they challenge another
 character this turn, you may draw a card.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "the plank": [824, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "WALK! 2 ⬡, Banish this item — Choose one:
+	"the plank": [824, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "WALK! 2 ⬡, Banish this item — Choose one:
 • Banish chosen Hero character.
 • Ready chosen Villain character. They can't quest for
 the rest of this turn.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "vitalisphere": [825, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "EXTRACT OF RUBY 1 ⬡, Banish this item — Chosen
+	"vitalisphere": [825, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "EXTRACT OF RUBY 1 ⬡, Banish this item — Chosen
 character gains Rush and gets +2 ¤ this turn. (They
 can challenge the turn they're played.)", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "snuggly duckling disreputable pub": [907, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "ROUTINE RUCKUS Whenever a character with 3 ¤ or more challenges
+	"snuggly duckling disreputable pub": [907, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "ROUTINE RUCKUS Whenever a character with 3 ¤ or more challenges
 another character while here, gain 1 lore. If the challenging character
 has 6 ¤ or more, gain 3 lore instead.", "triggered", 0, 9, 0, 2, true, 0, 0, 0],
-    "training grounds impossible pillar": [827, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "STRENGTH OF MIND 1 ⬡ — Chosen character here gets +1 ¤ this turn.", "activated", 0, 5, 0, 1, true, 0, 0, 0],
-    "anna braving the storm": [828, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "I WAS BORN READY If you have another Hero
+	"training grounds impossible pillar": [827, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "STRENGTH OF MIND 1 ⬡ — Chosen character here gets +1 ¤ this turn.", "activated", 0, 5, 0, 1, true, 0, 0, 0],
+	"anna braving the storm": [828, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "I WAS BORN READY If you have another Hero
 character in play, this character gets +1 ◊.", "static", 1, 4, 1, 2, true, 0, 0, 0],
-    "anna true-hearted": [908, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "LET ME HELP YOU Whenever this character
+	"anna true-hearted": [908, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "LET ME HELP YOU Whenever this character
 quests, your other Hero characters get +1 ◊ this
 turn.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "ariel treasure collector": [830, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"ariel treasure collector": [830, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nTHE GIRL WHO HAS EVERYTHING While you have
 more items in play than each opponent, this
 character gets +2 ◊.", "keyword, static", 3, 4, 3, 6, false, 0, 0, 0],
-    "aurora lore guardian": [831, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "Shift 2 (You may pay 2 ⬡ to play this on top of one of your
+	"aurora lore guardian": [831, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "Shift 2 (You may pay 2 ⬡ to play this on top of one of your
 characters named Aurora.)\nPRESERVER Opponents can't choose your items for abilities
 or effects.\nROYAL INVENTORY ⟳ one of your items — Look at the top
 card of your deck and put it on either the top or the bottom
 of your deck.", "keyword, static, activated", 3, 3, 2, 4, true, 0, 0, 0],
-    "aurora tranquil princess": [832, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"aurora tranquil princess": [832, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "dang hu talon chief": [833, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "YOU BETTER TALK FAST Your other Villain characters
+	"dang hu talon chief": [833, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "YOU BETTER TALK FAST Your other Villain characters
 gain Support. (Whenever they quest, you may add their
 ¤ to another chosen character's ¤ this turn.)", "static", 3, 5, 2, 5, true, 0, 0, 0],
-    "fa li mulan's mother": [834, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "flounder collector's companion": [835, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Support (Whenever this character quests, you may add
+	"fa li mulan's mother": [834, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"flounder collector's companion": [835, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Support (Whenever this character quests, you may add
 their ¤ to another chosen character's ¤ this turn.)\nI'M NOT A GUPPY If you have a character named Ariel in
 play, you pay 1 ⬡ less to play this character.", "keyword, static", 2, 2, 2, 3, true, 0, 0, 0],
-    "hades meticulous plotter": [836, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "", "", 3, 6, 1, 4, true, 0, 0, 0],
-    "hans noble scoundrel": [837, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "ROYAL SCHEMES When you play this character, if a
+	"hades meticulous plotter": [836, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "", "", 3, 6, 1, 4, true, 0, 0, 0],
+	"hans noble scoundrel": [837, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "ROYAL SCHEMES When you play this character, if a
 Princess or Queen character is in play, gain 1 lore.", "triggered", 3, 2, 2, 3, true, 0, 0, 0],
-    "iduna caring mother": [838, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "ENDURING LOVE When this character is banished,
+	"iduna caring mother": [838, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "ENDURING LOVE When this character is banished,
 you may put this card into your inkwell facedown
 and exerted.", "triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "john silver terror of the realm": [839, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "", "", 8, 8, 3, 8, true, 0, 0, 0],
-    "olaf carrot enthusiast": [840, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Shift: Discard an item card (You may discard
+	"john silver terror of the realm": [839, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "", "", 8, 8, 3, 8, true, 0, 0, 0],
+	"olaf carrot enthusiast": [840, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "Shift: Discard an item card (You may discard
 an item card to play this on top of one of your
 characters named Olaf.)\nCARROTS ALL AROUND! Whenever he quests, each
 of your other characters gets +¤ equal to this
 character's ¤ this turn.", "keyword, triggered", 1, 4, 2, 3, true, 0, 0, 0],
-    "olaf trusting companion": [841, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"olaf trusting companion": [841, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
-    "pascal inquisitive pet": [842, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "COLORFUL TACTICS When you play this character,
+	"pascal inquisitive pet": [842, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "COLORFUL TACTICS When you play this character,
 look at the top 3 cards of your deck and put them
 back in any order.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "prince phillip gallant defender": [843, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"prince phillip gallant defender": [843, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nBEST DEFENSE Whenever one of your characters
 is chosen for Support, they gain Resist +1 this
 turn. (Damage dealt to them is reduced by 1.)", "keyword, triggered", 1, 3, 2, 3, true, 0, 0, 0],
-    "rapunzel appreciative artist": [844, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "PERCEPTIVE PARTNER While you have a character
+	"rapunzel appreciative artist": [844, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "PERCEPTIVE PARTNER While you have a character
 named Pascal in play, this character gains
 Ward. (Opponents can't choose them except to
 challenge.)", "static", 3, 5, 3, 5, true, 0, 0, 0],
-    "scuttle expert on humans": [845, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "LET ME SEE When you play this character, look at
+	"scuttle expert on humans": [845, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "LET ME SEE When you play this character, look at
 the top 4 cards of your deck. You may reveal an
 item card and put it into your hand. Put the rest
 on the bottom of your deck in any order.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "sisu wise friend": [846, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "", "", 6, 6, 2, 6, true, 0, 0, 0],
-    "the queen diviner": [909, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "CONSULT THE SPELLBOOK ⟳ — Look at the top 4
+	"sisu wise friend": [846, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "", "", 6, 6, 2, 6, true, 0, 0, 0],
+	"the queen diviner": [909, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "CONSULT THE SPELLBOOK ⟳ — Look at the top 4
 cards of your deck. You may reveal an item card
 and put it into your hand. If that item costs 3 or
 less, you may play it for free instead and it enters
 play exerted. Put the rest on the bottom of your
 deck in any order.", "activated", 3, 3, 1, 3, true, 0, 0, 0],
-    "transformed chef castle stove": [848, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "A CULINARY MASTERPIECE When you play this
+	"transformed chef castle stove": [848, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "A CULINARY MASTERPIECE When you play this
 character, remove up to 2 damage from chosen
 character.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "triton champion of atlantica": [849, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Shift 6 (You may pay 6 ⬡ to play this on top of one
+	"triton champion of atlantica": [849, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Shift 6 (You may pay 6 ⬡ to play this on top of one
 of your characters named Triton.)\nIMPOSING PRESENCE Opposing characters get -1 ¤
 for each location you have in play.", "keyword, static", 7, 9, 3, 9, true, 0, 0, 0],
-    "triton discerning king": [850, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "CONSIGN TO THE DEPTHS ⟳, Banish one of your
+	"triton discerning king": [850, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "CONSIGN TO THE DEPTHS ⟳, Banish one of your
 items — Gain 3 lore.", "activated", 3, 3, 1, 3, false, 0, 0, 0],
-    "triton young prince": [851, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "SUPERIOR SWIMMER During your turn, this
+	"triton young prince": [851, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "SUPERIOR SWIMMER During your turn, this
 character gains Evasive. (They can challenge
 characters with Evasive.)\nKEEPER OF ATLANTICA Whenever one of your
 locations is banished, you may put that card into
 your inkwell facedown and exerted.", "static, triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "tuk tuk curious partner": [852, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "dig a little deeper": [853, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "Sing Together 8 (Any number of your or your
+	"tuk tuk curious partner": [852, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"dig a little deeper": [853, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "Sing Together 8 (Any number of your or your
 teammates' characters with total cost 8 or more may
 ⟳ to sing this song for free.)", "keyword", 0, 0, 0, 8, false, 0, 0, 0],
-    "glean": [854, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "seldom all they seem": [855, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this
+	"glean": [854, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"seldom all they seem": [855, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "treasures untold": [856, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "(A character with cost 6 or more can ⟳ to sing this
+	"treasures untold": [856, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "(A character with cost 6 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 6, true, 0, 0, 0],
-    "field of ice": [857, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "ICY DEFENSE Whenever you play a character, they gain
+	"field of ice": [857, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "ICY DEFENSE Whenever you play a character, they gain
 Resist +1 until the start of your next turn. (Damage
 dealt to them is reduced by 1.)", "triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "great stone dragon": [858, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "ASLEEP This item enters play exerted.\nAWAKEN ⟳ — Put a character card from your discard
+	"great stone dragon": [858, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "ASLEEP This item enters play exerted.\nAWAKEN ⟳ — Put a character card from your discard
 into your inkwell facedown and exerted.", "static, activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "ice block": [859, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "CHILLY LABOR ⟳ — Chosen character gets -1 ¤ this turn.", "activated", 0, 0, 0, 1, false, 0, 0, 0],
-    "ariel's grotto a secret place": [910, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "TREASURE TROVE While you have 3 or more items in play, this location
+	"ice block": [859, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "CHILLY LABOR ⟳ — Chosen character gets -1 ¤ this turn.", "activated", 0, 0, 0, 1, false, 0, 0, 0],
+	"ariel's grotto a secret place": [910, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "TREASURE TROVE While you have 3 or more items in play, this location
 gets +2 ◊.", "static", 0, 7, 0, 2, true, 0, 0, 0],
-    "winter camp medical tent": [861, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "HELP THE WOUNDED Whenever a character quests while here, remove
+	"winter camp medical tent": [861, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "HELP THE WOUNDED Whenever a character quests while here, remove
 up to 2 damage from them. If they're a Hero character, remove up to
 4 damage instead.", "triggered", 0, 8, 1, 3, true, 0, 0, 0],
-    "aladdin brave rescuer": [862, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "Shift: Discard a location card (You may discard
+	"aladdin brave rescuer": [862, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "Shift: Discard a location card (You may discard
 a location card to play this on top of one of your
 characters named Aladdin.)\nCRASHING THROUGH Whenever this character
 quests, you may banish chosen item.", "keyword, triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "aladdin resolute swordsman": [863, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "arges the cyclops": [864, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "", "", 4, 1, 1, 2, true, 0, 0, 0],
-    "ariel determined mermaid": [865, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "I WANT MORE Whenever you play a song, you
+	"aladdin resolute swordsman": [863, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"arges the cyclops": [864, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "", "", 4, 1, 1, 2, true, 0, 0, 0],
+	"ariel determined mermaid": [865, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "I WANT MORE Whenever you play a song, you
 may draw a card, then choose and discard a card.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "ariel sonic warrior": [911, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"ariel sonic warrior": [911, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Ariel.)\nAMPLIFIED VOICE Whenever you play a song,
 you may pay 2 ⬡ to deal 3 damage to chosen
 character.", "keyword, triggered", 3, 8, 2, 6, true, 0, 0, 0],
-    "beast thick-skinned": [867, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"beast thick-skinned": [867, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword", 2, 3, 1, 3, true, 0, 0, 0],
-    "chi-fu imperial advisor": [868, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "OVERLY CAUTIOUS While this character has no
+	"chi-fu imperial advisor": [868, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "OVERLY CAUTIOUS While this character has no
 damage, he gets +2 ◊.", "static", 0, 5, 1, 3, true, 0, 0, 0],
-    "chien-po imperial soldier": [869, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"chien-po imperial soldier": [869, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 4, 7, 1, 5, true, 0, 0, 0],
-    "donald duck buccaneer": [870, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "BOARDING PARTY During your turn, whenever
+	"donald duck buccaneer": [870, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "BOARDING PARTY During your turn, whenever
 this character banishes a character in a challenge,
 your other characters get +1 ◊ this turn.", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "hercules beloved hero": [871, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"hercules beloved hero": [871, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nResist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword, keyword", 6, 5, 2, 6, true, 0, 0, 0],
-    "lefou opportunistic flunky": [872, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "I LEARNED FROM THE BEST During your turn, you
+	"lefou opportunistic flunky": [872, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "I LEARNED FROM THE BEST During your turn, you
 may play this character for free if an opposing
 character was banished in a challenge this turn.", "static", 2, 3, 1, 3, true, 0, 0, 0],
-    "li shang imperial captain": [873, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 5, 5, 2, 5, true, 0, 0, 0],
-    "ling imperial soldier": [874, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "FULL OF SPIRIT Your Hero characters get +1 ¤.", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "luisa madrigal rock of the family": [875, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I'M THE STRONG ONE While you have another
+	"li shang imperial captain": [873, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 5, 5, 2, 5, true, 0, 0, 0],
+	"ling imperial soldier": [874, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "FULL OF SPIRIT Your Hero characters get +1 ¤.", "static", 3, 3, 1, 3, true, 0, 0, 0],
+	"luisa madrigal rock of the family": [875, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I'M THE STRONG ONE While you have another
 character in play, this character gets +2 ¤.", "static", 2, 4, 1, 3, true, 0, 0, 0],
-    "magic broom aerial cleaner": [876, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "WINGED FOR A DAY During your turn, this
+	"magic broom aerial cleaner": [876, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "WINGED FOR A DAY During your turn, this
 character gains Evasive. (They can challenge
 characters with Evasive.)", "static", 2, 3, 1, 2, true, 0, 0, 0],
-    "magic broom brigade commander": [877, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"magic broom brigade commander": [877, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nARMY OF BROOMS This character gets +2 ¤ for
 each other character named Magic Broom you
 have in play.", "keyword, static", 2, 6, 2, 6, true, 0, 0, 0],
-    "mickey mouse playful sorcerer": [1432, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"mickey mouse playful sorcerer": [1432, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Mickey Mouse.)\nResist +1 (Damage dealt to this character is reduced by 1.)\nSWEEP AWAY When you play this character, deal damage to
 chosen character equal to the number of Broom characters
 you have in play.", "keyword, keyword, triggered", 3, 4, 2, 5, true, 0, 0, 0],
-    "mickey mouse standard bearer": [879, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "STAND STRONG When you play this character,
+	"mickey mouse standard bearer": [879, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "STAND STRONG When you play this character,
 chosen character gains Challenger +2 this turn.
 (They get +2 ¤ while challenging.)", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "mulan armored fighter": [880, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 3, 6, 1, 4, true, 0, 0, 0],
-    "philoctetes no-nonsense instructor": [881, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "YOU GOTTA STAY FOCUSED Your Hero characters
+	"mulan armored fighter": [880, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 3, 6, 1, 4, true, 0, 0, 0],
+	"philoctetes no-nonsense instructor": [881, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "YOU GOTTA STAY FOCUSED Your Hero characters
 gain Challenger +1. (They get +1 ¤ while
 challenging.)\nSHAMELESS PROMOTER Whenever you play a
 Hero character, gain 1 lore.", "static, triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "piglet sturdy swordsman": [912, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"piglet sturdy swordsman": [912, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nNOT SO SMALL ANYMORE While you have no cards
 in your hand, this character can challenge ready
 characters.", "keyword, static", 3, 5, 3, 5, false, 0, 0, 0],
-    "rajah royal protector": [883, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "STEADY GAZE While you have no cards in
+	"rajah royal protector": [883, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "STEADY GAZE While you have no cards in
 your hand, characters with cost 4 or less can't
 challenge this character.", "static", 3, 4, 2, 4, true, 0, 0, 0],
-    "raya unstoppable force": [884, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "Challenger +2 (While challenging, this character gets +2 ¤.)\nResist +2 (Damage dealt to this character is reduced by 2.)\nYOU GAVE IT YOUR BEST During your turn, whenever this
+	"raya unstoppable force": [884, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "Challenger +2 (While challenging, this character gets +2 ¤.)\nResist +2 (Damage dealt to this character is reduced by 2.)\nYOU GAVE IT YOUR BEST During your turn, whenever this
 character banishes another character in a challenge, you
 may draw a card.", "keyword, keyword, triggered", 3, 6, 2, 7, true, 0, 0, 0],
-    "yao imperial soldier": [885, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "Challenger +2 (While challenging, this character
+	"yao imperial soldier": [885, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 2, 5, 1, 4, true, 0, 0, 0],
-    "avalanche": [886, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "i find 'em i flatten 'em": [887, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "(A character with cost 4 or more can ⟳ to sing this
+	"avalanche": [886, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"i find 'em i flatten 'em": [887, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "one last hope": [888, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
+	"one last hope": [888, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "the mob song": [889, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "Sing Together 10 (Any number of your or your
+	"the mob song": [889, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "Sing Together 10 (Any number of your or your
 teammates' characters with total cost 10 or more may
 ⟳ to sing this song for free.)", "keyword", 0, 0, 0, 10, false, 0, 0, 0],
-    "triton's decree": [890, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "fortisphere": [891, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "RESOURCEFUL When you play this item, you may draw a card.\nEXTRACT OF STEEL 1 ⬡, Banish this item — Chosen character
+	"triton's decree": [890, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"fortisphere": [891, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "RESOURCEFUL When you play this item, you may draw a card.\nEXTRACT OF STEEL 1 ⬡, Banish this item — Chosen character
 of yours gains Bodyguard until the start of your next turn.
 (An opposing character who challenges one of your characters
 must choose one with Bodyguard if able.)", "triggered, activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "imperial bow": [892, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "WITHIN RANGE ⟳, 1 ⬡ — Chosen Hero character
+	"imperial bow": [892, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "WITHIN RANGE ⟳, 1 ⬡ — Chosen Hero character
 gains Challenger +2 and Evasive this turn. (They
 get +2 ¤ while challenging. They can challenge
 characters with Evasive.)", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "rls legacy's cannon": [893, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "BA-BOOM! ⟳, 2 ⬡, Discard a card — Deal 2 damage
+	"rls legacy's cannon": [893, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "BA-BOOM! ⟳, 2 ⬡, Discard a card — Deal 2 damage
 to chosen character or location.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "the wall border fortress": [913, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "PROTECT THE REALM While you have an exerted character here, your
+	"the wall border fortress": [913, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "PROTECT THE REALM While you have an exerted character here, your
 other locations can't be challenged.", "static", 0, 8, 0, 4, true, 0, 0, 0],
-    "thebes the big olive": [895, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "IF YOU CAN MAKE IT HERE... During your turn, whenever a character
+	"thebes the big olive": [895, "https://api.lorcana.ravensburger.com/images/en/set4/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "IF YOU CAN MAKE IT HERE... During your turn, whenever a character
 banishes another character in a challenge while here, gain 2 lore.", "triggered", 0, 7, 0, 2, true, 0, 0, 0],
-    "anna ensnared sister": [914, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "", "Evasive (Only characters with Evasive can
+	"anna ensnared sister": [914, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 5, 6, 2, 6, true, 0, 0, 0],
-    "bruno madrigal unspeakable seer": [915, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "", "DARK PROPHECY When you play this character, each
+	"bruno madrigal unspeakable seer": [915, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "", "DARK PROPHECY When you play this character, each
 opposing player puts the top 3 cards of their deck into
 their discard.", "triggered", 4, 4, 1, 2, true, 0, 0, 0],
-    "captain hook devious duelist": [916, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "", "", "", 7, 4, 2, 5, true, 0, 0, 0],
-    "flotsam wicked defender": [917, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "", "Bodyguard (An opposing character who challenges one of
+	"captain hook devious duelist": [916, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "", "", "", 7, 4, 2, 5, true, 0, 0, 0],
+	"flotsam wicked defender": [917, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "", "Bodyguard (An opposing character who challenges one of
 your characters must choose one with Bodyguard if able.)\nURSULA'S SENTRY This character enters play exerted.", "keyword, static", 5, 5, 2, 4, true, 0, 0, 0],
-    "gaston egotistical bully": [918, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "", "POSITIVELY PRIMEVAL When you play this
+	"gaston egotistical bully": [918, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "", "POSITIVELY PRIMEVAL When you play this
 character, deal 4 damage to the opposing
 character with the lowest cost. (If there's a tie, the
 opposing players choose from the tied characters.)", "triggered", 2, 4, 1, 2, true, 0, 0, 0],
-    "heihei peckish pal": [919, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "", "Evasive (Only characters with Evasive can
+	"heihei peckish pal": [919, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "hercules manipulated hero": [920, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "", "Bodyguard (An opposing character who challenges one of
+	"hercules manipulated hero": [920, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "", "Bodyguard (An opposing character who challenges one of
 your characters must choose one with Bodyguard if able.)\nURSULA'S SENTRY This character enters play exerted.\nEVERYTHING HAS A PRICE During the opposing players'
 turn, they may together pay 3 lore to banish this character.", "keyword, static, static", 3, 7, 2, 4, true, 0, 0, 0],
-    "jafar double-crossing vizier": [921, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "", "", "", 9, 9, 3, 7, true, 0, 0, 0],
-    "jetsam wicked whisperer": [922, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "", "URSULA HAS GREAT POWERS When you play this
+	"jafar double-crossing vizier": [921, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "", "", "", 9, 9, 3, 7, true, 0, 0, 0],
+	"jetsam wicked whisperer": [922, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "", "URSULA HAS GREAT POWERS When you play this
 character, deal 1 damage to each opposing character.", "triggered", 5, 3, 1, 2, true, 0, 0, 0],
-    "mad hatter sinister host": [923, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "", "", "", 3, 5, 1, 2, true, 0, 0, 0],
-    "magica de spell shadowy sorceress": [924, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "", "", "", 4, 4, 2, 3, true, 0, 0, 0],
-    "minnie mouse wild-eyed diver": [925, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "", "CONFUSING PRESENCE When you play this
+	"mad hatter sinister host": [923, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "", "", "", 3, 5, 1, 2, true, 0, 0, 0],
+	"magica de spell shadowy sorceress": [924, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "", "", "", 4, 4, 2, 3, true, 0, 0, 0],
+	"minnie mouse wild-eyed diver": [925, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "", "CONFUSING PRESENCE When you play this
 character, each opposing player loses 2 lore.", "triggered", 6, 7, 2, 7, true, 0, 0, 0],
-    "prince eric grim groom": [926, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "", "Bodyguard (An opposing character who challenges one
+	"prince eric grim groom": [926, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "", "Bodyguard (An opposing character who challenges one
 of your characters must choose one with Bodyguard if
 able.)\nURSULA'S SENTRY This character enters play exerted.", "keyword, static", 2, 5, 1, 1, true, 0, 0, 0],
-    "shark toothy terror": [927, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "", "BIG BULLY When you play this character, deal 2
+	"shark toothy terror": [927, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "", "BIG BULLY When you play this character, deal 2
 damage to each opposing damaged character.", "triggered", 4, 7, 1, 5, true, 0, 0, 0],
-    "tamatoa grabby crab": [928, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "", "PICK ONE! When you play this character, the
+	"tamatoa grabby crab": [928, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "", "PICK ONE! When you play this character, the
 opposing players together choose an item or
 location of theirs and banish it.", "triggered", 3, 6, 2, 4, true, 0, 0, 0],
-    "triton's daughters discordant chorus": [929, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "", "", "", 2, 3, 1, 0, true, 0, 0, 0],
-    "capsize": [930, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "choppy waters": [931, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "crushing wave": [932, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "", "", "", 0, 0, 0, 4, true, 0, 0, 0],
-    "entangling magic": [933, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "fortunate hit": [934, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "", "", "", 0, 0, 0, 0, true, 0, 0, 0],
-    "lash out": [935, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "lightning storm": [936, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "", "", "", 0, 0, 0, 6, true, 0, 0, 0],
-    "riptide": [937, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "", "", "", 0, 0, 0, 6, true, 0, 0, 0],
-    "tentacle swipe": [938, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "tsunami": [939, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "", "", "", 0, 0, 0, 7, true, 0, 0, 0],
-    "typhoon": [940, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "", "", "", 0, 0, 0, 5, true, 0, 0, 0],
-    "whirlpool": [941, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "", "", "", 0, 0, 0, 4, true, 0, 0, 0],
-    "the hexwell crown": [942, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "", "PERKS OF POWER ⟳ — Draw a card.", "activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "ursula's contract": [943, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "", "SWEETEN THE DEAL Opposing players can't use
+	"triton's daughters discordant chorus": [929, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "", "", "", 2, 3, 1, 0, true, 0, 0, 0],
+	"capsize": [930, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"choppy waters": [931, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"crushing wave": [932, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "", "", "", 0, 0, 0, 4, true, 0, 0, 0],
+	"entangling magic": [933, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"fortunate hit": [934, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "", "", "", 0, 0, 0, 0, true, 0, 0, 0],
+	"lash out": [935, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"lightning storm": [936, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "", "", "", 0, 0, 0, 6, true, 0, 0, 0],
+	"riptide": [937, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "", "", "", 0, 0, 0, 6, true, 0, 0, 0],
+	"tentacle swipe": [938, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"tsunami": [939, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "", "", "", 0, 0, 0, 7, true, 0, 0, 0],
+	"typhoon": [940, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "", "", "", 0, 0, 0, 5, true, 0, 0, 0],
+	"whirlpool": [941, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "", "", "", 0, 0, 0, 4, true, 0, 0, 0],
+	"the hexwell crown": [942, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "", "PERKS OF POWER ⟳ — Draw a card.", "activated", 0, 0, 0, 3, true, 0, 0, 0],
+	"ursula's contract": [943, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "", "SWEETEN THE DEAL Opposing players can't use
 battleground abilities.\nMINOR STIPULATION At the start of your turn, banish
 this item to gain 3 lore.", "static, triggered", 0, 0, 0, 0, true, 0, 0, 0],
-    "ursula's stolen trident": [944, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "", "IT'S MY POWER NOW ⟳ — Gain 1 lore.", "activated", 0, 0, 0, 0, true, 0, 0, 0],
-    "koda talkative cub": [957, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "TELL EVERYBODY During opponents' turns, you
+	"ursula's stolen trident": [944, "https://api.lorcana.ravensburger.com/images/en/quest1/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "", "IT'S MY POWER NOW ⟳ — Gain 1 lore.", "activated", 0, 0, 0, 0, true, 0, 0, 0],
+	"koda talkative cub": [957, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "TELL EVERYBODY During opponents' turns, you
 can't lose lore.", "static", 2, 1, 2, 2, true, 0, 0, 0],
-    "nala mischievous cub": [1182, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "", "", 0, 4, 1, 1, true, 0, 0, 0],
-    "prince naveen ukulele player": [1161, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 6 (This character counts as cost 6 to
+	"nala mischievous cub": [1182, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "", "", 0, 4, 1, 1, true, 0, 0, 0],
+	"prince naveen ukulele player": [1161, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 6 (This character counts as cost 6 to
 sing songs.)\nIT'S BEAUTIFUL, NO? When you play this
 character, you may play a song with cost 6 or
 less for free.", "keyword, triggered", 3, 3, 2, 4, false, 0, 0, 0],
-    "rutt northern moose": [960, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "Support (Whenever this character quests, you
+	"rutt northern moose": [960, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 4, 1, 4, true, 0, 0, 0],
-    "kenai big brother": [961, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "BROTHERS FOREVER While this character is exerted,
+	"kenai big brother": [961, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "BROTHERS FOREVER While this character is exerted,
 your characters named Koda can't be challenged.", "static", 1, 4, 1, 2, true, 0, 0, 0],
-    "vanellope von schweetz sugar rush champ": [962, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "tuke northern moose": [963, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "lilo junior cake decorator": [964, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Support (Whenever this character quests, you
+	"vanellope von schweetz sugar rush champ": [962, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"tuke northern moose": [963, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"lilo junior cake decorator": [964, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "vanellope von schweetz candy mechanic": [965, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "YOU'VE GOT TO PAY TO PLAY Whenever this
+	"vanellope von schweetz candy mechanic": [965, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "YOU'VE GOT TO PAY TO PLAY Whenever this
 character quests, chosen opposing character gets
 -1 ¤ until the start of your next turn.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "fix-it felix jr trusty builder": [966, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"fix-it felix jr trusty builder": [966, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 2, 4, 1, 3, true, 0, 0, 0],
-    "gazelle pop star": [967, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
+	"gazelle pop star": [967, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
 songs.)", "keyword", 2, 3, 2, 3, true, 0, 0, 0],
-    "fix-it felix jr niceland steward": [968, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"fix-it felix jr niceland steward": [968, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Fix-It Felix, Jr.)\nBUILDING TOGETHER Your locations get +2 ⛉.", "keyword, static", 4, 5, 1, 5, true, 0, 0, 0],
-    "kristoff reindeer keeper": [1181, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "SONG OF THE HERD For each song card in your
+	"kristoff reindeer keeper": [1181, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/da4b9237bacccdf19c0760cab7aec4a8359010b0.jpg", "Amber", "SONG OF THE HERD For each song card in your
 discard, you pay 1 ⬡ less to play this character.\nBodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)", "static, keyword", 3, 7, 3, 9, false, 0, 0, 0],
-    "mirabel madrigal family gatherer": [1186, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "NOT WITHOUT MY FAMILY You can't play this
+	"mirabel madrigal family gatherer": [1186, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "NOT WITHOUT MY FAMILY You can't play this
 character unless you have 5 or more characters
 in play.", "static", 5, 5, 5, 5, true, 0, 0, 0],
-    "minnie mouse drum major": [971, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
+	"minnie mouse drum major": [971, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
 your characters named Minnie Mouse.)\nPARADE ORDER When you play this character, if you
 used Shift to play her, you may search your deck for
 a character card and reveal that card to all players.
 Shuffle your deck and put that card on top of it.", "keyword, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "daisy duck donald's date": [972, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "BIG PRIZE Whenever this character quests, each
+	"daisy duck donald's date": [972, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "BIG PRIZE Whenever this character quests, each
 opponent reveals the top card of their deck. If it's
 a character card, they may put it into their hand.
 Otherwise, they put it on the bottom of their
 deck.", "triggered", 1, 4, 2, 1, false, 0, 0, 0],
-    "fix-it felix jr delighted sightseer": [973, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "OH, MY LAND! When you play this character, if
+	"fix-it felix jr delighted sightseer": [973, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "OH, MY LAND! When you play this character, if
 you have a location in play, draw a card.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "moana determined explorer": [974, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "", "", 3, 4, 2, 3, false, 0, 0, 0],
-    "vanellope von schweetz sugar rush princess": [1195, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
+	"moana determined explorer": [974, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "", "", 3, 4, 2, 3, false, 0, 0, 0],
+	"vanellope von schweetz sugar rush princess": [1195, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "Shift 2 (You may pay 2 ⬡ to play this on top of one of
 your characters named Vanellope von Schweetz.)\nI HEREBY DECREE Whenever you play another
 Princess character, all opposing characters get -1 ¤
 until the start of your next turn.", "keyword, triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "alan-a-dale rockin' rooster": [976, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "FAN FAVORITE Whenever you play a song, gain 1 lore.", "triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "wreck-it ralph admiral underpants": [977, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "I'VE GOT THE COOLEST FRIEND When you play
+	"alan-a-dale rockin' rooster": [976, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "FAN FAVORITE Whenever you play a song, gain 1 lore.", "triggered", 2, 3, 2, 4, true, 0, 0, 0],
+	"wreck-it ralph admiral underpants": [977, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "I'VE GOT THE COOLEST FRIEND When you play
 this character, return a character card from your
 discard to your hand. If that card is a Princess
 character card, gain 2 lore.", "triggered", 6, 7, 2, 7, false, 0, 0, 0],
-    "maid marian lady of the lists": [978, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "IF IT PLEASES THE LADY When you play this
+	"maid marian lady of the lists": [978, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "IF IT PLEASES THE LADY When you play this
 character, chosen opposing character gets -5 ¤
 until the start of your next turn.", "triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "sven reindeer steed": [979, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "REINDEER GAMES When you play this character,
+	"sven reindeer steed": [979, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "REINDEER GAMES When you play this character,
 you may ready chosen character. They can't quest
 or challenge for the rest of this turn.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "minnie mouse compassionate friend": [980, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "PATCH THEM UP Whenever this character quests,
+	"minnie mouse compassionate friend": [980, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "PATCH THEM UP Whenever this character quests,
 you may remove up to 2 damage from chosen
 character.", "triggered", 1, 5, 2, 4, true, 0, 0, 0],
-    "try everything": [981, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this song for
+	"try everything": [981, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "(A character with cost 4 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "healing touch": [982, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "revive": [1163, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "", "", 0, 0, 0, 5, false, 0, 0, 0],
-    "blast from your past": [984, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 6 or more can ⟳ to sing this
+	"healing touch": [982, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"revive": [1163, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "", "", 0, 0, 0, 5, false, 0, 0, 0],
+	"blast from your past": [984, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 6 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 6, false, 0, 0, 0],
-    "invited to the ball": [1196, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "healing decanter": [986, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "RENEWING ESSENCE ⟳ — Remove up to 2 damage
+	"invited to the ball": [1196, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"healing decanter": [986, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "RENEWING ESSENCE ⟳ — Remove up to 2 damage
 from chosen character.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "queen's sensor core": [987, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "SYMBOL OF NOBILITY At the start of your turn, if you have a
+	"queen's sensor core": [987, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "SYMBOL OF NOBILITY At the start of your turn, if you have a
 Princess or Queen character in play, gain 1 lore.\nROYAL SEARCH ⟳, 2 ⬡ — Reveal the top card of your deck.
 If it's a Princess or Queen character card, you may put it into
 your hand. Otherwise, put it on the top of your deck.", "triggered, activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "amber chromicon": [988, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "AMBER LIGHT ⟳ — Remove up to 1 damage from each
+	"amber chromicon": [988, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "AMBER LIGHT ⟳ — Remove up to 1 damage from each
 of your characters.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "rapunzel's tower secluded prison": [989, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "SAFE AND SOUND Characters get +3 ⛉ while here.", "static", 0, 8, 0, 2, true, 0, 0, 0],
-    "pride lands jungle oasis": [990, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "OUR HUMBLE HOME While you have 3 or more characters here, you may
+	"rapunzel's tower secluded prison": [989, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "SAFE AND SOUND Characters get +3 ⛉ while here.", "static", 0, 8, 0, 2, true, 0, 0, 0],
+	"pride lands jungle oasis": [990, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "OUR HUMBLE HOME While you have 3 or more characters here, you may
 banish this location to play a character from your discard for free.", "static", 0, 8, 1, 3, true, 0, 0, 0],
-    "maleficent formidable queen": [991, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
+	"maleficent formidable queen": [991, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/972a67c48192728a34979d9a35164c1295401b71.jpg", "Amethyst", "Shift 6 (You may pay 6 ⬡ to play this on top of one of
 your characters named Maleficent.)\nLISTEN WELL, ALL OF YOU When you play this character,
 for each of your characters named Maleficent in play,
 return a chosen opposing character, item, or location
 with cost 3 or less to their player's hand.", "keyword, triggered", 7, 7, 2, 8, false, 0, 0, 0],
-    "the nokk mythical spirit": [992, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "TURNING TIDES When you play this character,
+	"the nokk mythical spirit": [992, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "TURNING TIDES When you play this character,
 you may move up to 2 damage counters from
 chosen character to chosen opposing character.", "triggered", 5, 5, 1, 6, true, 0, 0, 0],
-    "cogsworth illuminary watchman": [993, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "TIME TO MOVE IT! When you play this character,
+	"cogsworth illuminary watchman": [993, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "TIME TO MOVE IT! When you play this character,
 chosen character gains Rush this turn. (They can
 challenge the turn they're played.)", "triggered", 1, 1, 1, 1, true, 0, 0, 0],
-    "merlin turtle": [994, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "GIVE ME TIME TO THINK When you play this
+	"merlin turtle": [994, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "GIVE ME TIME TO THINK When you play this
 character and when he leaves play, look at the
 top 2 cards of your deck. Put one on the top of
 your deck and the other on the bottom.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "archimedes exasperated owl": [995, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"archimedes exasperated owl": [995, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 2, 2, 2, 3, true, 0, 0, 0],
-    "bruni fire salamander": [996, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"bruni fire salamander": [996, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nPARTING GIFT When this character is banished,
 you may draw a card.", "keyword, triggered", 2, 2, 2, 4, true, 0, 0, 0],
-    "earth giant living mountain": [997, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "UNEARTHED When you play this character, each
+	"earth giant living mountain": [997, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "UNEARTHED When you play this character, each
 opponent draws a card.", "triggered", 4, 5, 2, 4, true, 0, 0, 0],
-    "gale wind spirit": [998, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "RECURRING GUST When this character is
+	"gale wind spirit": [998, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "RECURRING GUST When this character is
 banished in a challenge, return this card to your
 hand.", "triggered", 1, 2, 2, 3, true, 0, 0, 0],
-    "white rabbit royal herald": [999, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "madam mim elephant": [1000, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "A LITTLE GAME When you play this character, banish
+	"white rabbit royal herald": [999, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"madam mim elephant": [1000, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "A LITTLE GAME When you play this character, banish
 her or return another chosen character of yours to your
 hand.\nSNEAKY MOVE At the start of your turn, you may move
 up to 2 damage counters from this character to chosen
 opposing character.", "triggered, triggered", 3, 7, 1, 4, true, 0, 0, 0],
-    "luisa madrigal entertaining muscle": [1001, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "", "", 4, 8, 3, 6, false, 0, 0, 0],
-    "anna mystical majesty": [1002, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"luisa madrigal entertaining muscle": [1001, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "", "", 4, 8, 3, 6, false, 0, 0, 0],
+	"anna mystical majesty": [1002, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Anna.)\nEXCEPTIONAL POWER When you play this
 character, exert all opposing characters.", "keyword, triggered", 4, 5, 2, 7, false, 0, 0, 0],
-    "archimedes electrified owl": [1164, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"archimedes electrified owl": [1164, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Archimedes.)\nEvasive (Only characters with Evasive can challenge
 this character.)\nChallenger +3 (While challenging, this character
 gets +3 ¤.)", "keyword, keyword, keyword", 1, 4, 2, 5, true, 0, 0, 0],
-    "elsa the fifth spirit": [1004, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Rush (This character can challenge the turn they're played.)\nEvasive (Only characters with Evasive can challenge this
+	"elsa the fifth spirit": [1004, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Rush (This character can challenge the turn they're played.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nCRYSTALLIZE When you play this character, exert chosen
 opposing character.", "keyword, keyword, triggered", 2, 5, 1, 5, true, 0, 0, 0],
-    "genie main attraction": [1005, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "PHENOMENAL SHOWMAN While this character is
+	"genie main attraction": [1005, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "PHENOMENAL SHOWMAN While this character is
 exerted, opposing characters can't ready at the
 start of their turn.", "static", 5, 5, 2, 7, false, 0, 0, 0],
-    "olaf happy passenger": [1165, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "CLEAR THE PATH For each exerted character
+	"olaf happy passenger": [1165, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "CLEAR THE PATH For each exerted character
 opponents have in play, you pay 1 ⬡ less to
 play this character.\nEvasive (Only characters with Evasive can
 challenge this character.)", "static, keyword", 6, 6, 3, 9, false, 0, 0, 0],
-    "maleficent vexed partygoer": [1007, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "WHAT AN AWKWARD SITUATION Whenever this
+	"maleficent vexed partygoer": [1007, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "WHAT AN AWKWARD SITUATION Whenever this
 character quests, you may choose and discard a
 card to return chosen character, item, or location
 with cost 3 or less to their player's hand.", "triggered", 0, 4, 2, 3, true, 0, 0, 0],
-    "monstro whale of a whale": [1008, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "", "", 5, 6, 1, 5, true, 0, 0, 0],
-    "magica de spell cruel sorceress": [1009, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "PLAYING WITH POWER During opponents' turns,
+	"monstro whale of a whale": [1008, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst", "", "", 5, 6, 1, 5, true, 0, 0, 0],
+	"magica de spell cruel sorceress": [1009, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "PLAYING WITH POWER During opponents' turns,
 if an effect would cause you to discard one or
 more cards from your hand, you don't discard.", "static", 2, 5, 1, 4, true, 0, 0, 0],
-    "maleficent vengeful sorceress": [1010, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "rafiki shaman duelist": [1011, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"maleficent vengeful sorceress": [1010, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"rafiki shaman duelist": [1011, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)\nSURPRISING SKILL When you play this character,
 he gains Challenger +4 this turn. (They get +4 ¤
 while challenging.)", "keyword, triggered", 1, 4, 2, 4, false, 0, 0, 0],
-    "anna eager acolyte": [1012, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "GROWING POWERS When you play this character,
+	"anna eager acolyte": [1012, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "GROWING POWERS When you play this character,
 each opponent chooses and exerts one of their
 ready characters.", "triggered", 1, 3, 1, 3, false, 0, 0, 0],
-    "king of hearts monarch of wonderland": [1013, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "PLEASING THE QUEEN ⟳ — Chosen exerted
+	"king of hearts monarch of wonderland": [1013, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "PLEASING THE QUEEN ⟳ — Chosen exerted
 character can't ready at the start of their next
 turn.", "activated", 1, 4, 2, 4, true, 0, 0, 0],
-    "camilo madrigal family copycat": [1014, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "IMITATE Whenever this character quests, you
+	"camilo madrigal family copycat": [1014, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "IMITATE Whenever this character quests, you
 may gain lore equal to the ◊ of chosen other
 character of yours. Return that character to your
 hand.", "triggered", 3, 7, 1, 6, true, 0, 0, 0],
-    "hypnotic strength": [1015, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "finders keepers": [1183, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amethyst", "", "", 0, 0, 0, 5, true, 0, 0, 0],
-    "we know the way": [1017, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song for
+	"hypnotic strength": [1015, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"finders keepers": [1183, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amethyst", "", "", 0, 0, 0, 5, true, 0, 0, 0],
+	"we know the way": [1017, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "(A character with cost 3 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "gathering knowledge and wisdom": [1018, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "magical aid": [1019, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "retrosphere": [1020, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "EXTRACT OF AMETHYST 2 ⬡, Banish this item — Return
+	"gathering knowledge and wisdom": [1018, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"magical aid": [1019, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"retrosphere": [1020, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "EXTRACT OF AMETHYST 2 ⬡, Banish this item — Return
 chosen character, item, or location with cost 3 or less
 to their player's hand.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "half hexwell crown": [1179, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amethyst", "AN UNEXPECTED FIND ⟳, 2 ⬡ — Draw a card.\nA PERILOUS POWER ⟳, 2 ⬡, Discard a card — Exert
+	"half hexwell crown": [1179, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/af06318c33c8e41c70083ee23dbe19426f1f9c5b.jpg", "Amethyst", "AN UNEXPECTED FIND ⟳, 2 ⬡ — Draw a card.\nA PERILOUS POWER ⟳, 2 ⬡, Discard a card — Exert
 chosen character.", "activated, activated", 0, 0, 0, 6, false, 0, 0, 0],
-    "amethyst chromicon": [1022, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "AMETHYST LIGHT ⟳ — Each player may draw a card.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "elsa's ice palace place of solitude": [1197, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amethyst", "ETERNAL WINTER When you play this location, choose an exerted
+	"amethyst chromicon": [1022, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "AMETHYST LIGHT ⟳ — Each player may draw a card.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
+	"elsa's ice palace place of solitude": [1197, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amethyst", "ETERNAL WINTER When you play this location, choose an exerted
 character. While this location is in play, that character can't ready at
 the start of their turn.", "triggered", 0, 4, 1, 3, false, 0, 0, 0],
-    "the library a gift for belle": [1024, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "LOST IN A BOOK Whenever a character is banished while here, you may
+	"the library a gift for belle": [1024, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "LOST IN A BOOK Whenever a character is banished while here, you may
 draw a card.", "triggered", 0, 8, 1, 3, true, 0, 0, 0],
-    "robin hood timely contestant": [1025, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "TAG ME IN! For each 1 damage on opposing
+	"robin hood timely contestant": [1025, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Emerald", "TAG ME IN! For each 1 damage on opposing
 characters, you pay 1 ⬡ less to play this
 character.\nWard (Opponents can't choose this character
 except to challenge.)", "static, keyword", 6, 6, 4, 9, false, 0, 0, 0],
-    "shenzi scar's accomplice": [1026, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"shenzi scar's accomplice": [1026, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nEASY PICKINGS While challenging a damaged
 character, this character gets +2 ¤.", "keyword, static", 2, 3, 1, 3, true, 0, 0, 0],
-    "little john camp cook": [1027, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "", "", 0, 4, 1, 1, true, 0, 0, 0],
-    "zazu advisor to mufasa": [1028, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"little john camp cook": [1027, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "", "", 0, 4, 1, 1, true, 0, 0, 0],
+	"zazu advisor to mufasa": [1028, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c097638f92de80ba8d6c696b26e6e601a5f61eb7.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 5, 2, 5, true, 0, 0, 0],
-    "ulf mime": [1029, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "SILENT PERFORMANCE This character can't ⟳ to
+	"ulf mime": [1029, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "SILENT PERFORMANCE This character can't ⟳ to
 sing songs.", "static", 4, 3, 2, 4, true, 0, 0, 0],
-    "ed laughing hyena": [1030, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "CAUSE A PANIC When you play this character,
+	"ed laughing hyena": [1030, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Emerald", "CAUSE A PANIC When you play this character,
 you may deal 2 damage to chosen damaged
 character.", "triggered", 2, 3, 1, 3, false, 0, 0, 0],
-    "flora good fairy": [1031, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "FIDDLE FADDLE While being challenged, this
+	"flora good fairy": [1031, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "FIDDLE FADDLE While being challenged, this
 character gets +2 ¤.", "static", 2, 4, 1, 3, true, 0, 0, 0],
-    "merryweather good fairy": [1032, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "RAY OF HOPE When you play this character, you
+	"merryweather good fairy": [1032, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "RAY OF HOPE When you play this character, you
 may pay 1 ⬡ to give chosen character +2 ¤ this
 turn.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "robin hood archery contestant": [1033, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "TRICK SHOT When you play this character, if an
+	"robin hood archery contestant": [1033, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "TRICK SHOT When you play this character, if an
 opponent has a damaged character in play, gain 1
 lore.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "fauna good fairy": [1034, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "", "", 3, 7, 2, 5, true, 0, 0, 0],
-    "iago fake flamingo": [1035, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"fauna good fairy": [1034, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "", "", 3, 7, 2, 5, true, 0, 0, 0],
+	"iago fake flamingo": [1035, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nIN DISGUISE Whenever this character quests,
 you pay 2 ⬡ less for the next action you play this
 turn.", "keyword, triggered", 2, 4, 1, 4, true, 0, 0, 0],
-    "banzai gluttonous predator": [1036, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "", "", 3, 2, 2, 2, false, 0, 0, 0],
-    "ed hysterical partygoer": [1037, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "ROWDY GUEST Damaged characters can't
+	"banzai gluttonous predator": [1036, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "", "", 3, 2, 2, 2, false, 0, 0, 0],
+	"ed hysterical partygoer": [1037, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Emerald", "ROWDY GUEST Damaged characters can't
 challenge this character.", "static", 2, 4, 3, 4, false, 0, 0, 0],
-    "scroop odious mutineer": [1038, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"scroop odious mutineer": [1038, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nDO SAY HELLO TO MR. ARROW When you play this
 character, you may pay 3 ⬡ to banish chosen
 damaged character.", "keyword, triggered", 2, 1, 2, 3, false, 0, 0, 0],
-    "prince phillip swordsman of the realm": [1039, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "SLAYER OF DRAGONS When you play this character,
+	"prince phillip swordsman of the realm": [1039, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "SLAYER OF DRAGONS When you play this character,
 banish chosen opposing Dragon character.\nPRESSING THE ADVANTAGE Whenever he challenges
 a damaged character, ready this character after the
 challenge.", "triggered, triggered", 3, 9, 3, 7, true, 0, 0, 0],
-    "clarabelle light on her hooves": [1167, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"clarabelle light on her hooves": [1167, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Clarabelle.)\nKEEP IN STEP At the end of your turn, if chosen
 opponent has more cards in their hand than you, you
 may draw cards until you have the same number.", "keyword, triggered", 5, 6, 2, 7, true, 0, 0, 0],
-    "anna diplomatic queen": [1041, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "ROYAL RESOLUTION When you play this character,
+	"anna diplomatic queen": [1041, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "ROYAL RESOLUTION When you play this character,
 you may pay 2 ⬡ to choose one:
 • Each opponent chooses and discards a card.
 • Chosen character gets +2 ¤ this turn.
 • Banish chosen damaged character.", "triggered", 2, 3, 2, 3, false, 0, 0, 0],
-    "clarabelle clumsy guest": [1042, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "BUTTERFINGERS When you play this character,
+	"clarabelle clumsy guest": [1042, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "BUTTERFINGERS When you play this character,
 you may pay 2 ⬡ to banish chosen item.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "banzai taunting hyena": [1043, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "HERE KITTY, KITTY, KITTY When you play this
+	"banzai taunting hyena": [1043, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "HERE KITTY, KITTY, KITTY When you play this
 character, you may exert chosen damaged
 character.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "robin hood sneaky sleuth": [1044, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"robin hood sneaky sleuth": [1044, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Robin Hood.)\nCLEVER PLAN This character gets +1 ◊ for each
 opposing damaged character in play.", "keyword, static", 3, 5, 1, 5, true, 0, 0, 0],
-    "mother gothel conceited manipulator": [1045, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "MOTHER KNOWS BEST When you play this
+	"mother gothel conceited manipulator": [1045, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "MOTHER KNOWS BEST When you play this
 character, you may pay 3 ⬡ to return chosen
 character to their player's hand.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "clarabelle contented wallflower": [1046, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ONE STEP BEHIND When you play this character,
+	"clarabelle contented wallflower": [1046, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ONE STEP BEHIND When you play this character,
 if an opponent has more cards in their hand than
 you, you may draw a card.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "shenzi head hyena": [1047, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "STICK AROUND FOR DINNER This character gets +1 ¤
+	"shenzi head hyena": [1047, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "STICK AROUND FOR DINNER This character gets +1 ¤
 for each other Hyena character you have in play.\nWHAT HAVE WE GOT HERE? Whenever one of your
 Hyena characters challenges a damaged character,
 gain 2 lore.", "static, triggered", 3, 6, 1, 5, true, 0, 0, 0],
-    "mother gothel unwavering schemer": [1048, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"mother gothel unwavering schemer": [1048, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Mother Gothel.)\nTHE WORLD IS DARK When you play this
 character, each opponent chooses one of their
 characters and returns that card to their hand.", "keyword, triggered", 4, 6, 2, 6, true, 0, 0, 0],
-    "scar vengeful lion": [1168, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"scar vengeful lion": [1168, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nLIFE'S NOT FAIR, IS IT? Whenever one of your
 characters challenges a damaged character,
 you may draw a card.", "keyword, triggered", 4, 2, 1, 4, true, 0, 0, 0],
-    "hypnotic deduction": [1050, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "night howler rage": [1051, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "you're welcome": [1169, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "(A character with cost 4 or more can ⟳ to sing this
+	"hypnotic deduction": [1050, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"night howler rage": [1051, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"you're welcome": [1169, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "remember who you are": [1053, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "prince john's mirror": [1054, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "YOU LOOK REGAL If you have a character named Prince
+	"remember who you are": [1053, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"prince john's mirror": [1054, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "YOU LOOK REGAL If you have a character named Prince
 John in play, you pay 1 ⬡ less to play this item.\nA FEELING OF POWER At the end of each opponent's
 turn, if they have more than 3 cards in their hand, they
 discard until they have 3 cards in their hand.", "static, triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "obscurosphere": [1055, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "EXTRACT OF EMERALD 2 ⬡, Banish this item — Your
+	"obscurosphere": [1055, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "EXTRACT OF EMERALD 2 ⬡, Banish this item — Your
 characters gain Ward until the start of your next turn.
 (Opponents can't choose them except to challenge.)", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "emerald chromicon": [1056, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "EMERALD LIGHT During opponents' turns, whenever
+	"emerald chromicon": [1056, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "EMERALD LIGHT During opponents' turns, whenever
 one of your characters is banished, you may return
 chosen character to their player's hand.", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "sherwood forest outlaw hideaway": [1057, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "FOREST HOME Your characters named Robin Hood may move here for free.\nFAMILIAR TERRAIN Characters gain Ward and “⟳, 1 ⬡ — Deal 2 damage to chosen
+	"sherwood forest outlaw hideaway": [1057, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "FOREST HOME Your characters named Robin Hood may move here for free.\nFAMILIAR TERRAIN Characters gain Ward and “⟳, 1 ⬡ — Deal 2 damage to chosen
 damaged character” while here. (Opponents can't choose them except to challenge.)", "static, static", 0, 7, 0, 2, true, 0, 0, 0],
-    "tropical rainforest jaguar lair": [1058, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SNACK TIME Opposing damaged characters gain Reckless. (They can't
+	"tropical rainforest jaguar lair": [1058, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "SNACK TIME Opposing damaged characters gain Reckless. (They can't
 quest and must challenge if able.)", "static", 0, 6, 1, 3, true, 0, 0, 0],
-    "taffyta muttonfudge ruthless rival": [1059, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "wreck-it ralph demolition dude": [1060, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "REFRESHING BREAK Whenever you ready this
+	"taffyta muttonfudge ruthless rival": [1059, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Ruby", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"wreck-it ralph demolition dude": [1060, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "REFRESHING BREAK Whenever you ready this
 character, gain 1 lore for each 1 damage on him.", "triggered", 1, 4, 1, 3, true, 0, 0, 0],
-    "maximus team champion": [1061, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "ROYALLY BIG REWARDS At the end of your turn, if
+	"maximus team champion": [1061, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "ROYALLY BIG REWARDS At the end of your turn, if
 you have any characters in play with 5 ¤ or more,
 gain 2 lore. If you have any in play with 10 ¤ or
 more, gain 5 lore instead.", "triggered", 3, 5, 2, 6, true, 0, 0, 0],
-    "turbo royal hack": [1062, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Rush (This character can challenge the turn
+	"turbo royal hack": [1062, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nGAME JUMP This character also counts as being
 named King Candy for Shift.", "keyword, static", 2, 3, 1, 2, false, 0, 0, 0],
-    "donald duck pie slinger": [1170, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
+	"donald duck pie slinger": [1170, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
 your characters named Donald Duck.)\nHUMBLE PIE When you play this character, if you used
 Shift to play him, each opponent loses 2 lore.\nRAGING DUCK While an opponent has 10 or more lore,
 this character gets +6 ¤.", "keyword, triggered, static", 3, 6, 1, 5, true, 0, 0, 0],
-    "rancis fluggerbutter chocolate charger": [1064, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "scar betrayer": [1065, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "LONG LIVE THE KING When you play this
+	"rancis fluggerbutter chocolate charger": [1064, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"scar betrayer": [1065, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "LONG LIVE THE KING When you play this
 character, you may banish chosen character
 named Mufasa.", "triggered", 6, 3, 2, 5, true, 0, 0, 0],
-    "snowanna rainbeau cool competitor": [1066, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "Rush (This character can challenge the turn
+	"snowanna rainbeau cool competitor": [1066, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 2, 4, 1, 3, false, 0, 0, 0],
-    "daisy duck spotless food-fighter": [1067, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"daisy duck spotless food-fighter": [1067, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "mickey mouse enthusiastic dancer": [1068, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "PERFECT PARTNERS While you have a character
+	"mickey mouse enthusiastic dancer": [1068, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "PERFECT PARTNERS While you have a character
 named Minnie Mouse in play, this character gets
 +2 ¤.", "static", 2, 4, 2, 4, true, 0, 0, 0],
-    "ratigan raging rat": [1069, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "NOTHING CAN STAND IN MY WAY While this
+	"ratigan raging rat": [1069, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "NOTHING CAN STAND IN MY WAY While this
 character has damage, he gets +2 ¤.", "static", 1, 5, 1, 3, true, 0, 0, 0],
-    "taffyta muttonfudge crowd favorite": [1070, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "SHOWSTOPPER When you play this character,
+	"taffyta muttonfudge crowd favorite": [1070, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "SHOWSTOPPER When you play this character,
 if you have a location in play, each opponent
 loses 1 lore.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "denahi avenging brother": [1071, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "", "", 7, 5, 2, 5, false, 0, 0, 0],
-    "pete steamboat rival": [1072, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "SCRAM! When you play this character, if you
+	"denahi avenging brother": [1071, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "", "", 7, 5, 2, 5, false, 0, 0, 0],
+	"pete steamboat rival": [1072, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "SCRAM! When you play this character, if you
 have another character named Pete in play, you
 may banish chosen opposing character.", "triggered", 6, 6, 2, 7, true, 0, 0, 0],
-    "taffyta muttonfudge sour speedster": [1073, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on
+	"taffyta muttonfudge sour speedster": [1073, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on
 top of one of your characters named Taffyta
 Muttonfudge.)\nNEW ROSTER Once per turn, when this character
 moves to a location, gain 2 lore.", "keyword, triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "robin hood sharpshooter": [1171, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "MY GREATEST PERFORMANCE Whenever this
+	"robin hood sharpshooter": [1171, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "MY GREATEST PERFORMANCE Whenever this
 character quests, look at the top 4 cards of
 your deck. You may reveal an action card with
 cost 6 or less and play it for free. Put the rest
 in your discard.", "triggered", 1, 4, 2, 4, false, 0, 0, 0],
-    "gaston pure paragon": [1075, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "A MAN AMONG MEN! For each damaged character
+	"gaston pure paragon": [1075, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Ruby", "A MAN AMONG MEN! For each damaged character
 you have in play, you pay 2 ⬡ less to play this
 character.\nRush (This character can challenge the turn
 they're played.)", "static, keyword", 10, 6, 2, 9, false, 0, 0, 0],
-    "pete pastry chomper": [1076, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "arthur novice sparrow": [1077, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "Reckless (This character can't quest and must
+	"pete pastry chomper": [1076, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Ruby", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"arthur novice sparrow": [1077, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "Reckless (This character can't quest and must
 challenge each turn if able.)", "keyword", 2, 3, 0, 1, false, 0, 0, 0],
-    "donald duck daisy's date": [1078, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "PLUCKY PLAY Whenever this character challenges
+	"donald duck daisy's date": [1078, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "PLUCKY PLAY Whenever this character challenges
 another character, each opponent loses 1 lore.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "ratigan party crasher": [1079, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
+	"ratigan party crasher": [1079, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of one of your
 characters named Ratigan.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nDELIGHTFULLY WICKED Your damaged characters get +2 ¤.", "keyword, keyword, static", 5, 5, 3, 7, false, 0, 0, 0],
-    "vanellope von schweetz random roster racer": [1080, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "Rush (This character can challenge the turn
+	"vanellope von schweetz random roster racer": [1080, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nPIXLEXIA When you play this character, she gains
 Evasive until the start of your next turn. (Only
 characters with Evasive can challenge them.)", "keyword, triggered", 3, 3, 2, 4, false, 0, 0, 0],
-    "simba adventurous successor": [1081, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "I LAUGH IN THE FACE OF DANGER When you play
+	"simba adventurous successor": [1081, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "I LAUGH IN THE FACE OF DANGER When you play
 this character, chosen character gets +2 ¤ this
 turn.", "triggered", 2, 1, 1, 1, false, 0, 0, 0],
-    "minnie mouse dazzling dancer": [1082, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "DANCE-OFF Whenever this character or one of
+	"minnie mouse dazzling dancer": [1082, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/114d4eefde1dae3983e7a79f04c72feb9a3a7efd.jpg", "Ruby", "DANCE-OFF Whenever this character or one of
 your characters named Mickey Mouse challenges
 another character, gain 1 lore.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "break free": [1083, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "evil comes prepared": [1084, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "don't let the frostbite bite": [1085, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 7 or more can ⟳ to sing this
+	"break free": [1083, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"evil comes prepared": [1084, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"don't let the frostbite bite": [1085, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "(A character with cost 7 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 7, true, 0, 0, 0],
-    "glimmer vs glimmer": [1086, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "who's with me": [1087, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "potion of might": [1088, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "VILE CONCOCTION 1 ⬡, Banish this item — Chosen
+	"glimmer vs glimmer": [1086, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"who's with me": [1087, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"potion of might": [1088, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "VILE CONCOCTION 1 ⬡, Banish this item — Chosen
 character gets +3 ¤ this turn. If a Villain character is
 chosen, they get +4 ¤ instead.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "the sword released": [1089, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "POWER APPOINTED At the start of your turn, if you
+	"the sword released": [1089, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "POWER APPOINTED At the start of your turn, if you
 have a character in play with more ¤ than each
 opposing character in play, each opponent loses 1 lore
 and you gain lore equal to the lore lost.", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "ruby chromicon": [1090, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "RUBY LIGHT ⟳ — Chosen character gets +1 ¤ this
+	"ruby chromicon": [1090, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "RUBY LIGHT ⟳ — Chosen character gets +1 ¤ this
 turn.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "sugar rush speedway starting line": [1091, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "ON YOUR MARKS! Once per turn, you may ⟳ chosen character here and
+	"sugar rush speedway starting line": [1091, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "ON YOUR MARKS! Once per turn, you may ⟳ chosen character here and
 deal them 1 damage to move them to another location for free.", "activated", 0, 5, 0, 1, false, 0, 0, 0],
-    "ratigan's party seedy back room": [1172, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "MISFITS' REVELRY While you have a damaged character here, this
+	"ratigan's party seedy back room": [1172, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "MISFITS' REVELRY While you have a damaged character here, this
 location gets +2 ◊.", "static", 0, 7, 0, 2, true, 0, 0, 0],
-    "king candy sovereign of sugar": [1093, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "chaca impressive daughter": [1094, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "", "", 4, 3, 2, 4, true, 0, 0, 0],
-    "the queen cruelest of all": [1095, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"king candy sovereign of sugar": [1093, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"chaca impressive daughter": [1094, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "", "", 4, 3, 2, 4, true, 0, 0, 0],
+	"the queen cruelest of all": [1095, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 0, 4, 1, 2, true, 0, 0, 0],
-    "scrooge mcduck afficionado of antiquities": [1096, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 5, 5, 2, 4, false, 0, 0, 0],
-    "prince john opportunistic briber": [1097, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "TAXES NEVER FAIL ME Whenever you play an item,
+	"scrooge mcduck afficionado of antiquities": [1096, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Sapphire", "", "", 5, 5, 2, 4, false, 0, 0, 0],
+	"prince john opportunistic briber": [1097, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "TAXES NEVER FAIL ME Whenever you play an item,
 this character gets +2 ¤ this turn.", "triggered", 1, 5, 1, 3, true, 0, 0, 0],
-    "merlin back from bermuda": [1098, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "LONG LIVE THE KING! Your characters named
+	"merlin back from bermuda": [1098, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Sapphire", "LONG LIVE THE KING! Your characters named
 Arthur gain Resist +1. (Damage dealt to them is
 reduced by 1.)", "static", 1, 4, 2, 4, true, 0, 0, 0],
-    "pacha emperor's guide": [1099, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "HELPFUL SUPPLIES At the start of your turn, if you
+	"pacha emperor's guide": [1099, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "HELPFUL SUPPLIES At the start of your turn, if you
 have an item in play, gain 1 lore.\nPERFECT DIRECTIONS At the start of your turn, if
 you have a location in play, gain 1 lore.", "triggered, triggered", 0, 4, 2, 3, true, 0, 0, 0],
-    "the queen fairest of all": [1100, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"the queen fairest of all": [1100, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named The Queen.)\nWard (Opponents can't choose this character except to
 challenge.)\nREFLECTIONS OF VANITY For each other character named
 The Queen you have in play, this character gets +1 ◊.", "keyword, keyword, static", 2, 6, 1, 5, true, 0, 0, 0],
-    "sheriff of nottingham bushel britches": [1101, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "EVERY LITTLE BIT HELPS For each item you have in
+	"sheriff of nottingham bushel britches": [1101, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "EVERY LITTLE BIT HELPS For each item you have in
 play, you pay 1 ⬡ less to play this character.\nSupport (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "static, keyword", 5, 9, 4, 9, false, 0, 0, 0],
-    "chicha dedicated mother": [1184, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Sapphire", "Support (Whenever this character quests, you may add
+	"chicha dedicated mother": [1184, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Sapphire", "Support (Whenever this character quests, you may add
 their ¤ to another chosen character's ¤ this turn.)\nONE ON THE WAY During your turn, when you put a card
 into your inkwell, if it's the second card you've put into
 your inkwell this turn, you may draw a card.", "keyword, triggered", 2, 1, 1, 2, false, 0, 0, 0],
-    "prince john gold lover": [1180, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Sapphire", "BEAUTIFUL, LOVELY TAXES ⟳ — Play an item from
+	"prince john gold lover": [1180, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Sapphire", "BEAUTIFUL, LOVELY TAXES ⟳ — Play an item from
 your hand or discard with cost 5 or less for free,
 exerted.", "activated", 3, 4, 1, 4, true, 0, 0, 0],
-    "the queen crown of the council": [1104, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "Ward (Opponents can't choose this character except to
+	"the queen crown of the council": [1104, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "Ward (Opponents can't choose this character except to
 challenge.)\nGATHERER OF THE WICKED When you play this character,
 look at the top 3 cards of your deck. You may reveal any
 number of character cards named The Queen and put them
 into your hand. Put the rest on the bottom of your deck in
 any order.", "keyword, triggered", 3, 2, 2, 4, false, 0, 0, 0],
-    "kuzco selfish emperor": [1105, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "OUTPLACEMENT When you play this character, you
+	"kuzco selfish emperor": [1105, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Sapphire", "OUTPLACEMENT When you play this character, you
 may put chosen item or location into its player's inkwell
 facedown and exerted.\nBY INVITE ONLY 4 ⬡ — Your other characters gain
 Resist +1 until the start of your next turn. (Damage
 dealt to them is reduced by 1.)", "triggered, activated", 3, 5, 2, 6, true, 0, 0, 0],
-    "mufasa ruler of pride rock": [1173, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "A DELICATE BALANCE When you play this character,
+	"mufasa ruler of pride rock": [1173, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "A DELICATE BALANCE When you play this character,
 exert all cards in your inkwell, then return 2 cards at
 random from your inkwell to your hand.\nEVERYTHING THE LIGHT TOUCHES Whenever this
 character quests, ready all cards in your inkwell.", "triggered, triggered", 4, 9, 4, 8, false, 0, 0, 0],
-    "ludwig von drake self-proclaimed genius": [1107, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "", "", 4, 4, 3, 5, true, 0, 0, 0],
-    "minnie mouse quick-thinking inventor": [1108, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "CAKE CATAPULT When you play this character,
+	"ludwig von drake self-proclaimed genius": [1107, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "", "", 4, 4, 3, 5, true, 0, 0, 0],
+	"minnie mouse quick-thinking inventor": [1108, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "CAKE CATAPULT When you play this character,
 chosen character gets -2 ¤ this turn.", "triggered", 1, 2, 1, 1, false, 0, 0, 0],
-    "basil practiced detective": [1109, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"basil practiced detective": [1109, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 1, 1, 1, true, 0, 0, 0],
-    "king candy sweet abomination": [1174, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"king candy sweet abomination": [1174, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named King Candy.)\nCHANGING THE CODE When you play this
 character, you may draw 2 cards, then put a card
 from your hand on the bottom of your deck.", "keyword, triggered", 3, 3, 2, 5, false, 0, 0, 0],
-    "donald duck focused flatfoot": [1111, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "BAFFLING MYSTERY When you play this character,
+	"donald duck focused flatfoot": [1111, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "BAFFLING MYSTERY When you play this character,
 you may put the top card of your deck into your
 inkwell facedown and exerted.", "triggered", 3, 4, 2, 5, true, 0, 0, 0],
-    "tanana wise woman": [1112, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "YOUR BROTHERS NEED GUIDANCE When you play
+	"tanana wise woman": [1112, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "YOUR BROTHERS NEED GUIDANCE When you play
 this character, you may remove up to 1 damage
 from chosen character or location.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "tipo growing son": [1113, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "MEASURE ME AGAIN When you play this
+	"tipo growing son": [1113, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "MEASURE ME AGAIN When you play this
 character, you may put a card from your hand into
 your inkwell facedown and exerted.", "triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "belle of the ball": [1114, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"belle of the ball": [1114, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nUSHERED INTO THE PARTY When you play this
 character, your other characters gain Ward until
 the start of your next turn.", "keyword, triggered", 2, 3, 2, 4, false, 0, 0, 0],
-    "merlin intellectual visionary": [1115, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"merlin intellectual visionary": [1115, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Merlin.)\nOVERDEVELOPED BRAIN When you play this character,
 if you used Shift to play him, you may search your deck
 for any card, put that card into your hand, then shuffle
 your deck.", "keyword, triggered", 3, 7, 2, 6, false, 0, 0, 0],
-    "vision of the future": [1116, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "royal tantrum": [1175, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "", "", 0, 0, 0, 4, false, 0, 0, 0],
-    "ever as before": [1118, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this song for
+	"vision of the future": [1116, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"royal tantrum": [1175, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "", "", 0, 0, 0, 4, false, 0, 0, 0],
+	"ever as before": [1118, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ae1e7198bc3074ff1b2e9ff520c30bc1898d038e.jpg", "Sapphire", "(A character with cost 2 or more can ⟳ to sing this song for
 free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "hide away": [1119, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "all funned out": [1120, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "medal of heroes": [1121, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "CONGRATULATIONS, SOLDIER ⟳, 2 ⬡, Banish this item
+	"hide away": [1119, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"all funned out": [1120, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"medal of heroes": [1121, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "CONGRATULATIONS, SOLDIER ⟳, 2 ⬡, Banish this item
 — Chosen character of yours gets +2 ◊ this turn.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "basil's magnifying glass": [1122, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "FIND WHAT'S HIDDEN ⟳, 2 ⬡ — Look at the top 3
+	"basil's magnifying glass": [1122, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "FIND WHAT'S HIDDEN ⟳, 2 ⬡ — Look at the top 3
 cards of your deck. You may reveal an item card and
 put it into your hand. Put the rest on the bottom of
 your deck in any order.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "merlin's carpetbag": [1123, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "HOCKETY POCKETY ⟳, 1 ⬡ — Return an item card
+	"merlin's carpetbag": [1123, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "HOCKETY POCKETY ⟳, 1 ⬡ — Return an item card
 from your discard to your hand.", "activated", 0, 0, 0, 5, false, 0, 0, 0],
-    "sapphire chromicon": [1124, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "POWERING UP This item enters play exerted.\nSAPPHIRE LIGHT ⟳, 2 ⬡, Banish one of your items —
+	"sapphire chromicon": [1124, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "POWERING UP This item enters play exerted.\nSAPPHIRE LIGHT ⟳, 2 ⬡, Banish one of your items —
 Gain 2 lore.", "static, activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "the great illuminary radiant ballroom": [1125, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "WARM WELCOME Characters with Support get +1 ◊ and +2 ⛉ while here.", "static", 0, 9, 0, 3, true, 0, 0, 0],
-    "merlin's cottage the wizard's home": [1126, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "KNOWLEDGE IS POWER Each player plays with the top card of their deck
+	"the great illuminary radiant ballroom": [1125, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "WARM WELCOME Characters with Support get +1 ◊ and +2 ⛉ while here.", "static", 0, 9, 0, 3, true, 0, 0, 0],
+	"merlin's cottage the wizard's home": [1126, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "KNOWLEDGE IS POWER Each player plays with the top card of their deck
 face up.", "static", 0, 7, 0, 1, true, 0, 0, 0],
-    "stitch team underdog": [1185, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Steel", "HEAVE HO! When you play this character, you
+	"stitch team underdog": [1185, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Steel", "HEAVE HO! When you play this character, you
 may deal 2 damage to chosen character.", "triggered", 1, 4, 1, 4, false, 0, 0, 0],
-    "jafar tyrannical hypnotist": [1128, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "Challenger +7 (While challenging, this character
+	"jafar tyrannical hypnotist": [1128, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "Challenger +7 (While challenging, this character
 gets +7 ¤.)\nINTIMIDATING GAZE Opposing characters with
 cost 4 or less can't challenge.", "keyword, static", 0, 7, 2, 6, true, 0, 0, 0],
-    "simba lost prince": [1129, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "FACE THE PAST During your turn, whenever
+	"simba lost prince": [1129, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "FACE THE PAST During your turn, whenever
 this character banishes another character in a
 challenge, you may draw a card.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "rudy groove disrupter": [1130, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "royal guard bovine protector": [1131, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "", "", 1, 7, 1, 4, true, 0, 0, 0],
-    "mickey mouse food fight defender": [1132, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"rudy groove disrupter": [1130, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"royal guard bovine protector": [1131, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "", "", 1, 7, 1, 4, true, 0, 0, 0],
+	"mickey mouse food fight defender": [1132, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword", 1, 2, 1, 1, true, 0, 0, 0],
-    "sleepy sluggish knight": [1133, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"sleepy sluggish knight": [1133, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 0, 4, 1, 2, true, 0, 0, 0],
-    "kronk unlicensed investigator": [1134, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Challenger +1 (While challenging, this character
+	"kronk unlicensed investigator": [1134, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "Challenger +1 (While challenging, this character
 gets +1 ¤.)", "keyword", 1, 4, 1, 2, true, 0, 0, 0],
-    "heihei protective rooster": [1135, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"heihei protective rooster": [1135, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 4, 5, 2, 5, true, 0, 0, 0],
-    "sneezy noisy knight": [1136, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "HEADWIND When you play this character, chosen
+	"sneezy noisy knight": [1136, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "HEADWIND When you play this character, chosen
 Knight character gains Challenger +2 this turn.
 (They get +2 ¤ while challenging.)", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "dopey knight apprentice": [1137, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "STRONGER TOGETHER When you play this
+	"dopey knight apprentice": [1137, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "STRONGER TOGETHER When you play this
 character, if you have another Knight character in
 play, you may deal 1 damage to chosen character
 or location.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "namaari resolute daughter": [1138, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "I DON'T HAVE ANY OTHER CHOICE For each
+	"namaari resolute daughter": [1138, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "I DON'T HAVE ANY OTHER CHOICE For each
 opposing character banished in a challenge this
 turn, you pay 2 ⬡ less to play this character.\nResist +3 (Damage dealt to this character is
 reduced by 3.)", "static, keyword", 5, 5, 3, 9, false, 0, 0, 0],
-    "snow white fair-hearted": [1176, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "NATURAL LEADER This character gains Resist +1
+	"snow white fair-hearted": [1176, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "NATURAL LEADER This character gains Resist +1
 for each other Knight character you have in play.
 (Damage dealt to this character is reduced by 1
 for each other Knight.)", "static", 3, 5, 3, 5, false, 0, 0, 0],
-    "yzma unjustly treated": [1140, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I'M WARNING YOU! During your turn, whenever
+	"yzma unjustly treated": [1140, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "I'M WARNING YOU! During your turn, whenever
 one of your characters banishes a character in
 a challenge, you may deal 1 damage to chosen
 character.", "triggered", 1, 4, 2, 4, false, 0, 0, 0],
-    "kronk head of security": [1141, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"kronk head of security": [1141, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Kronk.)\nARE YOU ON THE LIST? During your turn, whenever this
 character banishes another character in a challenge, you
 may play a character with cost 5 or less for free.", "keyword, triggered", 6, 6, 1, 7, false, 0, 0, 0],
-    "grumpy skeptical knight": [1142, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "BOON OF RESILIENCE While one of your Knight
+	"grumpy skeptical knight": [1142, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "BOON OF RESILIENCE While one of your Knight
 characters is at a location, that character gains Resist
 +2. (Damage dealt to them is reduced by 2.)\nBURST OF SPEED During your turn, this character gains
 Evasive. (They can challenge characters with Evasive.)", "static, static", 3, 1, 1, 3, true, 0, 0, 0],
-    "pete wrestling champ": [1143, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "RE-PETE ⟳ - Reveal the top card of your deck.
+	"pete wrestling champ": [1143, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "RE-PETE ⟳ - Reveal the top card of your deck.
 If it's a character card named Pete, you may play
 it for free.", "activated", 1, 3, 1, 3, false, 0, 0, 0],
-    "sir ector castle lord": [1144, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "", "", 7, 10, 3, 7, false, 0, 0, 0],
-    "bashful adoring knight": [1145, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "IMPRESS THE PRINCESS While you have a
+	"sir ector castle lord": [1144, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "", "", 7, 10, 3, 7, false, 0, 0, 0],
+	"bashful adoring knight": [1145, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "IMPRESS THE PRINCESS While you have a
 character named Snow White in play, this
 character gains Bodyguard. (An opposing
 character who challenges one of your characters
 must choose one with Bodyguard if able.)", "static", 3, 4, 1, 4, true, 0, 0, 0],
-    "arthur wart": [1146, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "happy lively knight": [1147, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "BURST OF SPEED During your turn, this character
+	"arthur wart": [1146, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"happy lively knight": [1147, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "BURST OF SPEED During your turn, this character
 gains Evasive. (They can challenge characters
 with Evasive.)", "static", 2, 1, 1, 1, true, 0, 0, 0],
-    "simba son of mufasa": [1148, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"simba son of mufasa": [1148, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Simba.)\nFEARSOME ROAR When you play this character,
 you may banish chosen item or location.", "keyword, triggered", 3, 5, 1, 6, true, 0, 0, 0],
-    "doc bold knight": [1149, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "DRASTIC MEASURES When you play this
+	"doc bold knight": [1149, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "DRASTIC MEASURES When you play this
 character, you may discard your hand to draw
 2 cards.", "triggered", 1, 3, 1, 2, false, 0, 0, 0],
-    "arthur king victorious": [1177, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"arthur king victorious": [1177, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Arthur.)\nKNIGHTED BY THE KING When you play this character,
 chosen character gains Challenger +2 and Resist +2 and
 can challenge ready characters this turn. (They get +2 ¤
 while challenging. Damage dealt to them is reduced by 2.)", "keyword, triggered", 3, 6, 3, 7, false, 0, 0, 0],
-    "pete games referee": [1151, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "BLOW THE WHISTLE When you play this character,
+	"pete games referee": [1151, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "BLOW THE WHISTLE When you play this character,
 opponents can't play actions until the start of
 your next turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "tug-of-war": [1152, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 5, true, 0, 0, 0],
-    "when will my life begin": [1153, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
+	"tug-of-war": [1152, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 0, 0, 0, 5, true, 0, 0, 0],
+	"when will my life begin": [1153, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "duck for cover": [1154, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "food fight": [1155, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "shield of arendelle": [1156, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "DEFLECT Banish this item — Chosen character gains
+	"duck for cover": [1154, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"food fight": [1155, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"shield of arendelle": [1156, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "DEFLECT Banish this item — Chosen character gains
 Resist +1 until the start of your next turn. (Damage
 dealt to them is reduced by 1.)", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "plate armor": [1157, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "WELL CRAFTED ⟳ — Chosen character gains Resist +2
+	"plate armor": [1157, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "WELL CRAFTED ⟳ — Chosen character gains Resist +2
 until the start of your next turn. (Damage dealt to them
 is reduced by 2.)", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "steel chromicon": [1158, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "STEEL LIGHT ⟳ — Deal 1 damage to chosen character.", "activated", 0, 0, 0, 6, false, 0, 0, 0],
-    "bad-anon villain support center": [1178, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "THERE'S NO ONE I'D RATHER BE THAN ME Villain characters gain “⟳, 3 ⬡ —
+	"steel chromicon": [1158, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "STEEL LIGHT ⟳ — Deal 1 damage to chosen character.", "activated", 0, 0, 0, 6, false, 0, 0, 0],
+	"bad-anon villain support center": [1178, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "THERE'S NO ONE I'D RATHER BE THAN ME Villain characters gain “⟳, 3 ⬡ —
 Play a character with the same name as this character for free” while here.", "static", 0, 7, 1, 3, true, 0, 0, 0],
-    "seven dwarfs' mine secure fortress": [1160, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "MOUNTAIN DEFENSE During your turn, the first time you move a
+	"seven dwarfs' mine secure fortress": [1160, "https://api.lorcana.ravensburger.com/images/en/set5/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "MOUNTAIN DEFENSE During your turn, the first time you move a
 character here, you may deal 1 damage to chosen character. If the
 moved character is a Knight, deal 2 damage instead.", "static", 0, 6, 1, 2, true, 0, 0, 0],
-    "owl pirate lookout": [1200, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "WELL SPOTTED During your turn, whenever a card
+	"owl pirate lookout": [1200, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber", "WELL SPOTTED During your turn, whenever a card
 is put into your inkwell, chosen opposing character
 gets -1 ¤ until the start of your next turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "lilo escape artist": [1431, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "NO PLACE I'D RATHER BE At the start of your turn,
+	"lilo escape artist": [1431, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "NO PLACE I'D RATHER BE At the start of your turn,
 if this card is in your discard, you may play her
 and she enters play exerted.", "triggered", 1, 2, 2, 2, true, 0, 0, 0],
-    "winnie the pooh hunny pirate": [1202, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Support (Whenever this character quests, you
+	"winnie the pooh hunny pirate": [1202, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nWE'RE PIRATES, YOU SEE Whenever this character
 quests, you pay 1 ⬡ less for the next Pirate
 character you play this turn.", "keyword, triggered", 2, 2, 1, 2, false, 0, 0, 0],
-    "gopher ship's carpenter": [1203, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "", "", 1, 6, 2, 4, true, 0, 0, 0],
-    "simba happy-go-lucky": [1204, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "", "", 1, 4, 1, 2, true, 0, 0, 0],
-    "chip friend indeed": [1205, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "DALE'S PARTNER When you play this character,
+	"gopher ship's carpenter": [1203, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1b6453892473a467d07372d45eb05abc2031647a.jpg", "Amber", "", "", 1, 6, 2, 4, true, 0, 0, 0],
+	"simba happy-go-lucky": [1204, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "", "", 1, 4, 1, 2, true, 0, 0, 0],
+	"chip friend indeed": [1205, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "DALE'S PARTNER When you play this character,
 chosen character gets +1 ◊ this turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "dale friend in need": [1206, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "CHIP'S PARTNER This character enters play
+	"dale friend in need": [1206, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber", "CHIP'S PARTNER This character enters play
 exerted unless you have a character named Chip
 in play.", "static", 3, 4, 2, 3, true, 0, 0, 0],
-    "david impressive surfer": [1207, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "SHOWING OFF While you have a character named
+	"david impressive surfer": [1207, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "SHOWING OFF While you have a character named
 Nani in play, this character gets +2 ◊.", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "prince naveen vigilant first mate": [1208, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"prince naveen vigilant first mate": [1208, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Prince Naveen.)\nBodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)", "keyword, keyword", 2, 6, 2, 5, true, 0, 0, 0],
-    "prince naveen carefree explorer": [1209, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "chief bogo gazelle fan": [1210, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "YOU LIKE GAZELLE TOO? While you have a
+	"prince naveen carefree explorer": [1209, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"chief bogo gazelle fan": [1210, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber", "YOU LIKE GAZELLE TOO? While you have a
 character named Gazelle in play, this character
 gains Singer 6. (This character counts as cost 6 to
 sing songs.)", "static", 4, 4, 1, 4, true, 0, 0, 0],
-    "chip ranger leader": [1211, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "THE VALUE OF FRIENDSHIP While you have a
+	"chip ranger leader": [1211, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber", "THE VALUE OF FRIENDSHIP While you have a
 character named Dale in play, this character gains
 Support. (Whenever they quest, you may add their
 ¤ to another chosen character's ¤ this turn.)", "static", 3, 4, 2, 4, true, 0, 0, 0],
-    "monterey jack good-hearted ranger": [1212, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 0, 7, 2, 4, true, 0, 0, 0],
-    "chip 'n' dale recovery rangers": [1404, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"monterey jack good-hearted ranger": [1212, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber", "", "", 0, 7, 2, 4, true, 0, 0, 0],
+	"chip 'n' dale recovery rangers": [1404, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Chip or Dale.)\n(This character counts as being named both Chip and Dale.)\nSEARCH AND RESCUE During your turn, whenever a card
 is put into your inkwell, you may return a character card
 from your discard to your hand.", "keyword, static, triggered", 6, 6, 3, 8, false, 0, 0, 0],
-    "judy hopps resourceful rabbit": [1214, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Support (Whenever this character quests, you
+	"judy hopps resourceful rabbit": [1214, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nNEED SOME HELP? At the end of your turn, you
 may ready another chosen character of yours.", "keyword, triggered", 3, 6, 2, 6, true, 0, 0, 0],
-    "tiana restaurant owner": [1405, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "SPECIAL RESERVATION Whenever a character
+	"tiana restaurant owner": [1405, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber", "SPECIAL RESERVATION Whenever a character
 of yours is challenged while this character is
 exerted, the challenging character gets -3 ¤
 this turn unless their player pays 3 ⬡.", "triggered", 1, 4, 2, 3, false, 0, 0, 0],
-    "grand councilwoman federation leader": [1216, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "FIND IT! Whenever this character quests, your
+	"grand councilwoman federation leader": [1216, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "FIND IT! Whenever this character quests, your
 other Alien characters get +1 ◊ this turn.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "dale mischievous ranger": [1217, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "NUTS ABOUT PRANKS When you play this
+	"dale mischievous ranger": [1217, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "NUTS ABOUT PRANKS When you play this
 character, you may put the top 3 cards of your
 deck into your discard to give chosen character
 -3 ¤ until the start of your next turn.", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "nani caring sister": [1218, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Support (Whenever this character quests, you
+	"nani caring sister": [1218, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nI AM SO SORRY 2 ⬡ — Chosen character gets
 -1 ¤ until the start of your next turn.", "keyword, activated", 3, 5, 2, 5, true, 0, 0, 0],
-    "simba pride protector": [1219, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"simba pride protector": [1219, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Simba.)\nUNDERSTAND THE BALANCE At the end of your
 turn, if this character is exerted, you may ready
 your other characters.", "keyword, triggered", 4, 4, 2, 5, false, 0, 0, 0],
-    "kanga nurturing mother": [1220, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "SAFE AND SOUND Whenever this character
+	"kanga nurturing mother": [1220, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber", "SAFE AND SOUND Whenever this character
 quests, another chosen character of yours can't
 be challenged until the start of your next turn.", "triggered", 2, 4, 1, 3, false, 0, 0, 0],
-    "rabbit indignant pirate": [1221, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "BE MORE CAREFUL When you play this character,
+	"rabbit indignant pirate": [1221, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber", "BE MORE CAREFUL When you play this character,
 you may remove up to 1 damage from chosen
 character.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "roo littlest pirate": [1222, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "I'M A PIRATE TOO! When you play this character,
+	"roo littlest pirate": [1222, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "I'M A PIRATE TOO! When you play this character,
 you may give chosen character -2 ¤ until the
 start of your next turn.", "triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "mr litwak arcade owner": [1223, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "THE GANG'S ALL HERE Once during your turn,
+	"mr litwak arcade owner": [1223, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "THE GANG'S ALL HERE Once during your turn,
 whenever you play another character, you may
 ready this character. He can't quest or challenge
 for the rest of this turn.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "jim hawkins honorable pirate": [1224, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"jim hawkins honorable pirate": [1224, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nHIRE A CREW When you play this character, look at the
 top 4 cards of your deck. You may reveal any number of
 Pirate character cards and put them into your hand. Put
 the rest on the bottom of your deck in any order.", "keyword, triggered", 4, 7, 2, 7, true, 0, 0, 0],
-    "stitch little trickster": [1225, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Emerald", "NEED A HAND? 1 ⬡ — This character gets +1 ¤
+	"stitch little trickster": [1225, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Emerald", "NEED A HAND? 1 ⬡ — This character gets +1 ¤
 this turn.", "activated", 1, 3, 1, 2, true, 0, 0, 0],
-    "good job": [1226, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "i won't give in": [1227, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"good job": [1226, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"i won't give in": [1227, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "rescue rangers away": [1425, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "safe and sound": [1229, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "naveen's ukulele": [1230, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "MAKE IT SING 1 ⬡, Banish this item — Chosen character
+	"rescue rangers away": [1425, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"safe and sound": [1229, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"naveen's ukulele": [1230, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "MAKE IT SING 1 ⬡, Banish this item — Chosen character
 counts as having +3 cost to sing songs this turn.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "pooh pirate ship": [1231, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "MAKE A RESCUE ⟳, 3 ⬡ — Return a Pirate character
+	"pooh pirate ship": [1231, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber", "MAKE A RESCUE ⟳, 3 ⬡ — Return a Pirate character
 card from your discard to your hand.", "activated", 0, 0, 0, 1, false, 0, 0, 0],
-    "scrump": [1232, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "I MADE HER ⟳ one of your characters — Chosen
+	"scrump": [1232, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b6692ea5df920cad691c20319a6fffd7a4a766b8.jpg", "Amber", "I MADE HER ⟳ one of your characters — Chosen
 character gets -2 ¤ until the start of your next turn.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "hundred acre island pooh's home": [1233, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "FRIENDS FOREVER During an opponent's turn, whenever a character is
+	"hundred acre island pooh's home": [1233, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "FRIENDS FOREVER During an opponent's turn, whenever a character is
 banished while here, gain 1 lore.", "triggered", 0, 5, 0, 1, true, 0, 0, 0],
-    "sugar rush speedway finish line": [1406, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "BRING IT HOME, KID! When you move a character here from a
+	"sugar rush speedway finish line": [1406, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber", "BRING IT HOME, KID! When you move a character here from a
 location, you may banish this location to gain 3 lore and draw 3 cards.", "triggered", 0, 7, 0, 2, false, 0, 0, 0],
-    "hades lord of the dead": [1235, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "SOUL COLLECTOR During an opponent's turn,
+	"hades lord of the dead": [1235, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amethyst", "SOUL COLLECTOR During an opponent's turn,
 whenever one of your other characters is
 banished, gain 2 lore.", "triggered", 3, 4, 3, 6, false, 0, 0, 0],
-    "madam mim tiny adversary": [1236, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "Challenger +1 (While challenging, this character
+	"madam mim tiny adversary": [1236, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amethyst", "Challenger +1 (While challenging, this character
 gets +1 ¤.)\nZIM ZABBERIM BIM Your other characters gain
 Challenger +1.", "keyword, static", 0, 3, 1, 2, true, 0, 0, 0],
-    "genie excited shipbuilder": [1237, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "sisu in her element": [1238, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "Challenger +2 (While challenging, this character gets
+	"genie excited shipbuilder": [1237, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"sisu in her element": [1238, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amethyst", "Challenger +2 (While challenging, this character gets
 +2 ¤.)", "keyword", 3, 6, 2, 5, true, 0, 0, 0],
-    "the white rose jewel of the garden": [1239, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "A WEALTH OF HAPPINESS When you play this
+	"the white rose jewel of the garden": [1239, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amethyst", "A WEALTH OF HAPPINESS When you play this
 character, gain 1 lore.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "juju mama odie's companion": [1240, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "BEES' KNEES When you play this character, move 1
+	"juju mama odie's companion": [1240, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amethyst", "BEES' KNEES When you play this character, move 1
 damage counter from chosen character to chosen
 opposing character.", "triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "rafiki shaman of the savanna": [1241, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "tinker bell fast flier": [1242, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"rafiki shaman of the savanna": [1241, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amethyst", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"tinker bell fast flier": [1242, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 1, 3, 2, 3, true, 0, 0, 0],
-    "the carpenter dinner companion": [1243, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "I'LL GET YOU! When this character is banished,
+	"the carpenter dinner companion": [1243, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/98fbc42faedc02492397cb5962ea3a3ffc0a9243.jpg", "Amethyst", "I'LL GET YOU! When this character is banished,
 you may exert chosen character.", "triggered", 1, 1, 1, 2, true, 0, 0, 0],
-    "iago reappearing parrot": [1244, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "GUESS WHO When this character is banished in a
+	"iago reappearing parrot": [1244, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "GUESS WHO When this character is banished in a
 challenge, return this card to your hand.", "triggered", 4, 2, 1, 4, true, 0, 0, 0],
-    "the walrus greedy gourmand": [1245, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "", "", 3, 6, 1, 4, true, 0, 0, 0],
-    "scar tempestuous lion": [1246, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"the walrus greedy gourmand": [1245, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "", "", 3, 6, 1, 4, true, 0, 0, 0],
+	"scar tempestuous lion": [1246, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)\nChallenger +3 (While challenging, this character
 gets +3 ¤.)", "keyword, keyword", 4, 4, 2, 6, false, 0, 0, 0],
-    "tinker bell queen of the azurite fairies": [1247, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"tinker bell queen of the azurite fairies": [1247, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Tinker Bell.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nSHINING EXAMPLE Whenever this character quests, your
 other Fairy characters get +1 ◊ this turn.", "keyword, keyword, triggered", 5, 6, 2, 7, true, 0, 0, 0],
-    "diablo obedient raven": [1248, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "FLY, MY PET! When this character is banished,
+	"diablo obedient raven": [1248, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "FLY, MY PET! When this character is banished,
 you may draw a card.", "triggered", 0, 1, 1, 1, true, 0, 0, 0],
-    "march hare absurd host": [1249, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "Rush (This character can challenge the turn
+	"march hare absurd host": [1249, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "Rush (This character can challenge the turn
 they're played.)", "keyword", 2, 3, 2, 4, true, 0, 0, 0],
-    "magic carpet amazing flier": [1250, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "", "", 1, 3, 3, 3, true, 0, 0, 0],
-    "rafiki ethereal guide": [1407, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 7 (You may pay 7 ⬡ to play this on top of
+	"magic carpet amazing flier": [1250, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b7eb6c689c037217079766fdb77c3bac3e51cb4c.jpg", "Amethyst", "", "", 1, 3, 3, 3, true, 0, 0, 0],
+	"rafiki ethereal guide": [1407, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amethyst", "Shift 7 (You may pay 7 ⬡ to play this on top of
 one of your characters named Rafiki.)\nASTRAL ATTUNEMENT During your turn,
 whenever a card is put into your inkwell, you
 may draw a card.", "keyword, triggered", 6, 6, 4, 9, false, 0, 0, 0],
-    "genie wish fulfilled": [1252, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"genie wish fulfilled": [1252, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nWHAT COMES NEXT? When you play this
 character, draw a card.", "keyword, triggered", 2, 4, 2, 4, false, 0, 0, 0],
-    "sisu uniting dragon": [1253, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "TRUST BUILDS TRUST Whenever this character
+	"sisu uniting dragon": [1253, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst", "TRUST BUILDS TRUST Whenever this character
 quests, reveal the top card of your deck. If it's a
 Dragon character card, put it into your hand and
 repeat this effect. Otherwise, put it on either the
 top or the bottom of your deck.", "triggered", 3, 3, 2, 4, false, 0, 0, 0],
-    "madam mim truly marvelous": [1254, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "OH, BAT GIZZARDS 2 ⬡, Choose and discard a
+	"madam mim truly marvelous": [1254, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "OH, BAT GIZZARDS 2 ⬡, Choose and discard a
 card — Gain 1 lore.", "activated", 2, 3, 1, 3, false, 0, 0, 0],
-    "yzma conniving chemist": [1408, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "FEEL THE POWER ⟳ — If you have fewer than
+	"yzma conniving chemist": [1408, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "FEEL THE POWER ⟳ — If you have fewer than
 3 cards in your hand, draw until you have 3
 cards in your hand.", "activated", 3, 3, 2, 4, true, 0, 0, 0],
-    "mama odie solitary sage": [1256, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "I'VE GOT TO DO EVERYTHING AROUND HERE
+	"mama odie solitary sage": [1256, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst", "I'VE GOT TO DO EVERYTHING AROUND HERE
 Whenever you play a song, you may move up to
 2 damage counters from chosen character to
 chosen opposing character.", "triggered", 4, 5, 1, 5, false, 0, 0, 0],
-    "peter pan shadow catcher": [1257, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "GOTCHA! During your turn, whenever a card
+	"peter pan shadow catcher": [1257, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "GOTCHA! During your turn, whenever a card
 is put into your inkwell, exert chosen opposing
 character.", "triggered", 1, 3, 1, 4, false, 0, 0, 0],
-    "mad hatter eccentric host": [1258, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "WE'LL HAVE TO LOOK INTO THIS Whenever this
+	"mad hatter eccentric host": [1258, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "WE'LL HAVE TO LOOK INTO THIS Whenever this
 character quests, you may look at the top card of
 chosen player's deck. Put it on top of their deck
 or into their discard.", "triggered", 1, 1, 1, 1, true, 0, 0, 0],
-    "a very merry unbirthday": [1259, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "genie wonderful trickster": [1260, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"a very merry unbirthday": [1259, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "(A character with cost 1 or more can ⟳ to sing this song for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
+	"genie wonderful trickster": [1260, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Genie.)\nYOUR REWARD AWAITS Whenever you play a card, draw a card.\nFORBIDDEN TREASURE At the end of your turn, put all the
 cards in your hand on the bottom of your deck in any order.", "keyword, triggered, triggered", 4, 7, 2, 7, true, 0, 0, 0],
-    "making magic": [1261, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "lose the way": [1262, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "seeking the half crown": [1263, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "For each Sorcerer character you have in play, you pay 1 ⬡ less
+	"making magic": [1261, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"lose the way": [1262, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a17554a0d2b15a664c0e73900184544f19e70227.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"seeking the half crown": [1263, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst", "For each Sorcerer character you have in play, you pay 1 ⬡ less
 to play this action.", "static", 0, 0, 0, 5, false, 0, 0, 0],
-    "maleficent's staff": [1409, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "BACK, FOOLS! Whenever one of your opponents'
+	"maleficent's staff": [1409, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst", "BACK, FOOLS! Whenever one of your opponents'
 characters, items, or locations is returned to their
 hand from play, gain 1 lore.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "mad hatter's teapot": [1265, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "NO ROOM, NO ROOM ⟳, 1 ⬡ — Each opponent puts
+	"mad hatter's teapot": [1265, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst", "NO ROOM, NO ROOM ⟳, 1 ⬡ — Each opponent puts
 the top card of their deck into their discard.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "pixie dust": [1266, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "FAITH AND TRUST ⟳, 2 ⬡ — Chosen character gains
+	"pixie dust": [1266, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst", "FAITH AND TRUST ⟳, 2 ⬡ — Chosen character gains
 Challenger +2 and Evasive until the start of your
 next turn. (While challenging, they get +2 ¤. Only
 characters with Evasive can challenge them.)", "activated", 0, 0, 0, 4, false, 0, 0, 0],
-    "fairy ship royal vessel": [1267, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "", "", 0, 4, 1, 1, true, 0, 0, 0],
-    "mystical tree mama odie's home": [1268, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Amethyst", "NOT BAD At the start of your turn, you may move 1 damage counter from chosen
+	"fairy ship royal vessel": [1267, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst", "", "", 0, 4, 1, 1, true, 0, 0, 0],
+	"mystical tree mama odie's home": [1268, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Amethyst", "NOT BAD At the start of your turn, you may move 1 damage counter from chosen
 character here to chosen opposing character.\nHARD-EARNED WISDOM At the start of your turn, if you have a character named Mama
 Odie here, gain 1 lore.", "triggered, triggered", 0, 7, 0, 2, true, 0, 0, 0],
-    "jasmine royal seafarer": [1269, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "BY ORDER OF THE PRINCESS When you play this
+	"jasmine royal seafarer": [1269, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Emerald", "BY ORDER OF THE PRINCESS When you play this
 character, choose one:
 • Exert chosen damaged character.
 • Chosen opposing character gains Reckless
 during their next turn. (They can't quest and must
 challenge if able.)", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "captain hook underhanded": [1270, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "INSPIRES DREAD While this character is exerted,
+	"captain hook underhanded": [1270, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Emerald", "INSPIRES DREAD While this character is exerted,
 opposing Pirate characters can't quest.\nUPPER HAND Whenever this character is
 challenged, draw a card.", "static, triggered", 1, 4, 2, 3, true, 0, 0, 0],
-    "stitch alien buccaneer": [1423, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"stitch alien buccaneer": [1423, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Stitch.)\nREADY FOR ACTION When you play this character,
 if you used Shift to play him, you may put an action
 card from your discard on the top of your deck.", "keyword, triggered", 3, 4, 2, 4, false, 0, 0, 0],
-    "go go tomago darting dynamo": [1272, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"go go tomago darting dynamo": [1272, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/35e995c107a71caeb833bb3b79f9f54781b33fa1.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nSTOP WHINING, WOMAN UP When you play this
 character, you may pay 2 ⬡ to gain lore equal to
 the damage on chosen opposing character.", "keyword, triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "honey lemon chemical genius": [1426, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Emerald", "HERE'S THE BEST PART When you play this
+	"honey lemon chemical genius": [1426, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Emerald", "HERE'S THE BEST PART When you play this
 character, you may pay 2 ⬡ to have each
 opponent choose and discard a card.", "triggered", 1, 1, 2, 2, true, 0, 0, 0],
-    "fred mascot by day": [1274, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "HOW COOL IS THAT Whenever this character is
+	"fred mascot by day": [1274, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Emerald", "HOW COOL IS THAT Whenever this character is
 challenged, gain 2 lore.", "triggered", 1, 1, 1, 1, true, 0, 0, 0],
-    "tootles lost boy": [1275, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "dawson basil's assistant": [1276, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "", "", 3, 4, 2, 4, true, 0, 0, 0],
-    "heathcliff stoic butler": [1277, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"tootles lost boy": [1275, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Emerald", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"dawson basil's assistant": [1276, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Emerald", "", "", 3, 4, 2, 4, true, 0, 0, 0],
+	"heathcliff stoic butler": [1277, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 3, 3, 2, 4, true, 0, 0, 0],
-    "basil hypnotized mouse": [1278, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
+	"basil hypnotized mouse": [1278, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "donald duck first mate": [1279, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "CAPTAIN ON DECK While you have a Captain
+	"donald duck first mate": [1279, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Emerald", "CAPTAIN ON DECK While you have a Captain
 character in play, this character gets +2 ◊.", "static", 2, 3, 1, 3, true, 0, 0, 0],
-    "daisy duck pirate captain": [1410, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "DISTANT SHORES Whenever one of your
+	"daisy duck pirate captain": [1410, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Emerald", "DISTANT SHORES Whenever one of your
 Pirate characters quests while at a location,
 draw a card.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "mertle edmonds lilo's rival": [1281, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "prince phillip royal explorer": [1282, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"mertle edmonds lilo's rival": [1281, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/76546f9a641ede2beab506b96df1688d889e629a.jpg", "Emerald", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"prince phillip royal explorer": [1282, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 3, 2, 2, 3, true, 0, 0, 0],
-    "jasmine royal commodore": [1283, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of
+	"jasmine royal commodore": [1283, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of
 one of your characters named Jasmine.)\nRULER OF THE SEAS When you play this character,
 if you used Shift to play her, return all other
 exerted characters to their players' hands.", "keyword, triggered", 5, 5, 2, 6, true, 0, 0, 0],
-    "peter pan never land prankster": [1284, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "LOOK INNOCENT This character enters play exerted.\nCAN'T TAKE A JOKE? While this character is exerted,
+	"peter pan never land prankster": [1284, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "LOOK INNOCENT This character enters play exerted.\nCAN'T TAKE A JOKE? While this character is exerted,
 each opposing player can't gain lore unless one of
 their characters has challenged this turn.", "static, static", 4, 6, 1, 7, true, 0, 0, 0],
-    "hercules baby demigod": [1285, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"hercules baby demigod": [1285, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nSTRONG LIKE HIS DAD 3 ⬡ — Deal 1 damage to
 chosen damaged character.", "keyword, activated", 6, 3, 2, 6, false, 0, 0, 0],
-    "alistair krei ambitious entrepreneur": [1286, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "AN EYE FOR TECH When you play this character,
+	"alistair krei ambitious entrepreneur": [1286, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "AN EYE FOR TECH When you play this character,
 if an opponent has an item in play, gain 1 lore.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "gazelle angel with horns": [1287, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "YOU CAN REALLY MOVE When you play this
+	"gazelle angel with horns": [1287, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "YOU CAN REALLY MOVE When you play this
 character, chosen character gains Evasive until
 the start of your next turn. (Only characters with
 Evasive can challenge them.)", "triggered", 1, 2, 1, 2, true, 0, 0, 0],
-    "goofy expert shipwright": [1288, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"goofy expert shipwright": [1288, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nCLEVER DESIGN Whenever this character quests,
 chosen character gains Ward until the start of
 your next turn.", "keyword, triggered", 1, 4, 3, 5, true, 0, 0, 0],
-    "bellwether assistant mayor": [1289, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "FEAR ALWAYS WORKS During your turn, whenever
+	"bellwether assistant mayor": [1289, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "FEAR ALWAYS WORKS During your turn, whenever
 a card is put into your inkwell, chosen opposing
 character gains Reckless during their next turn.
 (They can't quest and must challenge if able.)", "triggered", 2, 3, 1, 3, false, 0, 0, 0],
-    "basil disguised detective": [1411, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"basil disguised detective": [1411, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Basil.)\nTWISTS AND TURNS During your turn, whenever a
 card is put into your inkwell, you may pay 1 ⬡ to
 have chosen opponent choose and discard a card.", "keyword, triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "olivia flaversham the toymaker's daughter": [1291, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "", "", 1, 1, 3, 2, false, 0, 0, 0],
-    "bend to my will": [1292, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "", "", 0, 0, 0, 7, false, 0, 0, 0],
-    "prepare to board": [1293, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "heffalumps and woozles": [1294, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
+	"olivia flaversham the toymaker's daughter": [1291, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "", "", 1, 1, 3, 2, false, 0, 0, 0],
+	"bend to my will": [1292, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "", "", 0, 0, 0, 7, false, 0, 0, 0],
+	"prepare to board": [1293, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/215bb47da8fac3342b858ac3db09b033c6c46e0b.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"heffalumps and woozles": [1294, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "mosquito bite": [1295, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "you came back": [1412, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "megabot": [1297, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "HAPPY FACE This item enters play exerted.\nDESTROY! ⟳, Banish this item — Choose one:
+	"mosquito bite": [1295, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6fb84aed32facd1299ee1e77c8fd2b1a6352669e.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"you came back": [1412, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"megabot": [1297, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "HAPPY FACE This item enters play exerted.\nDESTROY! ⟳, Banish this item — Choose one:
 • Banish chosen item.
 • Banish chosen damaged character.", "static, activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "galactic communicator": [1298, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "RESOURCE ALLOCATION 1 ⬡, Banish this item — Return
+	"galactic communicator": [1298, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "RESOURCE ALLOCATION 1 ⬡, Banish this item — Return
 chosen character with 2 ¤ or less to their player's hand.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "transport pod": [1299, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "GIVE 'EM A SHOW At the start of your turn, you may
+	"transport pod": [1299, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "GIVE 'EM A SHOW At the start of your turn, you may
 move a character of yours to a location for free.", "triggered", 0, 0, 0, 1, true, 0, 0, 0],
-    "perilous maze watery labyrinth": [1300, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "LOST IN THE WAVES Whenever a character is challenged while here, each
+	"perilous maze watery labyrinth": [1300, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "LOST IN THE WAVES Whenever a character is challenged while here, each
 opponent chooses and discards a card.", "triggered", 0, 8, 1, 3, true, 0, 0, 0],
-    "owl island secluded entrance": [1301, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "TEAMWORK For each character you have here, you pay 1 ⬡ less for the first
+	"owl island secluded entrance": [1301, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "TEAMWORK For each character you have here, you pay 1 ⬡ less for the first
 action you play each turn.\nA LOT TO LEARN Whenever you play a second action in a turn, gain 3 lore.", "static, triggered", 0, 6, 0, 3, false, 0, 0, 0],
-    "mickey mouse pirate captain": [1430, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of one
+	"mickey mouse pirate captain": [1430, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of one
 of your characters named Mickey Mouse.)\nMARINER'S MIGHT Whenever this character quests,
 chosen Pirate character gets +2 ¤ and gains “This
 character takes no damage from challenges” this turn.", "keyword, triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "kakamora boarding party": [1303, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "Rush (This character can challenge the turn
+	"kakamora boarding party": [1303, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 5, 2, 1, 4, false, 0, 0, 0],
-    "kakamora pirate pitcher": [1304, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "DIZZYING SPEED When you play this character,
+	"kakamora pirate pitcher": [1304, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Ruby", "DIZZYING SPEED When you play this character,
 chosen Pirate character gains Evasive until the
 start of your next turn. (Only characters with
 Evasive can challenge them.)", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "jasmine rebellious princess": [1305, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "YOU'LL NEVER MISS IT Whenever this character
+	"jasmine rebellious princess": [1305, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Ruby", "YOU'LL NEVER MISS IT Whenever this character
 quests, each opponent loses 1 lore.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "raya kumandran rider": [1413, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "COME ON, LET'S DO THIS Once during your
+	"raya kumandran rider": [1413, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a15f42d1c524c306eb91c3df1216db248a8f224.jpg", "Ruby", "COME ON, LET'S DO THIS Once during your
 turn, whenever a card is put into your inkwell,
 you may ready another chosen character of
 yours. They can't quest for the rest of this turn.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "wendy darling courageous captain": [1307, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"wendy darling courageous captain": [1307, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nLOOK LIVELY, CREW! While you have another
 Pirate character in play, this character gets +1 ¤
 and +1 ◊.", "keyword, static", 1, 2, 1, 2, false, 0, 0, 0],
-    "john silver ferocious friend": [1308, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "CHART YOUR OWN COURSE Whenever this
+	"john silver ferocious friend": [1308, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Ruby", "CHART YOUR OWN COURSE Whenever this
 character quests, you may deal 1 damage to
 another chosen character of yours. If you do,
 ready that character. They can't quest for the rest
 of this turn.", "triggered", 2, 4, 2, 4, false, 0, 0, 0],
-    "vanellope von schweetz gutsy go-getter": [1309, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "AS READY AS I'LL EVER BE At the start of your turn,
+	"vanellope von schweetz gutsy go-getter": [1309, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5e796e48332af4142b10ca0f86e65d9bfdb05884.jpg", "Ruby", "AS READY AS I'LL EVER BE At the start of your turn,
 if this character is at a location, draw a card and
 gain 1 lore.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "michael darling playful swordsman": [1310, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "aladdin fearless navigator": [1311, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "markowski space trooper": [1312, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"michael darling playful swordsman": [1310, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Ruby", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"aladdin fearless navigator": [1311, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Ruby", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"markowski space trooper": [1312, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 2, 2, 4, true, 0, 0, 0],
-    "abu bold helmsman": [1313, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "Rush (This character can challenge the turn
+	"abu bold helmsman": [1313, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 4, 4, 2, 5, false, 0, 0, 0],
-    "mickey mouse courageous sailor": [1314, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "SOLID GROUND While this character is at a
+	"mickey mouse courageous sailor": [1314, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Ruby", "SOLID GROUND While this character is at a
 location, he gets +2 ¤.", "static", 2, 4, 1, 3, true, 0, 0, 0],
-    "adorabeezle winterpop ice rocket racer": [1315, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "KEEP DRIVING While this character has damage,
+	"adorabeezle winterpop ice rocket racer": [1315, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Ruby", "KEEP DRIVING While this character has damage,
 she gets +1 ◊.", "static", 1, 5, 1, 3, true, 0, 0, 0],
-    "moana self-taught sailor": [1316, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "LEARNING THE ROPES This character can't challenge
+	"moana self-taught sailor": [1316, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Ruby", "LEARNING THE ROPES This character can't challenge
 unless you have a Captain character in play.", "static", 3, 2, 1, 1, true, 0, 0, 0],
-    "john darling sophisticated swordsman": [1317, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 1, 4, 1, 2, true, 0, 0, 0],
-    "aladdin intrepid commander": [1424, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of
+	"john darling sophisticated swordsman": [1317, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/12f0de3dc76e067d21ed85125716e02e9f1e69f0.jpg", "Ruby", "", "", 1, 4, 1, 2, true, 0, 0, 0],
+	"aladdin intrepid commander": [1424, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Ruby", "Shift 2 (You may pay 2 ⬡ to play this on top of
 one of your characters named Aladdin.)\nREMEMBER YOUR TRAINING When you play this
 character, your characters get +2 ¤ this turn.", "keyword, triggered", 1, 4, 2, 4, true, 0, 0, 0],
-    "minnie mouse pirate lookout": [1427, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Ruby", "LAND, HO! Once during your turn, whenever a
+	"minnie mouse pirate lookout": [1427, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Ruby", "LAND, HO! Once during your turn, whenever a
 card is put into your inkwell, you may return a
 location card from your discard to your hand.", "triggered", 3, 2, 1, 3, false, 0, 0, 0],
-    "moana kakamora leader": [1320, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of
+	"moana kakamora leader": [1320, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "Shift 5 (You may pay 5 ⬡ to play this on top of
 one of your characters named Moana.)\nGATHERING FORCES When you play this
 character, you may move any number of your
 characters to the same location for free. Gain 1
 lore for each character you moved.", "keyword, triggered", 6, 5, 1, 7, true, 0, 0, 0],
-    "pete freebooter": [1321, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "", "", 5, 2, 1, 3, true, 0, 0, 0],
-    "goofy flying goof": [1322, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Rush (This character can challenge the turn
+	"pete freebooter": [1321, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "", "", 5, 2, 1, 3, true, 0, 0, 0],
+	"goofy flying goof": [1322, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nEvasive (Only characters with Evasive can
 challenge this character.)", "keyword, keyword", 5, 5, 1, 6, false, 0, 0, 0],
-    "maui half-shark": [1323, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge this
+	"maui half-shark": [1323, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby", "Evasive (Only characters with Evasive can challenge this
 character.)\nCHEEEEHOOOO! Whenever this character challenges
 another character, you may return an action card from
 your discard to your hand.\nWAYFINDING Whenever you play an action, gain 1 lore.", "keyword, triggered, triggered", 7, 5, 1, 6, true, 0, 0, 0],
-    "hades strong arm": [1324, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "WHAT ARE YOU GONNA DO? ⟳, 3 ⬡, Banish one
+	"hades strong arm": [1324, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "WHAT ARE YOU GONNA DO? ⟳, 3 ⬡, Banish one
 of your characters — Banish chosen character.", "activated", 4, 3, 1, 5, false, 0, 0, 0],
-    "tigger in the crow's nest": [1414, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"tigger in the crow's nest": [1414, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nSWASH YOUR BUCKLES Whenever you play an
 action, this character gets +1 ¤ and +1 ◊ this
 turn.", "keyword, triggered", 0, 4, 1, 3, true, 0, 0, 0],
-    "scar heartless hunter": [1429, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Ruby", "TEETH AND AMBITIONS When you play this
+	"scar heartless hunter": [1429, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/fa35e192121eabf3dabf9f5ea6abdbcbc107ac3b.jpg", "Ruby", "TEETH AND AMBITIONS When you play this
 character, deal 2 damage to chosen character
 of yours to deal 2 damage to another chosen
 character.", "triggered", 4, 2, 3, 5, false, 0, 0, 0],
-    "thievery": [1327, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "lead the way": [1328, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "the islands i pulled from the sea": [1415, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "(A character with cost 3 or more can ⟳ to sing this
+	"thievery": [1327, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"lead the way": [1328, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"the islands i pulled from the sea": [1415, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, false, 0, 0, 0],
-    "energy blast": [1330, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 7, false, 0, 0, 0],
-    "longboat": [1331, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "TAKE IT FOR A SPIN 2 ⬡ — Chosen character of yours
+	"energy blast": [1330, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 0, 0, 0, 7, false, 0, 0, 0],
+	"longboat": [1331, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby", "TAKE IT FOR A SPIN 2 ⬡ — Chosen character of yours
 gains Evasive until the start of your next turn. (Only
 characters with Evasive can challenge them.)", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "gold coin": [1332, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "SPARKLY ACCESS ⟳, 1 ⬡, Banish this item — Ready
+	"gold coin": [1332, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d30f79cf7fef47bd7a5611719f936539bec0d2e9.jpg", "Ruby", "SPARKLY ACCESS ⟳, 1 ⬡, Banish this item — Ready
 chosen character of yours. They can't quest for the
 rest of this turn.", "activated", 0, 0, 0, 1, true, 0, 0, 0],
-    "card soldier's spear": [1333, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "A SUITABLE WEAPON Your damaged characters get +1 ¤.", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "flotilla coconut armada": [1334, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "TINY THIEVES At the start of your turn, if you have a character here,
+	"card soldier's spear": [1333, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "A SUITABLE WEAPON Your damaged characters get +1 ¤.", "static", 0, 0, 0, 1, true, 0, 0, 0],
+	"flotilla coconut armada": [1334, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "TINY THIEVES At the start of your turn, if you have a character here,
 all opponents lose 1 lore and you gain lore equal to the lore lost this way.", "triggered", 0, 6, 0, 2, false, 0, 0, 0],
-    "skull rock isolated fortress": [1335, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "FAMILIAR GROUND Characters get +1 ¤ while here.\nSAFE HAVEN At the start of your turn, if you have a Pirate character
+	"skull rock isolated fortress": [1335, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby", "FAMILIAR GROUND Characters get +1 ¤ while here.\nSAFE HAVEN At the start of your turn, if you have a Pirate character
 here, gain 1 lore.", "static, triggered", 0, 6, 0, 2, true, 0, 0, 0],
-    "ben eccentric robot": [1336, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"ben eccentric robot": [1336, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 4, 3, 2, 4, true, 0, 0, 0],
-    "aunt cass biggest fan": [1337, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "HAPPY TO HELP Whenever this character quests,
+	"aunt cass biggest fan": [1337, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Sapphire", "HAPPY TO HELP Whenever this character quests,
 chosen Inventor character gets +1 ◊ this turn.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "gadget hackwrench creative thinker": [1338, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "BRAINSTORM Whenever you play an item, this
+	"gadget hackwrench creative thinker": [1338, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Sapphire", "BRAINSTORM Whenever you play an item, this
 character gets +1 ◊ this turn.", "triggered", 1, 4, 1, 3, true, 0, 0, 0],
-    "gadget hackwrench brilliant bosun": [1416, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on
+	"gadget hackwrench brilliant bosun": [1416, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on
 top of one of your characters named Gadget
 Hackwrench.)\nMECHANICALLY SAVVY While you have 3 or more
 items in play, you pay 1 ⬡ less to play Inventor
 characters.", "keyword, static", 3, 6, 3, 6, true, 0, 0, 0],
-    "zipper astute decoy": [1340, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"zipper astute decoy": [1340, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nRUN INTERFERENCE During your turn, whenever
 a card is put into your inkwell, another chosen
 character gains Resist +1 until the start of your
 next turn. (Damage dealt to them is reduced by 1.)", "keyword, triggered", 2, 2, 2, 3, true, 0, 0, 0],
-    "oswald the lucky rabbit": [1422, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Sapphire", "FAVORABLE CHANCE During your turn, whenever
+	"oswald the lucky rabbit": [1422, "https://api.lorcana.ravensburger.com/images/en/d23/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Sapphire", "FAVORABLE CHANCE During your turn, whenever
 a card is put into your inkwell, you may reveal
 the top card of your deck. If it's an item card, you
 may play that item for free and they enter play
 exerted. Otherwise, put it on the bottom of your
 deck.", "triggered", 2, 1, 2, 2, false, 0, 0, 0],
-    "yokai enigmatic inventor": [1342, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "TIME TO UPGRADE Whenever this character
+	"yokai enigmatic inventor": [1342, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f47aea8bdcbd1179a1f3d91e6afeeb259488f2d1.jpg", "Sapphire", "TIME TO UPGRADE Whenever this character
 quests, you may return one of your items to your
 hand to pay 2 ⬡ less for the next item you play
 this turn.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "pleakley scientific expert": [1343, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "REPORTING FOR DUTY When you play this
+	"pleakley scientific expert": [1343, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Sapphire", "REPORTING FOR DUTY When you play this
 character, put chosen character of yours into your
 inkwell facedown and exerted.", "triggered", 3, 4, 1, 3, true, 0, 0, 0],
-    "hiro hamada robotics prodigy": [1344, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "SWEET TECH ⟳, 2 ⬡ — Search your deck for an item
+	"hiro hamada robotics prodigy": [1344, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Sapphire", "SWEET TECH ⟳, 2 ⬡ — Search your deck for an item
 card or a Robot character card and reveal it to all
 players. Shuffle your deck and put that card on top of it.", "activated", 0, 3, 1, 3, true, 0, 0, 0],
-    "heihei not-so-tricky chicken": [1345, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "EAT ANYTHING When you play this character,
+	"heihei not-so-tricky chicken": [1345, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Sapphire", "EAT ANYTHING When you play this character,
 exert chosen opposing item. It can't ready at the
 start of its next turn.\nOUT TO LUNCH During your turn, this character
 gains Evasive. (They can challenge characters
 with Evasive.)", "triggered, static", 2, 2, 1, 2, true, 0, 0, 0],
-    "sour bill surly henchman": [1346, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "UNPALATABLE When you play this character,
+	"sour bill surly henchman": [1346, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Sapphire", "UNPALATABLE When you play this character,
 chosen opposing character gets -2 ¤ this turn.", "triggered", 2, 3, 2, 3, true, 0, 0, 0],
-    "nick wilde soggy fox": [1347, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "NICE TO HAVE A PARTNER While you have another
+	"nick wilde soggy fox": [1347, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Sapphire", "NICE TO HAVE A PARTNER While you have another
 character with Support in play, this character gets
 +2 ¤.", "static", 1, 2, 1, 1, true, 0, 0, 0],
-    "wasabi methodical engineer": [1428, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Sapphire", "BLADES OF FURY When you play this character, you
+	"wasabi methodical engineer": [1428, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Sapphire", "BLADES OF FURY When you play this character, you
 may banish chosen item. Its player gains 1 lore.\nQUICK REFLEXES During your turn, this character
 gains Evasive. (They can challenge characters with
 Evasive.)", "triggered, static", 3, 3, 1, 4, true, 0, 0, 0],
-    "nick wilde sly fox": [1349, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "Shift 1 (You may pay 1 ⬡ to play this on top of one
+	"nick wilde sly fox": [1349, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Sapphire", "Shift 1 (You may pay 1 ⬡ to play this on top of one
 of your characters named Nick Wilde.)\nYOU CAN'T TOUCH ME While you have an item in
 play, this character can't be challenged.", "keyword, static", 1, 3, 1, 3, true, 0, 0, 0],
-    "gadget hackwrench perceptive mouse": [1350, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "dr delbert doppler fussy astronomer": [1351, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "tadashi hamada baymax inventor": [1352, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "LET'S GET BACK TO WORK This character gets +1 ¤
+	"gadget hackwrench perceptive mouse": [1350, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Sapphire", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"dr delbert doppler fussy astronomer": [1351, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ac2646028f5b8b9bbf7a967f4ac71b8866135211.jpg", "Sapphire", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"tadashi hamada baymax inventor": [1352, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "LET'S GET BACK TO WORK This character gets +1 ¤
 and +1 ⛉ for each item you have in play.", "static", 3, 3, 3, 6, true, 0, 0, 0],
-    "hiro hamada team leader": [1353, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "I NEED TO UPGRADE ALL OF YOU Your other
+	"hiro hamada team leader": [1353, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "I NEED TO UPGRADE ALL OF YOU Your other
 Inventor characters gain Resist +1. (Damage dealt
 to them is reduced by 1.)\nSHAPE THE FUTURE 2 ⬡ — Look at the top card of
 your deck. Put it on either the top or the bottom
 of your deck.", "static, activated", 1, 5, 1, 4, true, 0, 0, 0],
-    "tadashi hamada gifted roboticist": [1354, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "SOMEONE HAS TO HELP During an opponent's turn,
+	"tadashi hamada gifted roboticist": [1354, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "SOMEONE HAS TO HELP During an opponent's turn,
 when this character is banished, you may put the top
 card of your deck into your inkwell facedown. Then, put
 this card into your inkwell facedown.", "triggered", 2, 2, 2, 3, false, 0, 0, 0],
-    "baymax personal healthcare companion": [1417, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "FULLY CHARGED If you have an Inventor
+	"baymax personal healthcare companion": [1417, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Sapphire", "FULLY CHARGED If you have an Inventor
 character in play, you pay 1 ⬡ less to play this
 character.\nYOU SAID 'OW' 2 ⬡ — Remove up to 1 damage
 from another chosen character.", "static, activated", 0, 4, 2, 3, true, 0, 0, 0],
-    "baymax armored companion": [1664, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Sapphire", "THE TREATMENT IS WORKING When you play this
+	"baymax armored companion": [1664, "https://api.lorcana.ravensburger.com/images/en/challenge1/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Sapphire", "THE TREATMENT IS WORKING When you play this
 character and whenever he quests, you may remove up
 to 2 damage from another chosen character of yours.
 Gain 1 lore for each 1 damage removed this way.", "triggered", 2, 6, 2, 5, true, 0, 0, 0],
-    "yokai professor callaghan": [1357, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "hiram flaversham intrigued inventor": [1358, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "", "", 0, 2, 3, 2, false, 0, 0, 0],
-    "yokai scientific supervillain": [1359, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "Shift 6 (You may pay 6 ⬡ to play this on top of one
+	"yokai professor callaghan": [1357, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"hiram flaversham intrigued inventor": [1358, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "", "", 0, 2, 3, 2, false, 0, 0, 0],
+	"yokai scientific supervillain": [1359, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "Shift 6 (You may pay 6 ⬡ to play this on top of one
 of your characters named Yokai.)\nNEUROTRANSMITTER You may play items named
 Microbots for free.\nTECHNICAL GAIN Whenever this character quests,
 draw a card for each opposing character with 0 ¤.", "keyword, static, triggered", 6, 10, 2, 9, true, 0, 0, 0],
-    "alice savvy sailor": [1360, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"alice savvy sailor": [1360, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nAHOY! Whenever this character quests, another
 chosen character of yours gets +1 ◊ and gains
 Ward until the start of your next turn.", "keyword, triggered", 1, 4, 2, 3, false, 0, 0, 0],
-    "we could be immortals": [1418, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
+	"we could be immortals": [1418, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "(A character with cost 4 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 4, true, 0, 0, 0],
-    "sail the azurite sea": [1362, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "helping hand": [1363, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "prepare your bot": [1364, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "baymax's healthcare chip": [1365, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "10,000 MEDICAL PROCEDURES ⟳ — Choose one:
+	"sail the azurite sea": [1362, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"helping hand": [1363, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"prepare your bot": [1364, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"baymax's healthcare chip": [1365, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "10,000 MEDICAL PROCEDURES ⟳ — Choose one:
 • Remove up to 1 damage from chosen character.
 • If you have a Robot character in play, remove up to 3
 damage from chosen character.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "microbots": [1366, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "LIMITLESS APPLICATIONS You may have any number of
+	"microbots": [1366, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "LIMITLESS APPLICATIONS You may have any number of
 cards named Microbots in your deck.\nINSPIRED TECH When you play this item, chosen
 character gets -1 ¤ this turn for each item named
 Microbots you have in play.", "static, triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "jumbo pop": [1367, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "HERE YOU GO Banish this item — Remove up to 2
+	"jumbo pop": [1367, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "HERE YOU GO Banish this item — Remove up to 2
 damage from each of your characters. Draw a card.", "activated", 0, 0, 0, 3, false, 0, 0, 0],
-    "rescue rangers submarine mobile headquarters": [1368, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "PLANNING SESSION At the start of your turn, if you have a character
+	"rescue rangers submarine mobile headquarters": [1368, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "PLANNING SESSION At the start of your turn, if you have a character
 here, you may put the top card of your deck into your inkwell facedown
 and exerted.", "triggered", 0, 8, 0, 2, true, 0, 0, 0],
-    "institute of technology prestigious university": [1369, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "WELCOME TO THE LAB Inventor characters get +1 ⛉ while here.\nPUSH THE BOUNDARIES At the start of your turn, if you have a character
+	"institute of technology prestigious university": [1369, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "WELCOME TO THE LAB Inventor characters get +1 ⛉ while here.\nPUSH THE BOUNDARIES At the start of your turn, if you have a character
 here, gain 1 lore.", "static, triggered", 0, 5, 0, 1, true, 0, 0, 0],
-    "kakamora long-range specialist": [1370, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "A LITTLE HELP When you play this character, if you
+	"kakamora long-range specialist": [1370, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Steel", "A LITTLE HELP When you play this character, if you
 have another Pirate character in play, you may deal 1
 damage to chosen character or location.", "triggered", 0, 2, 1, 1, false, 0, 0, 0],
-    "kakamora pirate chief": [1371, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "HEAD COCONUT Whenever this character quests,
+	"kakamora pirate chief": [1371, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Steel", "HEAD COCONUT Whenever this character quests,
 you may draw a card, then choose and discard
 a card to deal 1 damage to chosen character or
 location. If you discarded a Pirate character card,
 deal 3 damage instead.", "triggered", 4, 6, 2, 7, false, 0, 0, 0],
-    "jim hawkins stubborn cabin boy": [1372, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "COME ON, COME ON, COME ON! During your turn,
+	"jim hawkins stubborn cabin boy": [1372, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Steel", "COME ON, COME ON, COME ON! During your turn,
 whenever a card is put into your inkwell, this
 character gains Challenger +2 this turn. (They get
 +2 ¤ while challenging.)", "triggered", 0, 4, 1, 2, true, 0, 0, 0],
-    "mr big shrewd tycoon": [1373, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "REPUTATION This character can't be challenged
+	"mr big shrewd tycoon": [1373, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Steel", "REPUTATION This character can't be challenged
 by characters with 2 ¤ or greater.", "static", 1, 1, 3, 4, false, 0, 0, 0],
-    "mr smee steadfast mate": [1374, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "GOOD CATCH During your turn, this character
+	"mr smee steadfast mate": [1374, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Steel", "GOOD CATCH During your turn, this character
 gains Evasive. (They can challenge characters
 with Evasive.)", "static", 3, 2, 1, 2, true, 0, 0, 0],
-    "mr smee captain of the jolly roger": [1375, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one
+	"mr smee captain of the jolly roger": [1375, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of one
 of your characters named Mr. Smee.)\nRAISE THE COLORS When you play this character,
 you may deal damage to chosen character equal to
 the number of your other Pirate characters in play.", "keyword, triggered", 3, 6, 2, 6, false, 0, 0, 0],
-    "mullins seasoned shipmate": [1376, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "FALL IN LINE While you have a character named
+	"mullins seasoned shipmate": [1376, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Steel", "FALL IN LINE While you have a character named
 Mr. Smee in play, this character gains Resist +1.
 (Damage dealt to them is reduced by 1.)", "static", 6, 4, 1, 5, true, 0, 0, 0],
-    "kohut trusted marine": [1377, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "", "", 2, 3, 1, 2, true, 0, 0, 0],
-    "king hubert phillip's father": [1378, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "hercules unwavering demigod": [1379, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Challenger +2 (While challenging, this character
+	"kohut trusted marine": [1377, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/25293f2761d658cc70c19515861842d712751bdc.jpg", "Steel", "", "", 2, 3, 1, 2, true, 0, 0, 0],
+	"king hubert phillip's father": [1378, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Steel", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"hercules unwavering demigod": [1379, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Steel", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 2, 4, 2, 4, true, 0, 0, 0],
-    "john silver ship's cook": [1380, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "HUNK OF HARDWARE When you play this
+	"john silver ship's cook": [1380, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "HUNK OF HARDWARE When you play this
 character, chosen character can't challenge
 during their next turn.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "mr arrow legacy's first mate": [1381, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"mr arrow legacy's first mate": [1381, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)", "keyword", 1, 2, 2, 2, true, 0, 0, 0],
-    "jim hawkins rigging specialist": [1382, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"jim hawkins rigging specialist": [1382, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Jim Hawkins.)\nBATTLE STATIONS When you play this character,
 you may deal 1 damage to chosen character or
 location.", "keyword, triggered", 5, 5, 2, 5, false, 0, 0, 0],
-    "tuk tuk big buddy": [1383, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "", "", 6, 5, 1, 5, true, 0, 0, 0],
-    "billy bones space sailor": [1384, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "KEEP IT HIDDEN When this character is banished,
+	"tuk tuk big buddy": [1383, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "", "", 6, 5, 1, 5, true, 0, 0, 0],
+	"billy bones space sailor": [1384, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "KEEP IT HIDDEN When this character is banished,
 you may banish chosen item or location.", "triggered", 2, 2, 2, 3, true, 0, 0, 0],
-    "pluto guard dog": [1385, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"pluto guard dog": [1385, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nGOOD BOY While this character has no damage,
 he gets +4 ¤.", "keyword, static", 1, 5, 1, 4, true, 0, 0, 0],
-    "mickey mouse night watch": [1386, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "BACKUP Your characters named Pluto gain
+	"mickey mouse night watch": [1386, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "BACKUP Your characters named Pluto gain
 Resist +1. (Damage dealt to them is reduced by 1.)", "static", 2, 3, 2, 3, true, 0, 0, 0],
-    "cobra bubbles former cia": [1387, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"cobra bubbles former cia": [1387, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nTHINK ABOUT WHAT'S BEST 2 ⬡ — Draw a card,
 then choose and discard a card.", "keyword, activated", 3, 4, 2, 5, true, 0, 0, 0],
-    "gantu captain crankyhead": [1388, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 4, 3, 4, 5, true, 0, 0, 0],
-    "wreck-it ralph ham hands": [1419, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "I WRECK THINGS Whenever this character
+	"gantu captain crankyhead": [1388, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "", "", 4, 3, 4, 5, true, 0, 0, 0],
+	"wreck-it ralph ham hands": [1419, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Steel", "I WRECK THINGS Whenever this character
 quests, you may banish chosen item or
 location to gain 2 lore.", "triggered", 4, 4, 3, 6, false, 0, 0, 0],
-    "calhoun marine sergeant": [1390, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "Resist +1 (Damage dealt to this character is
+	"calhoun marine sergeant": [1390, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nLEVEL UP During your turn, whenever this
 character banishes another character in a
 challenge, gain 2 lore.", "keyword, triggered", 3, 2, 1, 2, false, 0, 0, 0],
-    "captain amelia commander of the legacy": [1420, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "DRIVELING GALOOTS This character can't be
+	"captain amelia commander of the legacy": [1420, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "DRIVELING GALOOTS This character can't be
 challenged by Pirate characters.\nEVERYTHING SHIPSHAPE While being
 challenged, your other characters gain Resist +1.
 (Damage dealt to them is reduced by 1.)", "static, static", 1, 4, 2, 4, true, 0, 0, 0],
-    "jafar power-hungry vizier": [1392, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "YOU'LL GET WHAT'S COMING TO YOU During your turn,
+	"jafar power-hungry vizier": [1392, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "YOU'LL GET WHAT'S COMING TO YOU During your turn,
 whenever a card is put into your inkwell, deal 1 damage
 to chosen character.", "triggered", 3, 4, 1, 5, false, 0, 0, 0],
-    "john silver stern captain": [1393, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"john silver stern captain": [1393, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named John Silver.)\nResist +2 (Damage dealt to this character is reduced by 2.)\nDON'T JUST SIT THERE! At the start of your turn, deal 1
 damage to each opposing ready character.", "keyword, keyword, triggered", 6, 6, 2, 8, true, 0, 0, 0],
-    "hot potato": [1394, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
-    "i'm still here": [1395, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
+	"hot potato": [1394, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "", "", 0, 0, 0, 3, true, 0, 0, 0],
+	"i'm still here": [1395, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "(A character with cost 3 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 3, true, 0, 0, 0],
-    "twin fire": [1396, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "ambush": [1397, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "unfortunate situation": [1398, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 4, true, 0, 0, 0],
-    "king's sensor core": [1399, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "SYMBOL OF ROYALTY Your Prince and King characters
+	"twin fire": [1396, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"ambush": [1397, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"unfortunate situation": [1398, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "", "", 0, 0, 0, 4, true, 0, 0, 0],
+	"king's sensor core": [1399, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/9f9af029585ba014e07cd3910ca976cf56160616.jpg", "Steel", "SYMBOL OF ROYALTY Your Prince and King characters
 gain Resist +1. (Damage dealt to them is reduced by 1.)\nROYAL SEARCH ⟳, 2 ⬡ — Reveal the top card of your
 deck. If it's a Prince or King character card, you may
 put that card into your hand. Otherwise, put it on the
 top of your deck.", "static, activated", 0, 0, 0, 3, true, 0, 0, 0],
-    "training dummy": [1400, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "HANDLE WITH CARE ⟳, 2 ⬡ — Chosen character
+	"training dummy": [1400, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/7f03f3f2febc46f3fa832d98251b0c98f64bc19b.jpg", "Steel", "HANDLE WITH CARE ⟳, 2 ⬡ — Chosen character
 gains Bodyguard until the start of your next turn.
 (An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "sunglasses": [1401, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "SPYCRAFT ⟳ — Draw a card, then choose and discard
+	"sunglasses": [1401, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "SPYCRAFT ⟳ — Draw a card, then choose and discard
 a card.", "activated", 0, 0, 0, 4, true, 0, 0, 0],
-    "treasure mountain azurite sea island": [1421, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "SECRET WEAPON At the start of your turn, deal damage to chosen
+	"treasure mountain azurite sea island": [1421, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "SECRET WEAPON At the start of your turn, deal damage to chosen
 character or location equal to the number of characters here.", "triggered", 0, 9, 2, 5, false, 0, 0, 0],
-    "galactic council chamber courtroom": [1403, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "FEDERATION DECREE While you have an Alien or Robot character here,
+	"galactic council chamber courtroom": [1403, "https://api.lorcana.ravensburger.com/images/en/set6/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "FEDERATION DECREE While you have an Alien or Robot character here,
 this location can't be challenged.", "static", 0, 7, 1, 3, true, 0, 0, 0],
-    "moana adventurer of land and sea": [1589, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "", "", 1, 6, 1, 3, true, 0, 0, 0],
-    "rhino motivational speaker": [1434, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber-Steel", "DESTINY CALLING Your other characters get +2 ⛉.", "static", 4, 7, 2, 6, false, 0, 0, 0],
-    "perdita playful mother": [1658, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber-Sapphire", "WHO'S NEXT? Whenever this character quests,
+	"moana adventurer of land and sea": [1589, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6052521b7625e31d4ee9cc706732484fcf850877.jpg", "Sapphire", "", "", 1, 6, 1, 3, true, 0, 0, 0],
+	"rhino motivational speaker": [1434, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/356a192b7913b04c54574d18c28d46e6395428ab.jpg", "Amber-Steel", "DESTINY CALLING Your other characters get +2 ⛉.", "static", 4, 7, 2, 6, false, 0, 0, 0],
+	"perdita playful mother": [1658, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber-Sapphire", "WHO'S NEXT? Whenever this character quests,
 you pay 2 ⬡ less for the next Puppy character
 you play this turn.\nDON'T BE AFRAID Your Puppy characters gain
 Ward. (Opponents can't choose them except to
 challenge.)", "triggered, static", 1, 4, 2, 4, true, 0, 0, 0],
-    "king stefan new father": [1436, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "", "", 4, 7, 1, 5, true, 0, 0, 0],
-    "bolt superdog": [1640, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber-Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
+	"king stefan new father": [1436, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/77de68daecd823babbb58edb1c8e14d7106e83bb.jpg", "Amber", "", "", 4, 7, 1, 5, true, 0, 0, 0],
+	"bolt superdog": [1640, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3be76cc016a8c850661956c5f71d14c621cf6a69.jpg", "Amber-Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of
 your characters named Bolt.)\nMARK OF POWER Whenever you ready this character,
 gain 1 lore for each other undamaged character you
 have in play.\nBOLT STARE ⟳ — Banish chosen Illusion character.", "keyword, triggered, activated", 3, 5, 2, 5, true, 0, 0, 0],
-    "roger radcliffe dog lover": [1438, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "THERE YOU GO Whenever this character quests,
+	"roger radcliffe dog lover": [1438, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4.jpg", "Amber", "THERE YOU GO Whenever this character quests,
 you may remove up to 1 damage from each of
 your Puppy characters.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "trusty loyal bloodhound": [1439, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "Support (Whenever this character quests, you
+	"trusty loyal bloodhound": [1439, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c1dfd96eea8cc2b62785275bca38ac261256e278.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 2, 1, 2, true, 0, 0, 0],
-    "peg natural performer": [1440, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber-Emerald", "CAPTIVE AUDIENCE ⟳ — If you have 3 or more
+	"peg natural performer": [1440, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/902ba3cda1883801594b6e1b452790cc53948fda.jpg", "Amber-Emerald", "CAPTIVE AUDIENCE ⟳ — If you have 3 or more
 other characters in play, draw a card.", "activated", 2, 4, 1, 3, true, 0, 0, 0],
-    "suzy master seamstress": [1441, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "", "", 3, 4, 2, 4, true, 0, 0, 0],
-    "mittens sassy street cat": [1442, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"suzy master seamstress": [1441, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f.jpg", "Amber", "", "", 3, 4, 2, 4, true, 0, 0, 0],
+	"mittens sassy street cat": [1442, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0ade7c2cf97f75d009975f4d720d1fa6c19f4897.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nNO THANKS NECESSARY Once during your turn,
 whenever a card is put into your inkwell, your other
 characters with Bodyguard get +1 ◊ this turn.", "keyword, triggered", 4, 5, 2, 5, false, 0, 0, 0],
-    "tramp street-smart dog": [1443, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber-Emerald", "NOW IT'S A PARTY For each character you have in
+	"tramp street-smart dog": [1443, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b1d5781111d84f7b3fe45a0852e59758cd7a87e5.jpg", "Amber-Emerald", "NOW IT'S A PARTY For each character you have in
 play, you pay 1 ⬡ less to play this character.\nHOW'S PICKINGS? When you play this character, you
 may draw a card for each other character you have in
 play, then choose and discard that many cards.", "static, triggered", 2, 6, 2, 7, true, 0, 0, 0],
-    "the troubadour musical narrator": [1444, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber-Steel", "Resist +1 (Damage dealt to this character is
+	"the troubadour musical narrator": [1444, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/17ba0791499db908433b80f37c5fbc89b870084b.jpg", "Amber-Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nSinger 4 (This character counts as cost 4 to sing
 songs.)", "keyword, keyword", 1, 3, 1, 2, true, 0, 0, 0],
-    "wendy darling pirate queen": [1445, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber-Ruby", "Evasive (Only characters with Evasive can
+	"wendy darling pirate queen": [1445, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7b52009b64fd0a2a49e6d8a939753077792b0554.jpg", "Amber-Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nTELL NO TALES Whenever one of your other
 characters is banished, you may remove all
 damage from chosen character.", "keyword, triggered", 5, 7, 2, 7, true, 0, 0, 0],
-    "mirabel madrigal hopeful dreamer": [1446, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber-Amethyst", "Evasive (Only characters with Evasive can
+	"mirabel madrigal hopeful dreamer": [1446, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bd307a3ec329e10a2cff8fb87480823da114f8f4.jpg", "Amber-Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nSinger 5 (This character counts as cost 5 to sing
 songs.)", "keyword, keyword", 1, 3, 1, 3, true, 0, 0, 0],
-    "aurora waking beauty": [1638, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
+	"aurora waking beauty": [1638, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5f1cd7c3fb68ae7c679f8c33966610670d32ff1e.jpg", "Amber", "Singer 5 (This character counts as cost 5 to sing
 songs.)\nSWEET DREAMS Whenever you remove 1 or more
 damage from a character, ready this character.
 She can't quest or challenge for the rest of this
 turn.", "keyword, triggered", 1, 4, 2, 3, true, 0, 0, 0],
-    "cinderella the right one": [1448, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "IF THE SLIPPER FITS When you play this character,
+	"cinderella the right one": [1448, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f1abd670358e036c31296e66b3b66c382ac00812.jpg", "Amber", "IF THE SLIPPER FITS When you play this character,
 you may put an item card named The Glass
 Slipper from your discard on the bottom of your
 deck to gain 3 lore.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "mariano guzman handsome suitor": [1449, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "I SEE YOU While you have a character named
+	"mariano guzman handsome suitor": [1449, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1574bddb75c78a6fd2251d61e2993b5146201319.jpg", "Amber", "I SEE YOU While you have a character named
 Dolores Madrigal in play, this character gets +1 ◊.", "static", 3, 4, 1, 3, true, 0, 0, 0],
-    "candlehead dedicated racer": [1450, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "WINNING ISN'T EVERYTHING When this character
+	"candlehead dedicated racer": [1450, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0716d9708d321ffb6a00818614779e779925365c.jpg", "Amber", "WINNING ISN'T EVERYTHING When this character
 is banished, you may remove up to 2 damage
 from chosen character.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "bolt dependable friend": [1451, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "Support (Whenever this character quests, you
+	"bolt dependable friend": [1451, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e6a55b6b4563e652a23be9d623ca5055c356940.jpg", "Amber", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 2, 4, 2, 4, true, 0, 0, 0],
-    "pascal garden chameleon": [1452, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber-Amethyst", "Evasive (Only characters with Evasive can
+	"pascal garden chameleon": [1452, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amber-Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)", "keyword", 3, 3, 3, 4, false, 0, 0, 0],
-    "king candy royal racer": [1453, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber-Ruby", "SWEET REVENGE Whenever one of your other
+	"king candy royal racer": [1453, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amber-Ruby", "SWEET REVENGE Whenever one of your other
 Racer characters is banished, each opponent
 chooses and banishes one of their characters.", "triggered", 2, 2, 2, 4, false, 0, 0, 0],
-    "penny bolt's person": [1454, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber-Steel", "ENDURING LOYALTY When you play this character,
+	"penny bolt's person": [1454, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/472b07b9fcf2c2451e8781e944bf5f77cd8457c8.jpg", "Amber-Steel", "ENDURING LOYALTY When you play this character,
 you may remove up to 2 damage from chosen
 character and they gain Resist +1 until the start of
 your next turn. (Damage dealt to them is reduced
 by 1.)", "triggered", 1, 2, 2, 2, true, 0, 0, 0],
-    "fix-it felix jr pint-sized hero": [1455, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber-Ruby", "LET'S GET TO WORK Whenever you return a Racer
+	"fix-it felix jr pint-sized hero": [1455, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Amber-Ruby", "LET'S GET TO WORK Whenever you return a Racer
 character card from your discard to your hand,
 you may ready chosen Racer character. They can't
 quest for the rest of this turn.", "triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "thunderbolt wonder dog": [1456, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber-Sapphire", "Puppy Shift 3 (You may pay 3 ⬡ to play this on
+	"thunderbolt wonder dog": [1456, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber-Sapphire", "Puppy Shift 3 (You may pay 3 ⬡ to play this on
 top of one of your Puppy characters.)\nBodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword, keyword", 3, 7, 2, 5, true, 0, 0, 0],
-    "the prince vigilant suitor": [1457, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "Bodyguard (This character may enter play exerted.
+	"the prince vigilant suitor": [1457, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4d134bc072212ace2df385dae143139da74ec0ef.jpg", "Amber", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)", "keyword", 0, 5, 1, 2, false, 0, 0, 0],
-    "isabela madrigal in the moment": [1458, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "I'M TIRED OF PERFECT Whenever one of your
+	"isabela madrigal in the moment": [1458, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f6e1126cedebf23e1463aee73f9df08783640400.jpg", "Amber", "I'M TIRED OF PERFECT Whenever one of your
 characters sings a song, this character can't be
 challenged until the start of your next turn.", "triggered", 3, 3, 4, 5, false, 0, 0, 0],
-    "calhoun courageous rescuer": [1459, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber-Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"calhoun courageous rescuer": [1459, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/887309d048beef83ad3eabf2a79a64a389ab1c9f.jpg", "Amber-Ruby", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Calhoun.)\nBACK TO START POSITIONS! Whenever this
 character challenges another character, you may
 return a Racer character card from your discard
 to your hand.", "keyword, triggered", 5, 5, 2, 6, true, 0, 0, 0],
-    "wreck-it ralph hero's duty": [1460, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "OUTFLANK During your turn, whenever one of
+	"wreck-it ralph hero's duty": [1460, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bc33ea4e26e5e1af1408321416956113a4658763.jpg", "Amber", "OUTFLANK During your turn, whenever one of
 your other characters is banished, this character
 gets +1 ◊ this turn.", "triggered", 3, 8, 1, 6, true, 0, 0, 0],
-    "lady miss park avenue": [1461, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber-Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"lady miss park avenue": [1461, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0a57cb53ba59c46fc4b692527a38a87c78d84028.jpg", "Amber-Emerald", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Lady.)\nSOMETHING WONDERFUL When you play this
 character, you may return up to 2 character cards
 with cost 2 or less each from your discard to your
 hand.", "keyword, triggered", 4, 4, 2, 5, false, 0, 0, 0],
-    "pongo dear old dad": [1462, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber-Sapphire", "FOUND YOU, YOU LITTLE RASCAL At the start of
+	"pongo dear old dad": [1462, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7719a1c782a1ba91c031a682a0a2f8658209adbf.jpg", "Amber-Sapphire", "FOUND YOU, YOU LITTLE RASCAL At the start of
 your turn, look at the cards in your inkwell. You
 may play a Puppy character from there for free.", "triggered", 5, 5, 2, 6, false, 0, 0, 0],
-    "kenai protective brother": [1463, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "HE NEEDS ME At the end of your turn, if this
+	"kenai protective brother": [1463, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/22d200f8670dbdb3e253a90eee5098477c95c23d.jpg", "Amber", "HE NEEDS ME At the end of your turn, if this
 character is exerted, you may ready another
 chosen character of yours and remove all damage
 from them.", "triggered", 2, 4, 1, 4, true, 0, 0, 0],
-    "minnie mouse storyteller": [1464, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "GATHER AROUND Whenever you play a character,
+	"minnie mouse storyteller": [1464, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/632667547e7cd3e0466547863e1207a8c0c0c549.jpg", "Amber", "GATHER AROUND Whenever you play a character,
 this character gets +1 ◊ this turn.\nJUST ONE MORE Whenever this character quests,
 chosen opposing character loses ¤ equal to this
 character's ◊ until the start of your next turn.", "triggered, triggered", 1, 2, 0, 2, false, 0, 0, 0],
-    "perla nimble seamstress": [1465, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber-Emerald", "Evasive (Only characters with Evasive can
+	"perla nimble seamstress": [1465, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cb4e5208b4cd87268b208e49452ed6e89a68e0b8.jpg", "Amber-Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nSupport (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword, keyword", 3, 2, 1, 3, true, 0, 0, 0],
-    "snow white fairest in the land": [1660, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "HIDDEN AWAY This character can't be challenged.", "static", 2, 2, 2, 4, true, 0, 0, 0],
-    "koda smallish bear": [1467, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "", "", 2, 2, 3, 3, true, 0, 0, 0],
-    "mirabel madrigal musically talented": [1639, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber-Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"snow white fairest in the land": [1660, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/d435a6cdd786300dff204ee7c2ef942d3e9034e2.jpg", "Amber", "HIDDEN AWAY This character can't be challenged.", "static", 2, 2, 2, 4, true, 0, 0, 0],
+	"koda smallish bear": [1467, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59.jpg", "Amber", "", "", 2, 2, 3, 3, true, 0, 0, 0],
+	"mirabel madrigal musically talented": [1639, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4afa8f9e90756f0f919a124a1dfbba19be004edc.jpg", "Amber-Amethyst", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Mirabel Madrigal.)\nHER OWN SPECIAL GIFT Whenever this character
 quests, you may return a song card with cost 3
 or less from your discard to your hand.", "keyword, triggered", 2, 6, 2, 6, true, 0, 0, 0],
-    "calhoun battle-tested": [1469, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amber", "TACTICAL ADVANTAGE When you play this character,
+	"calhoun battle-tested": [1469, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fc074d501302eb2b93e2554793fcaf50b3bf7291.jpg", "Amber", "TACTICAL ADVANTAGE When you play this character,
 you may choose and discard a card to give chosen
 opposing character -3 ¤ until the start of your next
 turn.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "pepa madrigal sensitive sister": [1470, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amber", "CLEAR SKIES, CLEAR SKIES Whenever one or more
+	"pepa madrigal sensitive sister": [1470, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cb7a1d775e800fd1ee4049f7dca9e041eb9ba083.jpg", "Amber", "CLEAR SKIES, CLEAR SKIES Whenever one or more
 of your characters sings a song, gain 1 lore.", "triggered", 2, 4, 1, 3, true, 0, 0, 0],
-    "so much to give": [1471, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
+	"so much to give": [1471, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8.jpg", "Amber", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, true, 0, 0, 0],
-    "restoring the heart": [1472, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amber-Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "the family madrigal": [1473, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amber-Amethyst", "(A character with cost 5 or more can ⟳ to sing this
+	"restoring the heart": [1472, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ca3512f4dfa95a03169c5a670a4c91a19b3077b4.jpg", "Amber-Sapphire", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"the family madrigal": [1473, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/af3e133428b9e25c55bc59fe534248e6a0c0f17b.jpg", "Amber-Amethyst", "(A character with cost 5 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
-    "amber coil": [1474, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amber", "HEALING AURA During your turn, whenever a card is
+	"amber coil": [1474, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/761f22b2c1593d0bb87e0b606f990ba4974706de.jpg", "Amber", "HEALING AURA During your turn, whenever a card is
 put into your inkwell, you may remove up to 2 damage
 from chosen character.", "triggered", 0, 0, 0, 1, true, 0, 0, 0],
-    "spaghetti dinner": [1475, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amber", "FINE DINING ⟳, 1 ⬡ — If you have 2 or more
+	"spaghetti dinner": [1475, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/92cfceb39d57d914ed8b14d0e37643de0797ae56.jpg", "Amber", "FINE DINING ⟳, 1 ⬡ — If you have 2 or more
 characters in play, gain 1 lore.", "activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "kanine krunchies": [1476, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amber", "YOU CAN BE A CHAMPION, TOO Your Puppy characters
+	"kanine krunchies": [1476, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0286dd552c9bea9a69ecb3759e7b94777635514b.jpg", "Amber", "YOU CAN BE A CHAMPION, TOO Your Puppy characters
 get +1 ⛉.", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "the glass slipper": [1641, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amber", "PERFECT PAIR You may only have 2 copies of The
+	"the glass slipper": [1641, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/baab34018148392463ef4c49b5a924409cf5f7b0.jpg", "Amber", "PERFECT PAIR You may only have 2 copies of The
 Glass Slipper in your deck.\nSEARCH THE KINGDOM Banish this item, ⟳ one of
 your Prince characters — Search your deck for a
 Princess character card and reveal it to all players.
 Put that card into your hand and shuffle your deck.", "static, activated", 0, 0, 0, 2, false, 0, 0, 0],
-    "kuzco temporary whale": [1478, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "DON'T YOU SAY A WORD Once during your turn,
+	"kuzco temporary whale": [1478, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fb644351560d8296fe6da332236b1f8d61b2828a.jpg", "Amethyst", "DON'T YOU SAY A WORD Once during your turn,
 whenever a card is put into your inkwell, you may
 return chosen character, item, or location with
 cost 2 or less to their player's hand, then that
 player draws a card.", "triggered", 1, 4, 2, 5, false, 0, 0, 0],
-    "tanana tribal elder": [1479, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "treasure guardian foreboding sentry": [1480, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "UNTOLD TREASURE When you play this character,
+	"tanana tribal elder": [1479, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fe2ef495a1152561572949784c16bf23abb28057.jpg", "Amethyst", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"treasure guardian foreboding sentry": [1480, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/827bfc458708f0b442009c9c9836f7e4b65557fb.jpg", "Amethyst", "UNTOLD TREASURE When you play this character,
 if you have an Illusion character in play, you may
 draw a card.", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "honeymaren northuldra guide": [1481, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "TALE OF THE FIFTH SPIRIT When you play this
+	"honeymaren northuldra guide": [1481, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/64e095fe763fc62418378753f9402623bea9e227.jpg", "Amethyst", "TALE OF THE FIFTH SPIRIT When you play this
 character, if an opponent has an exerted
 character in play, gain 1 lore.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "iago giant spectral parrot": [1482, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "Evasive (Only characters with Evasive can
+	"iago giant spectral parrot": [1482, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2e01e17467891f7c933dbaa00e1459d23db3fe4f.jpg", "Amethyst", "Evasive (Only characters with Evasive can
 challenge this character.)\nVanish (When an opponent chooses this character
 for an action, banish them.)", "keyword, keyword", 4, 6, 1, 4, true, 0, 0, 0],
-    "chernabog creature of the night": [1483, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "MIDNIGHT REVEL When you play this character,
+	"chernabog creature of the night": [1483, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e1822db470e60d090affd0956d743cb0e7cdf113.jpg", "Amethyst", "MIDNIGHT REVEL When you play this character,
 each opponent chooses and exerts one of their
 ready characters. They can't ready at the start of
 their next turn.", "triggered", 2, 6, 1, 5, false, 0, 0, 0],
-    "jafar newly crowned": [1643, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst-Steel", "THIS IS NOT DONE YET During an opponent's
+	"jafar newly crowned": [1643, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/135debd4837026bf06c7bfc5d1e0c6a31611af1d.jpg", "Amethyst-Steel", "THIS IS NOT DONE YET During an opponent's
 turn, whenever one of your Illusion characters
 is banished, you may return that card to your
 hand.", "triggered", 2, 4, 2, 4, true, 0, 0, 0],
-    "hades fast talker": [1485, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst-Ruby", "FOR JUST A LITTLE PAIN When you play this
+	"hades fast talker": [1485, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a9334987ece78b6fe8bf130ef00b74847c1d3da6.jpg", "Amethyst-Ruby", "FOR JUST A LITTLE PAIN When you play this
 character, you may deal 2 damage to another
 chosen character of yours to banish chosen
 character with cost 3 or less.", "triggered", 4, 6, 2, 6, false, 0, 0, 0],
-    "madame medusa diamond lover": [1486, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst-Ruby", "SEARCH THE SWAMP Whenever this character
+	"madame medusa diamond lover": [1486, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c5b76da3e608d34edb07244cd9b875ee86906328.jpg", "Amethyst-Ruby", "SEARCH THE SWAMP Whenever this character
 quests, you may deal 2 damage to another
 chosen character of yours to put the top 3 cards
 of chosen player's deck into their discard.", "triggered", 3, 4, 1, 4, true, 0, 0, 0],
-    "te ka elemental terror": [1487, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst-Ruby", "Shift 7 (You may pay 7 ⬡ to play this on top of
+	"te ka elemental terror": [1487, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/80e28a51cbc26fa4bd34938c5e593b36146f5e0c.jpg", "Amethyst-Ruby", "Shift 7 (You may pay 7 ⬡ to play this on top of
 one of your characters named Te Kā.)\nANCIENT RAGE During your turn, whenever an
 opposing character is exerted, banish them.", "keyword, triggered", 12, 12, 3, 10, true, 0, 0, 0],
-    "elsa trusted sister": [1488, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "WHAT DO WE DO NOW? Whenever this character
+	"elsa trusted sister": [1488, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8effee409c625e1a2d8f5033631840e6ce1dcb64.jpg", "Amethyst", "WHAT DO WE DO NOW? Whenever this character
 quests, if you have a character named Anna in
 play, gain 1 lore.", "triggered", 2, 3, 1, 2, true, 0, 0, 0],
-    "madam mim cheating spellcaster": [1489, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "PLAY ROUGH Whenever this character quests,
+	"madam mim cheating spellcaster": [1489, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/54ceb91256e8190e474aa752a6e0650a2df5ba37.jpg", "Amethyst", "PLAY ROUGH Whenever this character quests,
 exert chosen opposing character.", "triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "giant cobra ghostly serpent": [1490, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst-Steel", "Vanish (When an opponent chooses this character
+	"giant cobra ghostly serpent": [1490, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9109c85a45b703f87f1413a405549a2cea9ab556.jpg", "Amethyst-Steel", "Vanish (When an opponent chooses this character
 for an action, banish them.)\nMYSTERIOUS ADVANTAGE When you play this
 character, you may choose and discard a card to
 gain 2 lore.", "keyword, triggered", 4, 4, 1, 3, true, 0, 0, 0],
-    "te ka lava monster": [1491, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "Challenger +2 (While challenging, this character
+	"te ka lava monster": [1491, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/667be543b02294b7624119adc3a725473df39885.jpg", "Amethyst", "Challenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword", 5, 6, 2, 6, true, 0, 0, 0],
-    "yzma transformed kitten": [1492, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "I WIN When this character is banished, if
+	"yzma transformed kitten": [1492, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5a5b0f9b7d3f8fc84c3cef8fd8efaaa6c70d75ab.jpg", "Amethyst", "I WIN When this character is banished, if
 you have more cards in your hand than each
 opponent, you may return this card to your hand.", "triggered", 2, 1, 1, 2, true, 0, 0, 0],
-    "bucky nutty rascal": [1493, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "POP! When this character is banished in a
+	"bucky nutty rascal": [1493, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e6c3dd630428fd54834172b8fd2735fed9416da4.jpg", "Amethyst", "POP! When this character is banished in a
 challenge, you may draw a card.", "triggered", 3, 2, 1, 3, true, 0, 0, 0],
-    "pain impudent imp": [1494, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "rajah ghostly tiger": [1495, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "Vanish (When an opponent chooses this character
+	"pain impudent imp": [1494, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6c1e671f9af5b46d9c1a52067bdf0e53685674f7.jpg", "Amethyst", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"rajah ghostly tiger": [1495, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/511a418e72591eb7e33f703f04c3fa16df6c90bd.jpg", "Amethyst", "Vanish (When an opponent chooses this character
 for an action, banish them.)", "keyword", 3, 3, 1, 2, true, 0, 0, 0],
-    "kronk laid back": [1657, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amethyst-Emerald", "Ward (Opponents can't choose this character
+	"kronk laid back": [1657, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/91032ad7bbcb6cf72875e8e8207dcfba80173f7c.jpg", "Amethyst-Emerald", "Ward (Opponents can't choose this character
 except to challenge.)\nI'M LOVIN' THIS If an effect would cause you to
 discard one or more cards, you don't discard.", "keyword, static", 4, 4, 2, 5, false, 0, 0, 0],
-    "mother gothel vain sorceress": [1497, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst-Ruby", "NOW YOU'VE UPSET ME Whenever one of your
+	"mother gothel vain sorceress": [1497, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c66c65175fecc3103b3b587be9b5b230889c8628.jpg", "Amethyst-Ruby", "NOW YOU'VE UPSET ME Whenever one of your
 characters challenges, you may move 1 damage
 counter from chosen character to chosen
 opposing character.", "triggered", 1, 4, 1, 3, true, 0, 0, 0],
-    "sven keen-eyed reindeer": [1498, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst-Sapphire", "Rush (This character can challenge the turn
+	"sven keen-eyed reindeer": [1498, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a459380709e2fe4ac2dae5733c73225ff6cfee1.jpg", "Amethyst-Sapphire", "Rush (This character can challenge the turn
 they're played.)\nFORMIDABLE GLARE When you play this
 character, chosen character gets -3 ¤ this turn.", "keyword, triggered", 2, 6, 1, 5, true, 0, 0, 0],
-    "diablo spiteful raven": [1499, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst-Emerald", "Evasive (Only characters with Evasive can
+	"diablo spiteful raven": [1499, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/59129aacfb6cebbe2c52f30ef3424209f7252e82.jpg", "Amethyst-Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nChallenger +2 (While challenging, this character
 gets +2 ¤.)", "keyword, keyword", 1, 2, 1, 2, true, 0, 0, 0],
-    "merlin clever clairvoyant": [1500, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst-Sapphire", "PRESTIDIGITONIUM Whenever this character
+	"merlin clever clairvoyant": [1500, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4d89d294cd4ca9f2ca57dc24a53ffb3ef5303122.jpg", "Amethyst-Sapphire", "PRESTIDIGITONIUM Whenever this character
 quests, name a card, then reveal the top card of
 your deck. If it's the named card, put it into your
 inkwell facedown and exerted. Otherwise, put it
 on the top of your deck.", "triggered", 0, 1, 1, 1, true, 0, 0, 0],
-    "yzma above it all": [1501, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst-Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"yzma above it all": [1501, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b4c96d80854dd27e76d8cc9e21960eebda52e962.jpg", "Amethyst-Emerald", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Yzma.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nBACK TO WORK Whenever another character is banished in
 a challenge, return that card to its player's hand, then that
 player discards a card at random.", "keyword, keyword, triggered", 3, 8, 2, 7, true, 0, 0, 0],
-    "elsa ice maker": [1502, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Amethyst-Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
+	"elsa ice maker": [1502, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.jpg", "Amethyst-Sapphire", "Shift 4 (You may pay 4 ⬡ to play this on top of one of
 your characters named Elsa.)\nWINTER WALL Whenever this character quests, you
 may exert chosen character. If you do and you have a
 character named Anna in play, the chosen character
 can't ready at the start of their next turn.", "keyword, triggered", 5, 5, 2, 7, false, 0, 0, 0],
-    "kenai magical bear": [1503, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Amethyst", "Challenger +2 (While challenging, this character
+	"kenai magical bear": [1503, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b7103ca278a75cad8f7d065acda0c2e80da0b7dc.jpg", "Amethyst", "Challenger +2 (While challenging, this character
 gets +2 ¤.)\nWISDOM OF HIS STORY During your turn, when
 this character is banished in a challenge, return
 this card to your hand and gain 1 lore.", "keyword, triggered", 1, 4, 1, 3, true, 0, 0, 0],
-    "kuzco panicked llama": [1504, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Amethyst-Emerald", "Evasive (Only characters with Evasive can
+	"kuzco panicked llama": [1504, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d02560dd9d7db4467627745bd6701e809ffca6e3.jpg", "Amethyst-Emerald", "Evasive (Only characters with Evasive can
 challenge this character.)\nWE CAN FIGURE THIS OUT At the start of your
 turn, choose one:
 • Each player draws a card.
 • Each player chooses and discards a card.", "keyword, triggered", 2, 2, 2, 4, false, 0, 0, 0],
-    "anna ice breaker": [1656, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amethyst-Sapphire", "Support (Whenever this character quests, you
+	"anna ice breaker": [1656, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/b3f0c7f6bb763af1be91d9e74eabfeb199dc1f1f.jpg", "Amethyst-Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nWINTER AMBUSH When you play this character,
 chosen opposing character can't ready at the
 start of their next turn.", "keyword, triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "donald duck flustered sorcerer": [1642, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "OBFUSCATE! Opponents need 25 lore to win
+	"donald duck flustered sorcerer": [1642, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/acfdd18ea7f4a2ba74132ba977dc207204142994.jpg", "Amethyst", "OBFUSCATE! Opponents need 25 lore to win
 the game.", "static", 5, 6, 3, 7, false, 0, 0, 0],
-    "the queen jealous beauty": [1507, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Amethyst", "NO ORDINARY APPLE ⟳ — Choose 3 cards from
+	"the queen jealous beauty": [1507, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1f1362ea41d1bc65be321c0a378a20159f9a26d0.jpg", "Amethyst", "NO ORDINARY APPLE ⟳ — Choose 3 cards from
 chosen opponent's discard and put them on
 the bottom of their deck to gain 3 lore. If any
 Princess cards were moved this way, gain 4 lore
 instead.", "activated", 4, 3, 1, 4, true, 0, 0, 0],
-    "panic high-strung imp": [1508, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Amethyst", "STARTLED SHRIEK When you play this character,
+	"panic high-strung imp": [1508, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/450ddec8dd206c2e2ab1aeeaa90e85e51753b8b7.jpg", "Amethyst", "STARTLED SHRIEK When you play this character,
 you may move up to 2 damage counters from
 chosen character to chosen opposing character.", "triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "archimedes exceptional owl": [1509, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Amethyst", "MORE TO LEARN Whenever an opponent chooses
+	"archimedes exceptional owl": [1509, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d54ad009d179ae346683cfc3603979bc99339ef7.jpg", "Amethyst", "MORE TO LEARN Whenever an opponent chooses
 this character for an action or ability, you may
 draw a card.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "kashekim ancient ruler": [1510, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
-    "dolores madrigal within earshot": [1511, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Amethyst", "I HEAR YOU Whenever one of your characters
+	"kashekim ancient ruler": [1510, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d321d6f7ccf98b51540ec9d933f20898af3bd71e.jpg", "Amethyst", "", "", 4, 3, 1, 3, true, 0, 0, 0],
+	"dolores madrigal within earshot": [1511, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f.jpg", "Amethyst", "I HEAR YOU Whenever one of your characters
 sings a song, chosen opponent reveals their hand.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "mufasa among the stars": [1512, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Amethyst-Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
+	"mufasa among the stars": [1512, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b74f5ee9461495ba5ca4c72a7108a23904c27a05.jpg", "Amethyst-Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of
 your characters named Mufasa.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nResist +1 (Damage dealt to this character is reduced by 1.)", "keyword, keyword, keyword", 5, 7, 2, 7, true, 0, 0, 0],
-    "magical maneuvers": [1513, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "this is my family": [1514, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this
+	"magical maneuvers": [1513, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b888b29826bb53dc531437e723738383d8339b56.jpg", "Amethyst", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"this is my family": [1514, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1d513c0bcbe33b2e7440e5e14d0b22ef95c9d673.jpg", "Amethyst", "(A character with cost 2 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 2, false, 0, 0, 0],
-    "show me more": [1644, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
-    "restoring the crown": [1516, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Amethyst-Steel", "", "", 0, 0, 0, 6, false, 0, 0, 0],
-    "amethyst coil": [1517, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Amethyst", "MAGICAL TOUCH During your turn, whenever a card is
+	"show me more": [1644, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1b4a364f76e9fa8073516100ed65590c50a6d5e9.jpg", "Amethyst", "", "", 0, 0, 0, 2, false, 0, 0, 0],
+	"restoring the crown": [1516, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7d7116e23efef7292cad5e6f033d9a962708228c.jpg", "Amethyst-Steel", "", "", 0, 0, 0, 6, false, 0, 0, 0],
+	"amethyst coil": [1517, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/be461a0cd1fda052a69c3fd94f8cf5f6f86afa34.jpg", "Amethyst", "MAGICAL TOUCH During your turn, whenever a card is
 put into your inkwell, you may move 1 damage counter
 from chosen character to chosen opposing character.", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "drizella spoiled stepsister": [1518, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "grewnge cannon expert": [1519, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "RAPID FIRE Whenever this character quests, you
+	"drizella spoiled stepsister": [1518, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1352246e33277e9d3c9090a434fa72cfa6536ae2.jpg", "Emerald", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"grewnge cannon expert": [1519, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3c26dffc8a2e8804dfe2c8a1195cfaa5ef6d0014.jpg", "Emerald", "RAPID FIRE Whenever this character quests, you
 pay 1 ⬡ less for the next action you play this turn.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "baymax low battery": [1520, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "SHHHHH This character enters play exerted.", "static", 3, 2, 2, 2, true, 0, 0, 0],
-    "thomas o'malley feline charmer": [1521, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "Ward (Opponents can't choose this character
+	"baymax low battery": [1520, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e62d7f1eb43d87c202d2f164ba61297e71be80f4.jpg", "Emerald", "SHHHHH This character enters play exerted.", "static", 3, 2, 2, 2, true, 0, 0, 0],
+	"thomas o'malley feline charmer": [1521, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b37f6ddcefad7e8657837d3177f9ef2462f98acf.jpg", "Emerald", "Ward (Opponents can't choose this character
 except to challenge.)", "keyword", 4, 2, 1, 3, true, 0, 0, 0],
-    "pete pirate scoundrel": [1522, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "PILFER AND PLUNDER Whenever you play an action
+	"pete pirate scoundrel": [1522, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/16b06bd9b738835e2d134fe8d596e9ab0086a985.jpg", "Emerald", "PILFER AND PLUNDER Whenever you play an action
 that isn't a song, you may banish chosen item.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "hiro hamada future champion": [1523, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ORIGIN STORY When you play a Floodborn
+	"hiro hamada future champion": [1523, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2d0c8af807ef45ac17cafb2973d866ba8f38caa9.jpg", "Emerald", "ORIGIN STORY When you play a Floodborn
 character on this card, draw a card.", "triggered", 3, 3, 1, 3, true, 0, 0, 0],
-    "cheshire cat perplexing feline": [1524, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "MAD GRIN When you play this character, you may
+	"cheshire cat perplexing feline": [1524, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4cd66dfabbd964f8c6c4414b07cdb45dae692e19.jpg", "Emerald", "MAD GRIN When you play this character, you may
 deal 2 damage to chosen damaged character.", "triggered", 4, 3, 2, 5, true, 0, 0, 0],
-    "shere khan infamous tiger": [1525, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "WHAT A PITY When you play this character,
+	"shere khan infamous tiger": [1525, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8ee51caaa2c2f4ee2e5b4b7ef5a89db7df1068d7.jpg", "Emerald", "WHAT A PITY When you play this character,
 discard your hand.", "triggered", 4, 4, 4, 4, false, 0, 0, 0],
-    "basil secret informer": [1526, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "DRAW THEM OUT Whenever this character
+	"basil secret informer": [1526, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/08a35293e09f508494096c1c1b3819edb9df50db.jpg", "Emerald", "DRAW THEM OUT Whenever this character
 quests, opposing damaged characters gain
 Reckless during their next turn. (They can't quest
 and must challenge if able.)", "triggered", 3, 6, 3, 6, true, 0, 0, 0],
-    "mad hatter unruly eccentric": [1646, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald-Ruby", "UNBIRTHDAY PRESENT Whenever a damaged
+	"mad hatter unruly eccentric": [1646, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/19187dc98dce52fa4c4e8e05b341a9b77a51fd26.jpg", "Emerald-Ruby", "UNBIRTHDAY PRESENT Whenever a damaged
 character challenges another character, you
 may draw a card.", "triggered", 3, 5, 2, 6, true, 0, 0, 0],
-    "queen of hearts unpredictable bully": [1528, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald-Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of
+	"queen of hearts unpredictable bully": [1528, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8e63fd3e77796b102589b1ba1e4441c7982e4132.jpg", "Emerald-Ruby", "Shift 3 (You may pay 3 ⬡ to play this on top of
 one of your characters named Queen of Hearts.)\nIF I LOSE MY TEMPER... Whenever another
 character is played, put a damage counter on
 them.", "keyword, triggered", 2, 6, 2, 5, false, 0, 0, 0],
-    "hiro hamada armor designer": [1662, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/577b2459826281051c52af202e38c64a05a85706.jpg", "Emerald-Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"hiro hamada armor designer": [1662, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/577b2459826281051c52af202e38c64a05a85706.jpg", "Emerald-Sapphire", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Hiro Hamada.)\nYOU CAN BE WAY MORE Your Floodborn characters that
 have a card under them gain Evasive and Ward. (Only
 characters with Evasive can challenge them. Opponents
 can't choose them except to challenge.)", "keyword, static", 4, 6, 3, 7, true, 0, 0, 0],
-    "yokai intellectual schemer": [1530, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald-Sapphire", "INNOVATE You pay 1 ⬡ less to play characters
+	"yokai intellectual schemer": [1530, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/812ed4562d3211363a7b813aa9cd2cf042b63bb2.jpg", "Emerald-Sapphire", "INNOVATE You pay 1 ⬡ less to play characters
 using their Shift ability.", "static", 1, 2, 1, 2, true, 0, 0, 0],
-    "donald duck lively pirate": [1531, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "DUCK OF ACTION Whenever this character is
+	"donald duck lively pirate": [1531, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/31bd9b9f5f7b338e41b56183a2f3008b541d7c84.jpg", "Emerald", "DUCK OF ACTION Whenever this character is
 challenged, you may return an action card that
 isn't a song card from your discard to your hand.", "triggered", 1, 1, 2, 2, false, 0, 0, 0],
-    "berlioz mischievous kitten": [1532, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 2, 5, 1, 3, true, 0, 0, 0],
-    "lady elegant spaniel": [1533, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "A DOG'S LIFE While you have a character named
+	"berlioz mischievous kitten": [1532, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9a79be611e0267e1d943da0737c6c51be67865a0.jpg", "Emerald", "", "", 2, 5, 1, 3, true, 0, 0, 0],
+	"lady elegant spaniel": [1533, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/310b86e0b62b828562fc91c7be5380a992b2786a.jpg", "Emerald", "A DOG'S LIFE While you have a character named
 Tramp in play, this character gets +1 ◊.", "static", 1, 2, 1, 1, false, 0, 0, 0],
-    "yzma exasperated schemer": [1534, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "HOW SHALL I DO IT? When you play this character, you
+	"yzma exasperated schemer": [1534, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/dbc0f004854457f59fb16ab863a3a1722cef553f.jpg", "Emerald", "HOW SHALL I DO IT? When you play this character, you
 may draw a card, then choose and discard a card.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "pacha trekmate": [1535, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "FULL PACK While you have more cards in your hand
+	"pacha trekmate": [1535, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c8306ae139ac98f432932286151dc0ec55580eca.jpg", "Emerald", "FULL PACK While you have more cards in your hand
 than each opponent, this character gets +2 ◊.", "static", 3, 2, 1, 3, true, 0, 0, 0],
-    "tweedle dee & tweedle dum strange storytellers": [1536, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Emerald-Ruby", "ANOTHER RECITATION Whenever this character quests,
+	"tweedle dee & tweedle dum strange storytellers": [1536, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/934385f53d1bd0c1b8493e44d0dfd4c8e88a04bb.jpg", "Emerald-Ruby", "ANOTHER RECITATION Whenever this character quests,
 you may return chosen damaged character to their
 player's hand.", "triggered", 4, 4, 2, 5, true, 0, 0, 0],
-    "baymax giant robot": [1537, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Emerald-Sapphire", "Universal Shift 4 (You may pay 4 ⬡ to play this on
+	"baymax giant robot": [1537, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/78a8efcbaaa1a9a30f9f327aa89d0b6acaaffb03.jpg", "Emerald-Sapphire", "Universal Shift 4 (You may pay 4 ⬡ to play this on
 top of any one of your characters.)\nFUNCTIONALITY IMPROVED When you play this
 character, if you used Shift to play him, remove
 all damage from him.", "keyword, triggered", 5, 5, 2, 6, false, 0, 0, 0],
-    "gizmoduck suited up": [1538, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Emerald-Steel", "Resist +1 (Damage dealt to this character is
+	"gizmoduck suited up": [1538, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e114c448f4ab8554ad14eff3d66dfeb3965ce8fc.jpg", "Emerald-Steel", "Resist +1 (Damage dealt to this character is
 reduced by 1.)\nBLATHERING BLATHERSKITE This character can
 challenge ready damaged characters.", "keyword, static", 4, 3, 1, 4, true, 0, 0, 0],
-    "fidget sneaky bat": [1539, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Emerald-Ruby", "Evasive (Only characters with Evasive can
+	"fidget sneaky bat": [1539, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7224f997fc148baa0b7f81c1eda6fcc3fd003db0.jpg", "Emerald-Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nI TOOK CARE OF EVERYTHING Whenever this
 character quests, another chosen character of
 yours gains Evasive until the start of your next turn.", "keyword, triggered", 2, 3, 2, 4, true, 0, 0, 0],
-    "mr smee efficient captain": [1540, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Emerald-Steel", "PIPE UP THE CREW Whenever you play an action
+	"mr smee efficient captain": [1540, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/524e05dc77239f3a15dab766aaa59a9e432efde7.jpg", "Emerald-Steel", "PIPE UP THE CREW Whenever you play an action
 that isn't a song, you may ready chosen Pirate
 character.", "triggered", 3, 3, 1, 3, false, 0, 0, 0],
-    "daisy duck multitalented pirate": [1541, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Emerald", "FOWL PLAY Once during your turn, whenever a card is
+	"daisy duck multitalented pirate": [1541, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/17503a6b2326f09fbc4e3a7c03874c7333002038.jpg", "Emerald", "FOWL PLAY Once during your turn, whenever a card is
 put into your inkwell, chosen opponent chooses one of
 their characters and returns that card to their hand.", "triggered", 6, 5, 3, 8, false, 0, 0, 0],
-    "john silver vengeful pirate": [1542, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Emerald-Steel", "DRAWN TO A FIGHT If an opposing character was damaged
+	"john silver vengeful pirate": [1542, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a1422e6a168630cdd214ac5e31ca01ae1bee8d92.jpg", "Emerald-Steel", "DRAWN TO A FIGHT If an opposing character was damaged
 this turn, you pay 2 ⬡ less to play this character.\nResist +1 (Damage dealt to this character is reduced by 1.)\nI AIN'T GONE SOFT! Whenever you play an action that isn't a
 song, you may deal 1 damage to chosen character.", "static, keyword, triggered", 6, 4, 2, 8, true, 0, 0, 0],
-    "tramp enterprising dog": [1645, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "HEY, PIDGE If you have a character named Lady in
+	"tramp enterprising dog": [1645, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e2154fea5da2dd0d1732ff30931723c2973003a0.jpg", "Emerald", "HEY, PIDGE If you have a character named Lady in
 play, you pay 1 ⬡ less to play this character.\nNO TIME FOR WISECRACKS When you play this
 character, chosen character of yours gets +1 ¤ this
 turn for each other character you have in play.", "static, triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "king of hearts picky ruler": [1544, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Emerald", "OBJECTIONABLE STATE Damaged characters can't
+	"king of hearts picky ruler": [1544, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2.jpg", "Emerald", "OBJECTIONABLE STATE Damaged characters can't
 challenge your characters.", "static", 3, 3, 2, 4, false, 0, 0, 0],
-    "duchess elegant feline": [1545, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Emerald", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "anastasia bossy stepsister": [1546, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Emerald", "OH, I HATE THIS! Whenever this character is
+	"duchess elegant feline": [1545, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/601ca99d55f00a2e8e736676b606a4d31d374fdd.jpg", "Emerald", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"anastasia bossy stepsister": [1546, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e993215bfdaa515f6ea00fafc1918f549119f993.jpg", "Emerald", "OH, I HATE THIS! Whenever this character is
 challenged, the challenging player chooses and
 discards a card.", "triggered", 3, 1, 2, 3, true, 0, 0, 0],
-    "pete space pirate": [1547, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Emerald-Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
+	"pete space pirate": [1547, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ecb7937db58ec9dea0c47db88463d85e81143032.jpg", "Emerald-Steel", "Shift 4 (You may pay 4 ⬡ to play this on top of
 one of your characters named Pete.)\nFRIGHTFUL SCHEME While this character is
 exerted, opposing characters can't exert to sing
 songs and your Pirate characters gain Resist +1.
 (Damage dealt to them is reduced by 1.)", "keyword, static", 5, 5, 2, 6, true, 0, 0, 0],
-    "lady tremaine bitterly jealous": [1548, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Emerald", "THAT'S QUITE ENOUGH ⟳ — Return chosen
+	"lady tremaine bitterly jealous": [1548, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/efa6e44dfa0145249be273ecd84a97f534b04920.jpg", "Emerald", "THAT'S QUITE ENOUGH ⟳ — Return chosen
 damaged character to their player's hand. Then,
 each opponent discards a card at random.", "activated", 3, 3, 2, 6, false, 0, 0, 0],
-    "wake up alice": [1549, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
-    "he's a tramp": [1550, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Emerald", "(A character with cost 1 or more can ⟳ to sing this song
+	"wake up alice": [1549, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/683e725c03a87baaad2623231644e944e537acab.jpg", "Emerald", "", "", 0, 0, 0, 1, true, 0, 0, 0],
+	"he's a tramp": [1550, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d0e2dbb0bac1917d360aaf52c01a2a4b669e8cdb.jpg", "Emerald", "(A character with cost 1 or more can ⟳ to sing this song
 for free.)", "static", 0, 0, 0, 1, true, 0, 0, 0],
-    "the return of hercules": [1648, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Emerald", "", "", 0, 0, 0, 5, true, 0, 0, 0],
-    "ink geyser": [1552, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Emerald-Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "emerald coil": [1553, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Emerald", "SHIMMERING WINGS During your turn, whenever
+	"the return of hercules": [1648, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/828f720439cefaeb3acc7a7babce0a28abaa07a3.jpg", "Emerald", "", "", 0, 0, 0, 5, true, 0, 0, 0],
+	"ink geyser": [1552, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a2e33d344f272e100d4a8efeabc7ae8a60a8ba7a.jpg", "Emerald-Sapphire", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"emerald coil": [1553, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/775bc5c30e27f0e562115d136e7f7edbd3cead89.jpg", "Emerald", "SHIMMERING WINGS During your turn, whenever
 a card is put into your inkwell, chosen character
 gains Evasive until the start of your next turn. (Only
 characters with Evasive can challenge them.)", "triggered", 0, 0, 0, 3, false, 0, 0, 0],
-    "grandmother fa spirited elder": [1554, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "I'VE GOT ALL THE LUCK WE'LL NEED Whenever this
+	"grandmother fa spirited elder": [1554, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8bd7954c40c1e59a900f71ea3a266732609915b1.jpg", "Ruby", "I'VE GOT ALL THE LUCK WE'LL NEED Whenever this
 character quests, you may give chosen character
 of yours +2 ¤ this turn.", "triggered", 1, 1, 2, 2, true, 0, 0, 0],
-    "queen of hearts losing her temper": [1555, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "ROYAL PAIN While this character has damage,
+	"queen of hearts losing her temper": [1555, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/05a8ea5382b9fd885261bb3eed0527d1d3b07262.jpg", "Ruby", "ROYAL PAIN While this character has damage,
 she gets +3 ¤.", "static", 1, 4, 1, 2, true, 0, 0, 0],
-    "the matchmaker unforgiving expert": [1556, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "YOU ARE A DISGRACE! Whenever this character
+	"the matchmaker unforgiving expert": [1556, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/40bd001563085fc35165329ea1ff5c5ecbdbbeef.jpg", "Ruby", "YOU ARE A DISGRACE! Whenever this character
 challenges another character, each opponent
 loses 1 lore.", "triggered", 4, 3, 1, 4, true, 0, 0, 0],
-    "denahi impatient hunter": [1557, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby-Steel", "Reckless (This character can't quest and must
+	"denahi impatient hunter": [1557, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f38cfe2e2facbcc742bad63f91ad55637300cb45.jpg", "Ruby-Steel", "Reckless (This character can't quest and must
 challenge each turn if able.)\nResist +2 (Damage dealt to this character is
 reduced by 2.)", "keyword, keyword", 3, 2, 0, 3, true, 0, 0, 0],
-    "stabbington brother without a patch": [1558, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
+	"stabbington brother without a patch": [1558, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0ca9277f91e40054767f69afeb0426711ca0fddd.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)\nGET 'EM! Your other characters named
 Stabbington Brother gain Rush.", "keyword, static", 3, 4, 1, 4, false, 0, 0, 0],
-    "belle mechanic extraordinaire": [1650, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Ruby-Sapphire", "Shift 7\nSALVAGE For each item card in your discard, you pay 1 ⬡
+	"belle mechanic extraordinaire": [1650, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/49e3d046636e06b2d82ee046db8e6eb9a2e11e16.jpg", "Ruby-Sapphire", "Shift 7\nSALVAGE For each item card in your discard, you pay 1 ⬡
 less to play this character using her Shift ability.\nREPURPOSE Whenever this character quests, you may
 put up to 3 item cards from your discard on the bottom of
 your deck to gain 1 lore for each item card moved this way.", "keyword, static, triggered", 7, 7, 3, 9, true, 0, 0, 0],
-    "cy-bug invasive enemy": [1560, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "HIVE MIND This character gets +1 ¤ for each
+	"cy-bug invasive enemy": [1560, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/008451a05e1e7aa32c75119df950d405265e0904.jpg", "Ruby", "HIVE MIND This character gets +1 ¤ for each
 other character you have in play.", "static", 1, 2, 1, 2, true, 0, 0, 0],
-    "stabbington brother with a patch": [1561, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "CRIME OF OPPORTUNITY When you play this
+	"stabbington brother with a patch": [1561, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b4182bff4b3cf75f9e54f4990f9bd153c0c2973c.jpg", "Ruby", "CRIME OF OPPORTUNITY When you play this
 character, chosen opponent loses 1 lore.", "triggered", 4, 4, 1, 5, true, 0, 0, 0],
-    "card soldiers royal troops": [1562, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "TAKE POINT While a damaged character is in
+	"card soldiers royal troops": [1562, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/8b7471f4ae0bf59f5f0a425068c05d96f4801b9e.jpg", "Ruby", "TAKE POINT While a damaged character is in
 play, this character gets +2 ¤.", "static", 1, 2, 1, 1, true, 0, 0, 0],
-    "cogsworth climbing clock": [1563, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "STILL USEFUL While you have an item card in your
+	"cogsworth climbing clock": [1563, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a7541babb57434e5631ffa2b5639e24f8ce84fc.jpg", "Ruby", "STILL USEFUL While you have an item card in your
 discard, this character gets +2 ¤.", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "toby dogged companion": [1564, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 3, 1, 1, 1, false, 0, 0, 0],
-    "beagle boys small-time crooks": [1565, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby-Sapphire", "HURRY IT UP! Whenever this character quests,
+	"toby dogged companion": [1564, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e794a80eb109162d579df51db6d52e223bb0e9be.jpg", "Ruby", "", "", 3, 1, 1, 1, false, 0, 0, 0],
+	"beagle boys small-time crooks": [1565, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/91dfde1d6e005e422f64a59776234f1f4c80b5e4.jpg", "Ruby-Sapphire", "HURRY IT UP! Whenever this character quests,
 chosen character of yours gains Rush and
 Resist +1 this turn. (They can challenge the turn
 they're played. Damage dealt to them is reduced
 by 1.)", "triggered", 3, 3, 2, 4, true, 0, 0, 0],
-    "li shang newly promoted": [1659, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Ruby-Steel", "I WON'T LET YOU DOWN This character can
+	"li shang newly promoted": [1659, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/12c6fc06c99a462375eeb3f43dfd832b08ca9e17.jpg", "Ruby-Steel", "I WON'T LET YOU DOWN This character can
 challenge ready characters.\nENORMOUS RESPONSIBILITY While this character
 has damage, he gets +2 ¤.", "static, static", 2, 3, 1, 3, false, 0, 0, 0],
-    "moana island explorer": [1567, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"moana island explorer": [1567, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/95e815d1541bf6f358cfffbe66ab3af0d0c09d09.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nADVENTUROUS SPIRIT Whenever this character
 challenges another character, another chosen
 character of yours gets +3 ¤ this turn.", "keyword, triggered", 4, 3, 1, 4, true, 0, 0, 0],
-    "the phantom blot shadowy figure": [1568, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "Rush (This character can challenge the turn
+	"the phantom blot shadowy figure": [1568, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/40f7c01f4189510031adccd9c604a128adaf9b00.jpg", "Ruby", "Rush (This character can challenge the turn
 they're played.)", "keyword", 3, 1, 1, 2, false, 0, 0, 0],
-    "beast frustrated designer": [1569, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby-Sapphire", "I'VE HAD IT! ⟳, 2 ⬡, Banish 2 of your items —
+	"beast frustrated designer": [1569, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e071a3a594a8964cbefe784f8a6afaa94c0de17.jpg", "Ruby-Sapphire", "I'VE HAD IT! ⟳, 2 ⬡, Banish 2 of your items —
 Deal 5 damage to chosen character.", "activated", 5, 5, 2, 6, false, 0, 0, 0],
-    "mushu majestic dragon": [1570, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Ruby-Steel", "INTIMIDATING AND AWE-INSPIRING Whenever one of your
+	"mushu majestic dragon": [1570, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e1a864f0b77f6c89794827a9035355dc8d052622.jpg", "Ruby-Steel", "INTIMIDATING AND AWE-INSPIRING Whenever one of your
 characters challenges, they gain Resist +2 during that
 challenge. (Damage dealt to them is reduced by 2.)\nGUARDIAN OF LOST SOULS During your turn, whenever
 one of your characters banishes another character in a
 challenge, gain 2 lore.", "triggered, triggered", 4, 4, 1, 5, true, 0, 0, 0],
-    "maurice unconventional inventor": [1571, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Ruby", "HOW ON EARTH DID THAT HAPPEN? When you
+	"maurice unconventional inventor": [1571, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/56ad4d4deaec98465c419b4a8ea7bfc1ed38c4d9.jpg", "Ruby", "HOW ON EARTH DID THAT HAPPEN? When you
 play this character, you may banish chosen item
 of yours to draw a card. If the banished item is
 named Maurice's Machine, you may also banish
 chosen character with 2 ¤ or less.", "triggered", 5, 2, 1, 4, true, 0, 0, 0],
-    "goofy extreme athlete": [1572, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Ruby", "Evasive (Only characters with Evasive can
+	"goofy extreme athlete": [1572, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fa755791d0509bb06ae715a2072de724815ed84d.jpg", "Ruby", "Evasive (Only characters with Evasive can
 challenge this character.)\nSTAR POWER Whenever this character challenges
 another character, your other characters get +1 ◊
 this turn.", "keyword, triggered", 7, 6, 1, 7, true, 0, 0, 0],
-    "lyle tiberius rourke crystallized mercenary": [1573, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Ruby", "EXPLOSIVE Once during your turn, whenever a
+	"lyle tiberius rourke crystallized mercenary": [1573, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c28aca23f1ef3718a464383d925c66842078edaa.jpg", "Ruby", "EXPLOSIVE Once during your turn, whenever a
 card is put into your inkwell, deal 2 damage to
 each character in play.", "triggered", 6, 4, 3, 8, true, 0, 0, 0],
-    "mulan imperial general": [1574, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Ruby-Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
+	"mulan imperial general": [1574, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c9ca442765657fc90e9e779c34d0d2259d2c3c5b.jpg", "Ruby-Steel", "Shift 5 (You may pay 5 ⬡ to play this on top of one of your
 characters named Mulan.)\nEvasive (Only characters with Evasive can challenge this
 character.)\nEXCEPTIONAL LEADER Whenever this character challenges
 another character, your other characters gain “This
 character can challenge ready characters” this turn.", "keyword, keyword, triggered", 5, 6, 2, 7, true, 0, 0, 0],
-    "baloo ol' iron paws": [1575, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Ruby", "FIGHT LIKE A BEAR Your characters with 7 ¤ or
+	"baloo ol' iron paws": [1575, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a2b47bf21a372f267deccbb420567f3d450b3c0.jpg", "Ruby", "FIGHT LIKE A BEAR Your characters with 7 ¤ or
 more can't be dealt damage.", "static", 5, 4, 2, 6, false, 0, 0, 0],
-    "ratigan nefarious criminal": [1649, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "A MARVELOUS PERFORMANCE Whenever you
+	"ratigan nefarious criminal": [1649, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0bad865a02d82f4970687ffe1b80822b76cc0626.jpg", "Ruby", "A MARVELOUS PERFORMANCE Whenever you
 play an action while this character is exerted,
 gain 1 lore.", "triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "sir kay unruly knight": [1577, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Ruby", "", "", 2, 2, 2, 2, true, 0, 0, 0],
-    "milo thatch undaunted scholar": [1578, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Ruby", "I'M YOUR GUY Whenever you play an action, you
+	"sir kay unruly knight": [1577, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/7320828c9153b2a9848d6bc45d3544236b22fc48.jpg", "Ruby", "", "", 2, 2, 2, 2, true, 0, 0, 0],
+	"milo thatch undaunted scholar": [1578, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/50336bc687eb161ee9fb0ddb8cf2b7e65bad865f.jpg", "Ruby", "I'M YOUR GUY Whenever you play an action, you
 may give chosen character +2 ¤ this turn.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "edgar balthazar ambitious butler": [1579, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
-    "we've got company": [1580, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Ruby", "", "", 0, 0, 0, 3, false, 0, 0, 0],
-    "out of order": [1581, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Ruby", "", "", 0, 0, 0, 7, true, 0, 0, 0],
-    "ruby coil": [1582, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Ruby", "CRIMSON SPARK During your turn, whenever a card is put
+	"edgar balthazar ambitious butler": [1579, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3fcfb99ec010d4a8ba364f43169465d91ca39ada.jpg", "Ruby", "", "", 6, 5, 1, 5, true, 0, 0, 0],
+	"we've got company": [1580, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b3c0730cf3f50613e40561e67c871fdb92820cf9.jpg", "Ruby", "", "", 0, 0, 0, 3, false, 0, 0, 0],
+	"out of order": [1581, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/536fb6934062440c464ca2eef82b0be8e6b36cc8.jpg", "Ruby", "", "", 0, 0, 0, 7, true, 0, 0, 0],
+	"ruby coil": [1582, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/39dfc9ffd3253c48c9af5dd55c4b3e4b4b5e6229.jpg", "Ruby", "CRIMSON SPARK During your turn, whenever a card is put
 into your inkwell, chosen character gets +2 ¤ this turn.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "unconventional tool": [1583, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Ruby", "FIXED IN NO TIME When this item is banished, you pay
+	"unconventional tool": [1583, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/13682ac418603aa0966369d46bbf282f562acf47.jpg", "Ruby", "FIXED IN NO TIME When this item is banished, you pay
 2 ⬡ less for the next item you play this turn.", "triggered", 0, 0, 0, 1, true, 0, 0, 0],
-    "maurice's machine": [1584, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Ruby-Sapphire", "BREAK DOWN When this item is banished, you may
+	"maurice's machine": [1584, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/b16a457a3302d7c1f4563df2ffc96dccf3779af7.jpg", "Ruby-Sapphire", "BREAK DOWN When this item is banished, you may
 return an item card with cost 2 or less from your
 discard to your hand.", "triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "devil's eye diamond": [1651, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Ruby", "THE PRICE OF POWER ⟳ — If one of your
+	"devil's eye diamond": [1651, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3d5bdf107de596ce77e8ce48a61b585f52bbb61d.jpg", "Ruby", "THE PRICE OF POWER ⟳ — If one of your
 characters was damaged this turn, gain 1 lore.", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "clarabelle news reporter": [1586, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"clarabelle news reporter": [1586, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a6f16ab483da9847d431a822e6c85e144dc54f30.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)\nBREAKING STORY Your other characters with
 Support get +1 ¤.", "keyword, static", 3, 3, 2, 4, true, 0, 0, 0],
-    "scrooge mcduck resourceful miser": [1587, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "PUT IT TO GOOD USE You may exert 4 items of
+	"scrooge mcduck resourceful miser": [1587, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/06349be70bd2d5dd98d36b9b8dba0a057500fdac.jpg", "Sapphire", "PUT IT TO GOOD USE You may exert 4 items of
 yours to play this character for free.\nFORTUNE HUNTER When you play this character,
 look at the top 4 cards of your deck. You may
 reveal an item card and put it into your hand. Put
 the rest on the bottom of your deck in any order.", "static, triggered", 4, 4, 1, 4, true, 0, 0, 0],
-    "mattias arendelle general": [1588, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "PROUD TO SERVE Your Queen characters gain
+	"mattias arendelle general": [1588, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9d8974baddfc0e53300829f37e5fc88b0f5ce61b.jpg", "Sapphire", "PROUD TO SERVE Your Queen characters gain
 Ward. (Opponents can't choose them except to
 challenge.)", "static", 3, 2, 1, 2, true, 0, 0, 0],
-    "monsieur d'arque despicable proprietor": [1590, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "I'VE COME TO COLLECT Whenever this character
+	"monsieur d'arque despicable proprietor": [1590, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/097ccd4f03d962011101c1221009e53461a0993f.jpg", "Sapphire", "I'VE COME TO COLLECT Whenever this character
 quests, you may banish chosen item of yours to
 draw a card.", "triggered", 1, 2, 1, 1, true, 0, 0, 0],
-    "gaetan moliere the mole": [1591, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 3, 4, 1, 3, true, 0, 0, 0],
-    "belle apprentice inventor": [1592, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "WHAT A MESS During your turn, you may banish
+	"gaetan moliere the mole": [1591, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a3d12597f93e80f7f6a229cebb1c3e10d4f34ec3.jpg", "Sapphire", "", "", 3, 4, 1, 3, true, 0, 0, 0],
+	"belle apprentice inventor": [1592, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/6b6277afcb65d33525545904e95c2fa240632660.jpg", "Sapphire", "WHAT A MESS During your turn, you may banish
 chosen item of yours to play this character for free.", "static", 3, 3, 1, 3, true, 0, 0, 0],
-    "lucky runt of the litter": [1593, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "FOLLOW MY VOICE Whenever this character
+	"lucky runt of the litter": [1593, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/be057d4ca44c10a0fc1dfcffd99cce1490291dc7.jpg", "Sapphire", "FOLLOW MY VOICE Whenever this character
 quests, look at the top 2 cards of your deck. You
 may reveal any number of Puppy character cards
 and put them in your hand. Put the rest on the
 bottom of your deck in any order.", "triggered", 1, 3, 2, 3, false, 0, 0, 0],
-    "dawson puzzling sleuth": [1594, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "BE SENSIBLE Once during your turn, whenever a
+	"dawson puzzling sleuth": [1594, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/0159a99ed28b0581890608d24ada9decc4874197.jpg", "Sapphire", "BE SENSIBLE Once during your turn, whenever a
 card is put into your inkwell, look at the top card
 of your deck. You may put it on either the top or
 the bottom of your deck.", "triggered", 1, 2, 1, 1, false, 0, 0, 0],
-    "tamatoa happy as a clam": [1652, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "COOLEST COLLECTION When you play this
+	"tamatoa happy as a clam": [1652, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c0ba17c23a26ff8c314478bc69f30963a6e4a754.jpg", "Sapphire", "COOLEST COLLECTION When you play this
 character, return up to 2 item cards from your
 discard to your hand.\nI'M BEAUTIFUL, BABY! Whenever this character
 quests, you may play an item for free.", "triggered, triggered", 4, 5, 2, 6, true, 0, 0, 0],
-    "heihei expanded consciousness": [1596, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire-Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
+	"heihei expanded consciousness": [1596, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/fd93751649ac3ea8f8772ba49c8c1fe068002835.jpg", "Sapphire-Steel", "Shift 3 (You may pay 3 ⬡ to play this on top of one of your
 characters named Heihei.)\nResist +1 (Damage dealt to this character is reduced by 1.)\nCLEAR YOUR MIND When you play this character, put all
 cards from your hand into your inkwell facedown and
 exerted.", "keyword, keyword, triggered", 1, 5, 2, 5, true, 0, 0, 0],
-    "kida creative thinker": [1597, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "Ward (Opponents can't choose this character
+	"kida creative thinker": [1597, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a929eb33e338738d2a91e955ce7623764480253c.jpg", "Sapphire", "Ward (Opponents can't choose this character
 except to challenge.)\nKEY TO THE PUZZLE ⟳ — Look at the top 2 cards of
 your deck. Put one into your inkwell facedown and
 exerted and the other on the top of your deck.", "keyword, activated", 3, 3, 1, 4, true, 0, 0, 0],
-    "toulouse artistic kitten": [1598, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 1, 3, 1, 1, true, 0, 0, 0],
-    "marie favored kitten": [1599, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "I'LL SHOW YOU Whenever this character quests,
+	"toulouse artistic kitten": [1598, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/74cbd2c215c2c13c4b6110ada96de8891b355dda.jpg", "Sapphire", "", "", 1, 3, 1, 1, true, 0, 0, 0],
+	"marie favored kitten": [1599, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/69e56976fc9bee70c1d2eaa85c0c8dea9f722a2f.jpg", "Sapphire", "I'LL SHOW YOU Whenever this character quests,
 you may give chosen character -2 ¤ this turn.", "triggered", 1, 2, 2, 2, true, 0, 0, 0],
-    "pepper quick-thinking puppy": [1600, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "IN THE NICK OF TIME Whenever one of your Puppy
+	"pepper quick-thinking puppy": [1600, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/708a77db476d737e54b8bf4663fc79b346d696d2.jpg", "Sapphire", "IN THE NICK OF TIME Whenever one of your Puppy
 characters is banished, you may put that card into
 your inkwell facedown and exerted.", "triggered", 2, 2, 1, 3, true, 0, 0, 0],
-    "freckles good boy": [1601, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "JUST SO CUTE! When you play this character,
+	"freckles good boy": [1601, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f76b2ea6b45eff3bc8e4399145cc17a0601f5c8d.jpg", "Sapphire", "JUST SO CUTE! When you play this character,
 chosen opposing character gets -1 ¤ this turn.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "honey lemon chemistry whiz": [1602, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "PRETTY GREAT, HUH? Whenever you play a
+	"honey lemon chemistry whiz": [1602, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2659fc519890c924f82b4475ddd71b058178d02b.jpg", "Sapphire", "PRETTY GREAT, HUH? Whenever you play a
 Floodborn character, if you used Shift to play
 them, you may remove up to 2 damage from
 chosen character.", "triggered", 2, 2, 1, 2, true, 0, 0, 0],
-    "robin hood eye for detail": [1603, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "Support (Whenever this character quests, you
+	"robin hood eye for detail": [1603, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/717b2f3d8816830549097908c134e1729c516542.jpg", "Sapphire", "Support (Whenever this character quests, you
 may add their ¤ to another chosen character's
 ¤ this turn.)", "keyword", 3, 3, 1, 3, true, 0, 0, 0],
-    "penny the orphan clever child": [1604, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Sapphire", "OUR BOTTLE WORKED! While you have a Hero
+	"penny the orphan clever child": [1604, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/94940e534aedd3f6d9bb77c6322f6641dbb7432a.jpg", "Sapphire", "OUR BOTTLE WORKED! While you have a Hero
 character in play, this character gains Ward.
 (Opponents can't choose them except to challenge.)", "static", 2, 1, 2, 2, true, 0, 0, 0],
-    "lady kluck protective confidant": [1605, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Sapphire-Steel", "Bodyguard (This character may enter play exerted.
+	"lady kluck protective confidant": [1605, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c1aa04bf421e5b38c3d18933e9994d3f289def65.jpg", "Sapphire-Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nWard (Opponents can't choose this character
 except to challenge.)", "keyword, keyword", 2, 7, 1, 5, true, 0, 0, 0],
-    "jasmine inspired researcher": [1606, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Sapphire-Steel", "EXTRA ASSISTANCE Whenever this character
+	"jasmine inspired researcher": [1606, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/572e20738130fddc7c389f2ab14f4e4b22a97c39.jpg", "Sapphire-Steel", "EXTRA ASSISTANCE Whenever this character
 quests, if you have no cards in your hand, draw a
 card for each Ally character you have in play.", "triggered", 3, 5, 2, 5, false, 0, 0, 0],
-    "jebidiah farnsworth expedition cook": [1607, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Sapphire", "Support (Whenever this character quests, you may add
+	"jebidiah farnsworth expedition cook": [1607, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/d094700e379f0fb3b543e25c77f8e4b3e068f057.jpg", "Sapphire", "Support (Whenever this character quests, you may add
 their ¤ to another chosen character's ¤ this turn.)\nI GOT YOUR FOUR BASIC FOOD GROUPS When you play
 this character, chosen character gains Resist +1 until
 the start of your next turn. (Damage dealt to them is
 reduced by 1.)", "keyword, triggered", 3, 3, 1, 4, true, 0, 0, 0],
-    "baymax upgraded robot": [1608, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Sapphire", "Support (Whenever this character quests, you may add
+	"baymax upgraded robot": [1608, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/04f1241ed2b1b531c2c853ce1eeff952cd0f40f3.jpg", "Sapphire", "Support (Whenever this character quests, you may add
 their ¤ to another chosen character's ¤ this turn.)\nADVANCED SCANNER When you play this character,
 look at the top 4 cards of your deck. You may reveal a
 Floodborn character card and put it into your hand. Put
 the rest on the bottom of your deck in any order.", "keyword, triggered", 3, 5, 1, 5, true, 0, 0, 0],
-    "maid marian badminton ace": [1609, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Sapphire-Steel", "GOOD SHOT During an opponent's turn, whenever
+	"maid marian badminton ace": [1609, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/5c8f5ac0b7ad23c110793ad1fcf4d3c8d41344d5.jpg", "Sapphire-Steel", "GOOD SHOT During an opponent's turn, whenever
 one of your Ally characters is damaged, deal 1
 damage to chosen opposing character.\nFAIR PLAY Your characters named Lady Kluck gain
 Resist +1. (Damage dealt to them is reduced by 1.)", "triggered, static", 3, 3, 2, 4, true, 0, 0, 0],
-    "water has memory": [1610, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Sapphire", "", "", 0, 0, 0, 1, false, 0, 0, 0],
-    "all is found": [1653, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this
+	"water has memory": [1610, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/26e7458dc56ab2830fadba7bd2c1aa10e981518d.jpg", "Sapphire", "", "", 0, 0, 0, 1, false, 0, 0, 0],
+	"all is found": [1653, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f37062d9a65543a46f2ba13299ba77a370a1c4eb.jpg", "Sapphire", "(A character with cost 5 or more can ⟳ to sing this
 song for free.)", "static", 0, 0, 0, 5, true, 0, 0, 0],
-    "sapphire coil": [1612, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Sapphire", "BRILLIANT SHINE During your turn, whenever a card is put
+	"sapphire coil": [1612, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9e44d2771c052d44058245eda6cb334689ca78cc.jpg", "Sapphire", "BRILLIANT SHINE During your turn, whenever a card is put
 into your inkwell, you may give chosen character -2 ¤
 this turn.", "triggered", 0, 0, 0, 2, true, 0, 0, 0],
-    "baymax's charging station": [1613, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Sapphire", "ENERGY CONVERTER Whenever you play a Floodborn
+	"baymax's charging station": [1613, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/ec7f1f65067126f3b2bd1037de8a18d0db2ec84b.jpg", "Sapphire", "ENERGY CONVERTER Whenever you play a Floodborn
 character, if you used Shift to play them, you may draw a card.", "triggered", 0, 0, 0, 3, true, 0, 0, 0],
-    "dr calico green-eyed man": [1614, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "YOU'RE BEGINNING TO IRK ME While this character
+	"dr calico green-eyed man": [1614, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/aee544ceddfe7ab69a02f82bdf8ce6ea3862ff02.jpg", "Steel", "YOU'RE BEGINNING TO IRK ME While this character
 has no damage, he gains Resist +2. (Damage
 dealt to them is reduced by 2.)", "static", 3, 4, 1, 4, true, 0, 0, 0],
-    "akela wolf pack elder": [1615, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 3, 2, 1, 2, true, 0, 0, 0],
-    "helga sinclair tough as nails": [1616, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Challenger +3 (While challenging, this character
+	"akela wolf pack elder": [1615, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/58f0744907ea8bd8e0f51e568f1536289ceb40a5.jpg", "Steel", "", "", 3, 2, 1, 2, true, 0, 0, 0],
+	"helga sinclair tough as nails": [1616, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/dc685e2c3fd7a3a63944383a54aa249ea27f5fdd.jpg", "Steel", "Challenger +3 (While challenging, this character
 gets +3 ¤.)\nQUICK REFLEXES During your turn, this character
 gains Evasive. (They can challenge characters
 with Evasive.)", "keyword, static", 0, 4, 1, 2, false, 0, 0, 0],
-    "bolt headstrong dog": [1617, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "THERE'S NO TURNING BACK Whenever this
+	"bolt headstrong dog": [1617, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/bcf814ab41506290ab1b8158ebda6ee61b4bb579.jpg", "Steel", "THERE'S NO TURNING BACK Whenever this
 character quests, if he has no damage, you may
 draw a card, then choose and discard a card.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "heihei rambling rooster": [1618, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
-    "raya guidance seeker": [1619, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "A GREATER PURPOSE During your turn, whenever
+	"heihei rambling rooster": [1618, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/cfa2ed2aac6d61f44ca9cba73e1e8946b7cd7d22.jpg", "Steel", "", "", 2, 2, 1, 1, true, 0, 0, 0],
+	"raya guidance seeker": [1619, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/87d538ef1c1db71603e60f278446c86470162380.jpg", "Steel", "A GREATER PURPOSE During your turn, whenever
 a card is put into your inkwell, this character
 gains Resist +1 until the start of your next turn.
 (Damage dealt to them is reduced by 1.)", "triggered", 1, 4, 2, 3, true, 0, 0, 0],
-    "tuk tuk disarmingly cute": [1620, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"tuk tuk disarmingly cute": [1620, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/f67462663a512121ffada791890b558ee8b38773.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of
 your characters must choose one with Bodyguard
 if able.)\nResist +2 (Damage dealt to this character is
 reduced by 2.)", "keyword, keyword", 0, 1, 1, 2, false, 0, 0, 0],
-    "fa zhou war hero": [1621, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "TRAINING EXERCISES Whenever one of your
+	"fa zhou war hero": [1621, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/acf1fffc01dc0193aa07d0b1de723c292a2c826d.jpg", "Steel", "TRAINING EXERCISES Whenever one of your
 characters challenges another character, if it's
 the second challenge this turn, gain 3 lore.", "triggered", 2, 3, 1, 3, true, 0, 0, 0],
-    "razoul menacing guard": [1622, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "MY ORDERS COME FROM JAFAR When you play this
+	"razoul menacing guard": [1622, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/e54183e2a040e6c09e61eb22d542e3d57074b351.jpg", "Steel", "MY ORDERS COME FROM JAFAR When you play this
 character, if you have a character named Jafar in
 play, you may banish chosen item.", "triggered", 1, 3, 1, 2, true, 0, 0, 0],
-    "jafar aspiring ruler": [1623, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "THAT'S BETTER When you play this character,
+	"jafar aspiring ruler": [1623, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/3a2dc677d8e85ac856541744e288d504882feb36.jpg", "Steel", "THAT'S BETTER When you play this character,
 chosen character gains Challenger +2 this turn.
 (They get +2 ¤ while challenging.)", "triggered", 3, 2, 2, 3, true, 0, 0, 0],
-    "tick-tock relentless crocodile": [1624, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "LOOKING FOR LUNCH During your turn, this
+	"tick-tock relentless crocodile": [1624, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2fcc820fc1d95b1e8a3a219c7e3689bb8d65042c.jpg", "Steel", "LOOKING FOR LUNCH During your turn, this
 character gains Evasive while a Pirate character is in
 play. (They can challenge characters with Evasive.)", "static", 5, 6, 1, 5, true, 0, 0, 0],
-    "kakamora band of pirates": [1625, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "SHOWBOATING While you have another Pirate
+	"kakamora band of pirates": [1625, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/19a448c01aa2e7d55979473b647e282459995b85.jpg", "Steel", "SHOWBOATING While you have another Pirate
 character in play, this character gains Challenger +3.
 (While challenging, this character gets +3 ¤.)", "static", 1, 6, 1, 4, true, 0, 0, 0],
-    "mulan disguised soldier": [1626, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "WHERE DO I SIGN IN? When you play this
+	"mulan disguised soldier": [1626, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/14bb99f81147d2705f53a1d75337b2ec3e10d23a.jpg", "Steel", "WHERE DO I SIGN IN? When you play this
 character, you may draw a card, then choose and
 discard a card.", "triggered", 2, 1, 1, 1, true, 0, 0, 0],
-    "orville albatross air": [1627, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "WELCOME ABOARD, FOLKS During your turn, while you
+	"orville albatross air": [1627, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2a79f14120945873482b7823caabe2fcde848722.jpg", "Steel", "WELCOME ABOARD, FOLKS During your turn, while you
 have a character named Miss Bianca or Bernard in
 play, this character gains Evasive. (They can challenge
 characters with Evasive.)", "static", 4, 3, 1, 3, true, 0, 0, 0],
-    "miss bianca unwavering agent": [1628, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "HAVE A LITTLE FAITH If you have an Ally character
+	"miss bianca unwavering agent": [1628, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/752ae7bdbb96bf25280b55990570beabf2048ce0.jpg", "Steel", "HAVE A LITTLE FAITH If you have an Ally character
 in play, you pay 2 ⬡ less to play this character.", "static", 5, 5, 1, 6, true, 0, 0, 0],
-    "mufasa respected king": [1629, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 4, 4, 1, 4, true, 0, 0, 0],
-    "aladdin research assistant": [1630, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "HELPING HAND Whenever this character quests,
+	"mufasa respected king": [1629, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771.jpg", "Steel", "", "", 4, 4, 1, 4, true, 0, 0, 0],
+	"aladdin research assistant": [1630, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/61188f24396807ba7ca38919a158766de935852e.jpg", "Steel", "HELPING HAND Whenever this character quests,
 you may play an Ally character with cost 3 or less
 for free.\nPUT IN THE EFFORT While this character is
 exerted, your Ally characters get +1 ¤.", "triggered, static", 2, 4, 2, 4, false, 0, 0, 0],
-    "bagheera guardian jaguar": [1631, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
+	"bagheera guardian jaguar": [1631, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/c837307a9a2ad4d08ca61a4f1bd848ba3d6890fc.jpg", "Steel", "Bodyguard (This character may enter play exerted.
 An opposing character who challenges one of your
 characters must choose one with Bodyguard if able.)\nYOU'VE GOT TO BE BRAVE During an opponent's turn,
 when this character is banished, deal 2 damage to
 each opposing character.", "keyword, triggered", 4, 3, 2, 5, true, 0, 0, 0],
-    "gantu experienced enforcer": [1632, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "CLOSE ALL CHANNELS When you play this
+	"gantu experienced enforcer": [1632, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/2952aeca0fe15cf310ede96c437acb94b2b208f1.jpg", "Steel", "CLOSE ALL CHANNELS When you play this
 character, characters can't exert to sing songs
 until the start of your next turn.\nDON'T GET ANY IDEAS Each player pays 2 ⬡ more
 to play actions or items. (This doesn't apply to
 singing songs.)", "triggered, static", 2, 4, 1, 4, false, 0, 0, 0],
-    "mickey mouse inspirational warrior": [1654, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "STIRRING SPIRIT During your turn, whenever
+	"mickey mouse inspirational warrior": [1654, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/9a70776c743352cfcf688e52512673332e5e4007.jpg", "Steel", "STIRRING SPIRIT During your turn, whenever
 this character banishes another character in a
 challenge, you may play a character for free.", "triggered", 1, 1, 1, 2, false, 0, 0, 0],
-    "restoring atlantis": [1655, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "", "", 0, 0, 0, 5, false, 0, 0, 0],
-    "double trouble": [1635, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
-    "steel coil": [1636, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "METALLIC FLOW During your turn, whenever a card
+	"restoring atlantis": [1655, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1c6637a8f2e1f75e06ff9984894d6bd16a3a36a9.jpg", "Steel", "", "", 0, 0, 0, 5, false, 0, 0, 0],
+	"double trouble": [1635, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1e7b95c5614637fdcde70eb7f2d109134c95c6bf.jpg", "Steel", "", "", 0, 0, 0, 2, true, 0, 0, 0],
+	"steel coil": [1636, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/a165fbd61c277745f187eaac7182d9c05d0d1171.jpg", "Steel", "METALLIC FLOW During your turn, whenever a card
 is put into your inkwell, you may draw a card, then
 choose and discard a card.", "triggered", 0, 0, 0, 2, false, 0, 0, 0],
-    "training staff": [1637, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "PRECISION STRIKE ⟳, 1 ⬡ — Chosen character
+	"training staff": [1637, "https://api.lorcana.ravensburger.com/images/en/set7/cards/1468x2048/1cc641954099c249e0e4ef0402da3fd0364d95f0.jpg", "Steel", "PRECISION STRIKE ⟳, 1 ⬡ — Chosen character
 gains Challenger +2 this turn. (They get +2 ¤ while
 challenging.)", "activated", 0, 0, 0, 2, true, 0, 0, 0],
-    "vaiana adventurer of land and sea": [1663, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/0db39597ca131de9663874da14c13eae776c53ab.jpg", "Sapphire", "", "", 1, 6, 1, 3, true, 0, 0, 0],
+	"vaiana adventurer of land and sea": [1663, "https://api.lorcana.ravensburger.com/images/en/promo2/cards/1468x2048/0db39597ca131de9663874da14c13eae776c53ab.jpg", "Sapphire", "", "", 1, 6, 1, 3, true, 0, 0, 0],
 }

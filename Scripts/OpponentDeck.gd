@@ -3,7 +3,7 @@ extends Node2D
 const CARD_SCENE_PATH = "res://Scenes/OpponentCard.tscn"
 const CARD_DRAW_SPEED = .25
 const STARTING_HAND_SIZE = 7
-var opponent_deck = ["ariel", "hades", "goofy", "ariel2", "cinderella", "goofy", "ariel", "goofy", "hades", "cinderella", "ariel2", "ariel2", "goofy", "hades", "ariel"]
+var opponent_deck = ["ariel on human legs", "ariel spectacular singer", "cinderella gentle and kind", "goofy musketeer", "hades king of olympus", "goofy musketeer", "goofy musketeer", "cinderella gentle and kind", "cinderella gentle and kind"]
 var card_database_reference
 
 func _ready() -> void:
@@ -30,7 +30,7 @@ func draw_card():
 	# Set card properties
 	var card_image_path = str("res://Assets/CardFronts/" + card_drawn_name + ".jpg")
 	new_card.get_node("CardImage").texture = load(card_image_path)
-	new_card.strength = card_database_reference.CARDS[card_drawn_name][0]
+	new_card.strength = card_database_reference.CARDS[card_drawn_name][5]
 	
 	# Add the card to the CardManager
 	$"../CardManager".add_child(new_card)

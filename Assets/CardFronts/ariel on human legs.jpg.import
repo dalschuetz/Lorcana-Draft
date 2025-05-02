@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0wv44hdl3v7h"
-path="res://.godot/imported/hades.jpg-e41787d3d4bcc5ea23414f0a1ef7f3b0.ctex"
+uid="uid://tq0ilx6d77rh"
+path="res://.godot/imported/ariel on human legs.jpg-146b6cc30f01857b9f051990aeedfdd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CardFronts/hades.jpg"
-dest_files=["res://.godot/imported/hades.jpg-e41787d3d4bcc5ea23414f0a1ef7f3b0.ctex"]
+source_file="res://Assets/CardFronts/ariel on human legs.jpg"
+dest_files=["res://.godot/imported/ariel on human legs.jpg-146b6cc30f01857b9f051990aeedfdd6.ctex"]
 
 [params]
 
