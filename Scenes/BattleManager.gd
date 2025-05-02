@@ -5,8 +5,11 @@ const BATTLE_POS_OFFSET = 25
 var empty_card_slots = []
 var opponent_cards_on_battlefield = []
 var player_cards_on_battlefield = []
+var player_cards_that_attacked_this_turn = []
 var player_lore
 var opponent_lore
+var is_opponent_turn = false
+var player_is_attacking = false
 
 func _ready() -> void:
 	empty_card_slots.append($"../CardSlots/OpponentCardSlot6")
@@ -20,6 +23,9 @@ func _ready() -> void:
 	$"../OpponentLore".text = str(opponent_lore)
 	
 func _on_end_turn_button_pressed() -> void:
+	is_opponent_turn = true
+	$"../CardManager".unselect_selected_card()
+	player_cards_that_attacked_this_turn = []
 	opponent_turn()
 	
 func opponent_turn():
@@ -48,20 +54,24 @@ func opponent_turn():
 	end_opponent_turn()
 	
 	# Note: End turn is now called after the tween completes in try_play_card_with_highest_strength()
+
 func quest(questing_card, quester):
 	var new_pos_y
 	if quester == "Opponent":
 		new_pos_y = 0
 	else:
+		$"../EndTurnButton".disabled = true
+		$"../EndTurnButton".visible = false
+		player_is_attacking = true
 		new_pos_y = 1080
-	
-	questing_card.z_index = 5
+		player_cards_that_attacked_this_turn.append(questing_card)
 	
 	var new_pos = Vector2(questing_card.position.x, new_pos_y)
+	questing_card.z_index = 5
 	
 	#Animate card to position
 	var tween = get_tree().create_tween()
-	tween.tween_property(questing_card, "position", questing_card.card_slot_card_is_in.position, CARD_MOVE_SPEED)
+	tween.tween_property(questing_card, "position", questing_card.card_slot_card_is_in, CARD_MOVE_SPEED)
 	
 	if quester == "Opponent":
 		opponent_lore = opponent_lore + questing_card.lore
@@ -76,8 +86,18 @@ func quest(questing_card, quester):
 	tween2.tween_property(questing_card, "position", new_pos, CARD_MOVE_SPEED)
 	
 	questing_card.z_index = 0
+	if quester == "Player":
+		player_is_attacking = false
+		$"../EndTurnButton".disabled = false
+		$"../EndTurnButton".visible = true
 
 func attack(attacking_card, defending_card, attacker):
+	if attacker == "Player":
+		$"../EndTurnButton".disabled = true
+		$"../EndTurnButton".visible = false
+		player_is_attacking = true
+		$"../CardManager".selected_opponent_card = null
+		player_cards_that_attacked_this_turn.append(attacking_card)
 	attacking_card.z_index = 5
 	var new_pos = Vector2(defending_card.position.x, defending_card.position.y + BATTLE_POS_OFFSET)
 	var tween = get_tree().create_tween()
@@ -90,19 +110,49 @@ func attack(attacking_card, defending_card, attacker):
 	attacking_card.willpower = max(0, attacking_card.willpower - defending_card.strength)
 	#could update the health dynamically here, but would have to overwrite the card, maybe figure that out
 	
+	var card_was_destoryed = false
 	#Banish if card health is 0
 	if attacking_card.willpower == 0:
 		banish_card(attacking_card, attacker)
+		card_was_destoryed = true
 	if defending_card.willpower == 0:
 		if attacker == "Player":
 			banish_card(defending_card, "Opponent")
 		else:
 			banish_card(defending_card, "Player")
+		card_was_destoryed = true
+	if attacker == "Player":
+		$"../EndTurnButton".disabled = false
+		$"../EndTurnButton".visible = true
+		player_is_attacking = false
 
 func banish_card(card, card_owner):
+	var new_pos
+	if card_owner == "Player":
+		card.defeated = true
+		card.get_node("Area2D/CollisionShape2D").disabled = true
+		new_pos = $"../PlayerDiscard".position
+		if card in player_cards_on_battlefield:
+			player_cards_on_battlefield.erase(card)
+		card.card_slot_card_is_in.get_node("Area2D/CollisionShape2D").disabled = false
+	else:
+		new_pos = $"../OpponentDiscard2".position
+		if card in opponent_cards_on_battlefield:
+			opponent_cards_on_battlefield.erase(card)
 	#move card to discard pile
-	pass
+	card.card_slot_card_is_in.card_in_slot = false
+	card.card_slot_card_is_in = null
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", new_pos, CARD_MOVE_SPEED)
 	#remove card from any relevant arrays
+
+func enemy_card_selected(defending_card):
+	var attacking_card = $"../CardManager".selected_opponent_card
+	if attacking_card:
+		if defending_card in opponent_cards_on_battlefield:
+			if player_is_attacking == false:
+				$"../CardManager".selected_opponent_card = null
+				attack(attacking_card, defending_card, "Player")
 
 func try_play_card_with_highest_strength():
 	# Get opponent's hand
@@ -179,5 +229,6 @@ func try_play_card_with_highest_strength():
 func end_opponent_turn():
 	# Reset player deck draw
 	$"../Deck".reset_draw()
+	is_opponent_turn = false
 	$"../EndTurnButton".disabled = false
 	$"../EndTurnButton".visible = true

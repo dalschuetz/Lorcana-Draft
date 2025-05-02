@@ -8,6 +8,7 @@ var card_slot_card_is_in
 var strength
 var willpower
 var lore
+var defeated = false
 
 func _ready() -> void:
 	#All cards must be a child of CardManager
