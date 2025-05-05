@@ -71,7 +71,8 @@ func quest(questing_card, quester):
 	
 	#Animate card to position
 	var tween = get_tree().create_tween()
-	tween.tween_property(questing_card, "position", questing_card.card_slot_card_is_in, CARD_MOVE_SPEED)
+	tween.tween_property(questing_card, "position", questing_card.card_slot_card_is_in.position, CARD_MOVE_SPEED)
+
 	
 	if quester == "Opponent":
 		opponent_lore = opponent_lore + questing_card.lore
@@ -128,23 +129,46 @@ func attack(attacking_card, defending_card, attacker):
 
 func banish_card(card, card_owner):
 	var new_pos
+	
+	# Clear card from battlefield list
 	if card_owner == "Player":
-		card.defeated = true
-		card.get_node("Area2D/CollisionShape2D").disabled = true
-		new_pos = $"../PlayerDiscard".position
 		if card in player_cards_on_battlefield:
 			player_cards_on_battlefield.erase(card)
-		card.card_slot_card_is_in.get_node("Area2D/CollisionShape2D").disabled = false
 	else:
-		new_pos = $"../OpponentDiscard2".position
 		if card in opponent_cards_on_battlefield:
 			opponent_cards_on_battlefield.erase(card)
-	#move card to discard pile
-	card.card_slot_card_is_in.card_in_slot = false
-	card.card_slot_card_is_in = null
+
+	# Mark the card as defeated and disable interactions
+	card.defeated = true
+	card.get_node("Area2D/CollisionShape2D").disabled = true
+	
+	# Check if card slot exists and is valid before clearing
+	if card.card_slot_card_is_in and card.card_slot_card_is_in.has_method("get_node"):
+		# Make sure this is a Node with the expected properties, not a Vector2
+		if card.card_slot_card_is_in.get("card_in_slot") != null:
+			card.card_slot_card_is_in.card_in_slot = false
+		
+		# Only try to access nodes if it's an actual Node
+		if card.card_slot_card_is_in is Node:
+			if card.card_slot_card_is_in.has_node("Area2D/CollisionShape2D"):
+				card.card_slot_card_is_in.get_node("Area2D/CollisionShape2D").disabled = false
+		
+		# Add the slot back to empty slots if it's not already there
+		if card.card_slot_card_is_in not in empty_card_slots:
+			empty_card_slots.append(card.card_slot_card_is_in)
+		
+		card.card_slot_card_is_in = null
+	
+	# Move to appropriate discard pile
+	if card_owner == "Player":
+		new_pos = $"../PlayerDiscard".position
+	else:
+		new_pos = $"../OpponentDiscard2".position
+
+	# Animate the movement to discard pile
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "position", new_pos, CARD_MOVE_SPEED)
-	#remove card from any relevant arrays
+	#remove card from arrays
 
 func enemy_card_selected(defending_card):
 	var attacking_card = $"../CardManager".selected_opponent_card
