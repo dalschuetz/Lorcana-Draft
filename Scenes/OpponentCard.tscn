@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhf4rixhfkiip"]
 
-[ext_resource type="Script" uid="uid://bfm37jlsyos55" path="res://Scripts/OpponentCard.gd" id="1_qrb68"]
+[ext_resource type="Script" uid="uid://bfm37jlsyos55" path="res://Scripts/Core/OpponentCard.gd" id="1_qrb68"]
 [ext_resource type="Texture2D" uid="uid://tg3wy7342bww" path="res://Assets/CardBack.png" id="2_r8ami"]
 [ext_resource type="Texture2D" uid="uid://tq0ilx6d77rh" path="res://Assets/CardFronts/ariel on human legs.jpg" id="3_0rmfg"]
 

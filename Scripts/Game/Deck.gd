@@ -10,7 +10,7 @@ var drawn_card_this_turn = false
 func _ready() -> void:
 	player_deck.shuffle()
 	$RichTextLabel.text = str(player_deck.size())
-	card_database_reference = preload("res://Scripts/CardDatabase.gd")
+	card_database_reference = preload("res://Scripts/Game/CardDatabase.gd")
 	for i in range(STARTING_HAND_SIZE):
 		draw_card()
 		drawn_card_this_turn = false

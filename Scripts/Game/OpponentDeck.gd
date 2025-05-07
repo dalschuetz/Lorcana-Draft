@@ -9,7 +9,7 @@ var card_database_reference
 func _ready() -> void:
 	opponent_deck.shuffle()
 	$RichTextLabel.text = str(opponent_deck.size())
-	card_database_reference = preload("res://Scripts/CardDatabase.gd")
+	card_database_reference = preload("res://Scripts/Game/CardDatabase.gd")
 	for i in range(STARTING_HAND_SIZE):
 		draw_card()
 
