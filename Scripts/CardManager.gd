@@ -62,8 +62,11 @@ func finish_drag():
 		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
 		card_being_dragged.z_index = -1
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.card_slot_card_is_in = card_slot_found.position
+		
+		# Store the actual card slot Node2D, not just its position
+		card_being_dragged.card_slot_card_is_in = card_slot_found
 		card_being_dragged.position = card_slot_found.position
+		
 		card_slot_found.card_in_slot = true
 		card_slot_found.get_node("Area2D/CollisionShape2D").disabled = true
 		$"../BattleManager".player_cards_on_battlefield.append(card_being_dragged)
