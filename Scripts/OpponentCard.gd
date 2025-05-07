@@ -4,5 +4,5 @@ var hand_position
 var strength
 var willpower
 var lore
-var card_slot_card_is_in
+var card_slot_card_is_in: Node2D
 var defeated
