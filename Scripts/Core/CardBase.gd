@@ -55,6 +55,7 @@ func _ready() -> void:
 	if get_parent().has_method("connect_card_signals"):
 		get_parent().connect_card_signals(self)
 	
+	##here add stuff to go with Image getter API stuff
 	# Load card image if available
 	if local_art_path != "" and ResourceLoader.exists(local_art_path):
 		get_node("CardImage").texture = load(local_art_path)

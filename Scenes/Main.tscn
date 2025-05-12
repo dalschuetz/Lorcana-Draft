@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c57ocgahxjv51"]
+[gd_scene load_steps=13 format=3 uid="uid://c57ocgahxjv51"]
 
 [ext_resource type="Script" uid="uid://cx5uoke4387ei" path="res://Scripts/Core/CardManager.gd" id="1_rgh2o"]
-[ext_resource type="PackedScene" uid="uid://bm1nvrpfx4w4u" path="res://Scenes/CardSlot.tscn" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://2v8j4rr6tpsk" path="res://Scenes/OpponentCardSlot.tscn" id="3_jw32o"]
 [ext_resource type="Script" uid="uid://epl8o4d5tjtx" path="res://Scripts/Game/PlayerHand.gd" id="3_v1gob"]
 [ext_resource type="PackedScene" uid="uid://c8wfyiwfjaewj" path="res://Scenes/Deck.tscn" id="4_jw32o"]
@@ -11,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bksy7bydys7sp" path="res://Scripts/Game/OpponentDeck.gd" id="8_4kpch"]
 [ext_resource type="Script" uid="uid://dxb0prxqtpofy" path="res://Scripts/Game/BattleManager.gd" id="8_50glp"]
 [ext_resource type="Texture2D" uid="uid://co4eqodr7axti" path="res://Assets/CardSlot.png" id="11_4kpch"]
+[ext_resource type="PackedScene" uid="uid://cw4n8ws2tk26s" path="res://Scenes/PlayerCardsInPlay.tscn" id="11_grg3l"]
+[ext_resource type="PackedScene" uid="uid://i6ck7lxo3kqx" path="res://Scenes/InkedArea.tscn" id="12_grg3l"]
 
 [node name="Main" type="Node2D"]
 
@@ -19,21 +20,6 @@ script = ExtResource("1_rgh2o")
 
 [node name="CardSlots" type="Node2D" parent="."]
 z_index = -3
-
-[node name="CardSlot3" parent="CardSlots" instance=ExtResource("2_pbw6q")]
-position = Vector2(820, 750)
-
-[node name="CardSlot4" parent="CardSlots" instance=ExtResource("2_pbw6q")]
-position = Vector2(680, 750)
-
-[node name="CardSlot5" parent="CardSlots" instance=ExtResource("2_pbw6q")]
-position = Vector2(1100, 750)
-
-[node name="CardSlot" parent="CardSlots" instance=ExtResource("2_pbw6q")]
-position = Vector2(960, 750)
-
-[node name="CardSlot2" parent="CardSlots" instance=ExtResource("2_pbw6q")]
-position = Vector2(1240, 750)
 
 [node name="OpponentCardSlot6" parent="CardSlots" instance=ExtResource("3_jw32o")]
 z_index = -3
@@ -124,5 +110,11 @@ scale = Vector2(0.6, 0.6)
 position = Vector2(-12.5, -3.33337)
 scale = Vector2(0.861111, 0.81761)
 texture = ExtResource("11_4kpch")
+
+[node name="PlayerCardsInPlay" parent="." instance=ExtResource("11_grg3l")]
+position = Vector2(894, 733)
+
+[node name="InkedArea" parent="." instance=ExtResource("12_grg3l")]
+position = Vector2(1744, 968)
 
 [connection signal="pressed" from="EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]
