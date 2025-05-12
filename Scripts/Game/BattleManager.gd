@@ -23,10 +23,14 @@ func _ready() -> void:
 	$"../OpponentLore".text = str(opponent_lore)
 	
 func _on_end_turn_button_pressed() -> void:
-	is_opponent_turn = true
-	$"../CardManager".unselect_selected_card()
-	player_cards_that_attacked_this_turn = []
-	opponent_turn()
+	if player_lore >= 20:
+		print("Player Wins")
+		get_tree().reload_current_scene()
+	else:
+		is_opponent_turn = true
+		$"../CardManager".unselect_selected_card()
+		player_cards_that_attacked_this_turn = []
+		opponent_turn()
 	
 func opponent_turn():
 	$"../EndTurnButton".disabled = true
@@ -251,6 +255,9 @@ func try_play_card_with_highest_strength():
 	)
 	
 func end_opponent_turn():
+	if opponent_lore >= 20:
+		print("Opponent Wins")
+		get_tree().reload_current_scene()
 	# Reset player deck draw
 	$"../Deck".reset_draw()
 	is_opponent_turn = false
