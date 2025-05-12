@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dxb0prxqtpofy" path="res://Scripts/Game/BattleManager.gd" id="8_50glp"]
 [ext_resource type="Texture2D" uid="uid://co4eqodr7axti" path="res://Assets/CardSlot.png" id="11_4kpch"]
 [ext_resource type="PackedScene" uid="uid://cw4n8ws2tk26s" path="res://Scenes/PlayerCardsInPlay.tscn" id="11_grg3l"]
-[ext_resource type="PackedScene" uid="uid://i6ck7lxo3kqx" path="res://Scenes/InkedArea.tscn" id="12_grg3l"]
+[ext_resource type="PackedScene" uid="uid://i6ck7lxo3kqx" path="res://Scenes/InkWell.tscn" id="12_grg3l"]
 
 [node name="Main" type="Node2D"]
 
@@ -114,7 +114,7 @@ texture = ExtResource("11_4kpch")
 [node name="PlayerCardsInPlay" parent="." instance=ExtResource("11_grg3l")]
 position = Vector2(894, 733)
 
-[node name="InkedArea" parent="." instance=ExtResource("12_grg3l")]
+[node name="InkWell" parent="." instance=ExtResource("12_grg3l")]
 position = Vector2(1744, 968)
 
 [connection signal="pressed" from="EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]
