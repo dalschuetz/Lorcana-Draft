@@ -8,6 +8,7 @@ var willpower
 var lore
 var defeated = false
 var on_battlefield = false  # Added this property
+var in_inkwell = false
 
 func _ready() -> void:
 	#All cards must be a child of CardManager
@@ -30,3 +31,9 @@ func update_card_display() -> void:
 
 func is_on_battlefield() -> bool:
 	return on_battlefield
+
+func set_in_inkwell(variable) -> void:
+	in_inkwell = variable
+
+func is_in_inkwell() -> bool:
+	return in_inkwell

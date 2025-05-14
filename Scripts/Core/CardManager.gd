@@ -2,6 +2,7 @@ extends Node2D
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_BATTLEFIELD = 2  # Changed from CARD_SLOT to BATTLEFIELD
+const COLLISION_MASK_INKWELL = 7
 const DEFAULT_CARD_MOVE_SPEED = 0.1
 const DEFAULT_CARD_SCALE = 0.8
 const CARD_BIGGER_SCALE = 0.85
@@ -39,6 +40,14 @@ func card_clicked(card):
 						return
 					else:
 						select_card_for_battle(card)
+	#elif card.has_method("is_in_inkwell") and card.in_inkwell:
+		#print("Card in inkwell, adding ink")
+		#if player = "Opponent":
+			#opponent_ink = $"../BattleManager".opponent_ink + card.ink
+			#$"../OpponentInk".text = str(opponent_ink)
+		#else:
+			#player_ink = $"../BattleManager".player_ink + card.ink
+			#$"../PlayerInk".text = str(player_lore)
 	else:
 		print(str(card) + " can't play, only drag")
 		start_drag(card)
@@ -62,24 +71,30 @@ func start_drag(card):
 
 func finish_drag():
 	card_being_dragged.scale = Vector2(1.05, 1.05)
-	var is_over_battlefield = raycast_check_for_battlefield()
 	
-	if is_over_battlefield:
+	if raycast_check_for_inkwell():
+		# Card dropped on Inkwell
+		print("Dropped on inkwell")
+		if card_being_dragged.has_method("set_on_battlefield"):
+			card_being_dragged.set_in_inkwell(true)
+		#flip_card(card_being_dragged)  # Trigger flip animation
+		player_hand_reference.remove_card_from_hand(card_being_dragged)
+		card_being_dragged.queue_free()  # Or hide/remove as needed
+	elif raycast_check_for_battlefield():
 		# Card dropped on battlefield
 		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
 		card_being_dragged.z_index = -1
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		
-		# Add card to battlefield collection and update its state
-		# Make sure to set the on_battlefield property if it exists
 		if card_being_dragged.has_method("set_on_battlefield"):
 			card_being_dragged.set_on_battlefield(true)
 		player_battlefield_reference.add_card_to_battlefield(card_being_dragged)
 		$"../BattleManager".player_cards_on_battlefield.append(card_being_dragged)
-	else: 
+	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
-	
+
 	card_being_dragged = null
+
 
 func unselect_selected_card():
 	if selected_opponent_card:
@@ -128,6 +143,15 @@ func raycast_check_for_battlefield():
 	parameters.position = get_global_mouse_position()
 	parameters.collide_with_areas = true
 	parameters.collision_mask = COLLISION_MASK_BATTLEFIELD
+	var result = space_state.intersect_point(parameters)
+	return result.size() > 0
+
+func raycast_check_for_inkwell():
+	var space_state = get_world_2d().direct_space_state
+	var parameters = PhysicsPointQueryParameters2D.new()
+	parameters.position = get_global_mouse_position()
+	parameters.collide_with_areas = true
+	parameters.collision_mask = COLLISION_MASK_INKWELL
 	var result = space_state.intersect_point(parameters)
 	return result.size() > 0
 

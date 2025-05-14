@@ -13,6 +13,8 @@ var player_lore
 var opponent_lore
 var is_opponent_turn = false
 var player_is_attacking = false
+var player_ink
+var opponent_ink
 
 # References to the new battlefield nodes
 var player_battlefield

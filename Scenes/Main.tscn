@@ -115,16 +115,30 @@ position = Vector2(175, 111)
 
 [node name="PlayerCardBack" type="Sprite2D" parent="BanishPileCardBacks"]
 visible = false
-visibility_layer = 16
+visibility_layer = 2
 position = Vector2(1495, 742)
 scale = Vector2(0.338, 0.338)
 texture = ExtResource("14_1p5hy")
 
 [node name="OpponentCardBack" type="Sprite2D" parent="BanishPileCardBacks"]
 visible = false
-visibility_layer = 16
+visibility_layer = 2
 position = Vector2(394, 360)
 scale = Vector2(0.338333, 0.338333)
 texture = ExtResource("14_1p5hy")
+
+[node name="PlayerInk" type="RichTextLabel" parent="."]
+offset_left = 1740.0
+offset_top = 801.0
+offset_right = 1769.0
+offset_bottom = 840.0
+text = "0"
+
+[node name="OpponentInk" type="RichTextLabel" parent="."]
+offset_left = 161.0
+offset_top = 230.0
+offset_right = 190.0
+offset_bottom = 269.0
+text = "0"
 
 [connection signal="pressed" from="EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]
