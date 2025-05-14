@@ -41,6 +41,7 @@ var is_exerted: bool = false  # Whether the card is exerted (tapped)
 var is_inked: bool = false    # Whether the card is in play
 var is_inkable: bool = true   # Whether the card can be inked
 var defeated: bool = false
+var on_battlefield: bool = false  # Added property to track if card is on battlefield
 
 # Visual elements
 var images = {
@@ -111,3 +112,16 @@ func initialize_from_data(data: Dictionary) -> void:
 	
 	# Initialize additional properties based on card type
 	# (This would be done in subclasses)
+
+# Helper methods for property access
+func is_on_battlefield() -> bool:
+	return on_battlefield
+
+func set_on_battlefield(value: bool) -> void:
+	on_battlefield = value
+
+func is_defeated() -> bool:
+	return defeated
+
+func set_defeated(value: bool) -> void:
+	defeated = value

@@ -1,7 +1,7 @@
 extends Node2D
 
 const COLLISION_MASK_CARD = 1
-const COLLISION_MASK_CARD_SLOT = 2
+const COLLISION_MASK_BATTLEFIELD = 2  # Changed from CARD_SLOT to BATTLEFIELD
 const DEFAULT_CARD_MOVE_SPEED = 0.1
 const DEFAULT_CARD_SCALE = 0.8
 const CARD_BIGGER_SCALE = 0.85
@@ -12,10 +12,12 @@ var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
 var selected_opponent_card
+var player_battlefield_reference  # Reference to the new battlefield area
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	player_hand_reference = $"../PlayerHand"
+	player_battlefield_reference = $"../PlayerBattlefield"  # Get reference to new battlefield node
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
 
 func _process(delta:float) -> void:
@@ -25,7 +27,8 @@ func _process(delta:float) -> void:
 			clamp(mouse_pos.y, 0, screen_size.y))
 
 func card_clicked(card):
-	if card.card_slot_card_is_in:
+	# Make sure to check if the property exists before accessing it
+	if card.has_method("is_on_battlefield") and card.is_on_battlefield():
 		if $"../BattleManager".is_opponent_turn == false:
 			if $"../BattleManager".player_is_attacking == false:
 				if card not in $"../BattleManager".player_cards_that_attacked_this_turn:
@@ -56,27 +59,28 @@ func start_drag(card):
 
 func finish_drag():
 	card_being_dragged.scale = Vector2(1.05, 1.05)
-	var card_slot_found = raycast_check_for_card_slot()
-	if card_slot_found and not card_slot_found.card_in_slot:
-		#Card dropped in card slot
+	var is_over_battlefield = raycast_check_for_battlefield()
+	
+	if is_over_battlefield:
+		# Card dropped on battlefield
 		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
 		card_being_dragged.z_index = -1
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		
-		# Store the actual card slot Node2D, not just its position
-		card_being_dragged.card_slot_card_is_in = card_slot_found
-		card_being_dragged.position = card_slot_found.position
-		
-		card_slot_found.card_in_slot = true
-		card_slot_found.get_node("Area2D/CollisionShape2D").disabled = true
+		# Add card to battlefield collection and update its state
+		# Make sure to set the on_battlefield property if it exists
+		if card_being_dragged.has_method("set_on_battlefield"):
+			card_being_dragged.set_on_battlefield(true)
+		player_battlefield_reference.add_card_to_battlefield(card_being_dragged)
 		$"../BattleManager".player_cards_on_battlefield.append(card_being_dragged)
 	else: 
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+	
 	card_being_dragged = null
 
 func unselect_selected_card():
 	if selected_opponent_card:
-		selected_opponent_card.position.y +=20
+		selected_opponent_card.position.y += 20
 		selected_opponent_card = null
 
 func connect_card_signals(card):
@@ -88,19 +92,19 @@ func on_left_click_released():
 		finish_drag()
 
 func on_hovered_over_card(card):
-	if card.card_slot_card_is_in:
+	# Make sure to check if the property exists before accessing it
+	if card.has_method("is_on_battlefield") and card.is_on_battlefield():
 		return
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
 		highlight_card(card, true)
 
 func on_hovered_off_card(card):
-	if !card.defeated:
-		#check if card is NOT in slot AND NOT being dragged 
-		if !card.card_slot_card_is_in && !card_being_dragged:
-			#if card not being dragged
+	if card.has_method("is_defeated") and !card.is_defeated():
+		# Check if card is NOT on battlefield AND NOT being dragged
+		if (not card.has_method("is_on_battlefield") or not card.is_on_battlefield()) and !card_being_dragged:
 			highlight_card(card, false)
-			#check if hovered off card straight on to another card
+			# Check if hovered off card straight on to another card
 			var new_card_hovered = raycast_check_for_card()
 			if new_card_hovered:
 				highlight_card(new_card_hovered, true)
@@ -115,19 +119,14 @@ func highlight_card(card, hovered):
 		card.scale = Vector2(DEFAULT_CARD_SCALE, DEFAULT_CARD_SCALE)
 		card.z_index = 1
 
-func raycast_check_for_card_slot():
+func raycast_check_for_battlefield():
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
 	parameters.collide_with_areas = true
-	parameters.collision_mask = COLLISION_MASK_CARD_SLOT
+	parameters.collision_mask = COLLISION_MASK_BATTLEFIELD
 	var result = space_state.intersect_point(parameters)
-	if result.size() > 0:
-		var node = result[0].collider
-		while node and not ("card_in_slot" in node):
-			node = node.get_parent()
-		return node
-	return null
+	return result.size() > 0
 
 func raycast_check_for_card():
 	var space_state = get_world_2d().direct_space_state
@@ -144,7 +143,7 @@ func get_card_with_highest_z_index(cards):
 	var highest_z_card = cards[0].collider.get_parent()
 	var highest_z_index = highest_z_card.z_index
 	
-	#loop through rest of cards checking for a higher z index
+	# Loop through rest of cards checking for a higher z index
 	for i in range(1, cards.size()):
 		var current_card = cards[i].collider.get_parent()
 		if current_card.z_index > highest_z_index:
