@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c57ocgahxjv51"]
+[gd_scene load_steps=15 format=3 uid="uid://c57ocgahxjv51"]
 
 [ext_resource type="Script" uid="uid://cx5uoke4387ei" path="res://Scripts/Core/CardManager.gd" id="1_rgh2o"]
 [ext_resource type="Script" uid="uid://epl8o4d5tjtx" path="res://Scripts/Game/PlayerHand.gd" id="3_v1gob"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b5hebvso2suot" path="res://Scenes/OpponentBattlefield.gd" id="12_1p5hy"]
 [ext_resource type="Script" uid="uid://dncdjdmg7nv6j" path="res://Scripts/Core/PlayerBattlefield.gd" id="12_frkhe"]
 [ext_resource type="PackedScene" uid="uid://i6ck7lxo3kqx" path="res://Scenes/InkWell.tscn" id="12_grg3l"]
+[ext_resource type="Texture2D" uid="uid://tg3wy7342bww" path="res://Assets/CardBack.png" id="14_1p5hy"]
 
 [node name="Main" type="Node2D"]
 
@@ -109,5 +110,21 @@ position = Vector2(1744, 968)
 
 [node name="OpponentInkwell" parent="." instance=ExtResource("12_grg3l")]
 position = Vector2(175, 111)
+
+[node name="BanishPileCardBacks" type="Node" parent="."]
+
+[node name="PlayerCardBack" type="Sprite2D" parent="BanishPileCardBacks"]
+visible = false
+visibility_layer = 16
+position = Vector2(1495, 742)
+scale = Vector2(0.338, 0.338)
+texture = ExtResource("14_1p5hy")
+
+[node name="OpponentCardBack" type="Sprite2D" parent="BanishPileCardBacks"]
+visible = false
+visibility_layer = 16
+position = Vector2(394, 360)
+scale = Vector2(0.338333, 0.338333)
+texture = ExtResource("14_1p5hy")
 
 [connection signal="pressed" from="EndTurnButton" to="BattleManager" method="_on_end_turn_button_pressed"]

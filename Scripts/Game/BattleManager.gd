@@ -7,6 +7,8 @@ const BATTLE_POS_OFFSET = 25
 var opponent_cards_on_battlefield = []
 var player_cards_on_battlefield = []
 var player_cards_that_attacked_this_turn = []
+var player_banished_cards = []
+var opponent_banished_cards = []
 var player_lore
 var opponent_lore
 var is_opponent_turn = false
@@ -151,10 +153,12 @@ func banish_card(card, card_owner):
 	if card_owner == "Player":
 		if card in player_cards_on_battlefield:
 			player_cards_on_battlefield.erase(card)
+			player_banished_cards.append(card)
 			player_battlefield.remove_card_from_battlefield(card)
 	else:
 		if card in opponent_cards_on_battlefield:
 			opponent_cards_on_battlefield.erase(card)
+			opponent_banished_cards.append(card)
 			opponent_battlefield.remove_card_from_battlefield(card)
 
 	# Mark the card as defeated and disable interactions
@@ -166,12 +170,26 @@ func banish_card(card, card_owner):
 		new_pos = $"../PlayerDiscard".position
 	else:
 		new_pos = $"../OpponentDiscard2".position
-
+	
 	# Animate the movement to discard pile
 	var tween = create_tween()
 	tween.tween_property(card, "position", new_pos, CARD_MOVE_SPEED)
 	tween.tween_property(card, "modulate", Color(1, 1, 1, 0), 0.3)
 	tween.tween_callback(card.queue_free)
+	
+	if player_banished_cards.size() > 0:
+		#show card back over banish pile
+		$"../BanishPileCardBacks/PlayerCardBack".visible = true
+	else:
+		#hide card back over banish pile
+		$"../BanishPileCardBacks/PlayerCardBack".visible = false
+	
+	if opponent_banished_cards.size() > 0:
+		#show card back over banish pile
+		$"../BanishPileCardBacks/OpponentCardBack".visible = true
+	else:
+		#hide card back over banish pile
+		$"../BanishPileCardBacks/OpponentCardBack".visible = false
 
 func enemy_card_selected(defending_card):
 	var attacking_card = $"../CardManager".selected_opponent_card
