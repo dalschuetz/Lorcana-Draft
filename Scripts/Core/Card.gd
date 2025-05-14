@@ -27,3 +27,6 @@ func set_on_battlefield(variable) -> void:
 
 func update_card_display() -> void:
 	pass
+
+func is_on_battlefield() -> bool:
+	return on_battlefield

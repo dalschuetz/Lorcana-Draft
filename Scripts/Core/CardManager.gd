@@ -27,8 +27,10 @@ func _process(delta:float) -> void:
 			clamp(mouse_pos.y, 0, screen_size.y))
 
 func card_clicked(card):
+	print(str(card) + " was clicked")
 	# Make sure to check if the property exists before accessing it
-	if card.has_method("is_on_battlefield") and card.is_on_battlefield():
+	if card.has_method("is_on_battlefield") and card.on_battlefield:
+		print(str(card) + " can be played")
 		if $"../BattleManager".is_opponent_turn == false:
 			if $"../BattleManager".player_is_attacking == false:
 				if card not in $"../BattleManager".player_cards_that_attacked_this_turn:
@@ -38,6 +40,7 @@ func card_clicked(card):
 					else:
 						select_card_for_battle(card)
 	else:
+		print(str(card) + " can't play, only drag")
 		start_drag(card)
 
 func select_card_for_battle(card):
