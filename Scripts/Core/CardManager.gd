@@ -2,7 +2,7 @@ extends Node2D
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_BATTLEFIELD = 2  # Changed from CARD_SLOT to BATTLEFIELD
-const COLLISION_MASK_INKWELL = 7
+const COLLISION_MASK_INKWELL = 4
 const DEFAULT_CARD_MOVE_SPEED = 0.1
 const DEFAULT_CARD_SCALE = 0.8
 const CARD_BIGGER_SCALE = 0.85
@@ -14,6 +14,8 @@ var is_hovering_on_card
 var player_hand_reference
 var selected_opponent_card
 var player_battlefield_reference  # Reference to the new battlefield area
+var player_inked_card_this_turn = false
+var text = 0
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -75,11 +77,17 @@ func finish_drag():
 	if raycast_check_for_inkwell():
 		# Card dropped on Inkwell
 		print("Dropped on inkwell")
-		if card_being_dragged.has_method("set_on_battlefield"):
+		if card_being_dragged.has_method("set_on_battlefield") and not player_inked_card_this_turn:
 			card_being_dragged.set_in_inkwell(true)
-		#flip_card(card_being_dragged)  # Trigger flip animation
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.queue_free()  # Or hide/remove as needed
+			#flip_card(card_being_dragged)  # Trigger flip animation
+			player_hand_reference.remove_card_from_hand(card_being_dragged)
+			card_being_dragged.queue_free()  # Or hide/remove as needed
+			player_inked_card_this_turn = true
+			#add a card back here, evenly space them
+			text += 1
+			$"../PlayerInk".text = str(text)
+		else:
+			start_drag(card_being_dragged)
 	elif raycast_check_for_battlefield():
 		# Card dropped on battlefield
 		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)

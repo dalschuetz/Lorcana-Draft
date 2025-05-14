@@ -31,6 +31,9 @@ func _ready() -> void:
 	$"../OpponentLore".text = str(opponent_lore)
 	
 func _on_end_turn_button_pressed() -> void:
+	$"../CardManager".player_inked_card_this_turn = false
+	var text = 0
+	$"../PlayerInk".text = str(text)
 	if player_lore >= 20:
 		print("Player Wins")
 		get_tree().reload_current_scene()
