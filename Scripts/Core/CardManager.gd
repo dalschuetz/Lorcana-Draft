@@ -86,6 +86,7 @@ func finish_drag():
 			#add a card back here, evenly space them
 			text += 1
 			$"../PlayerInk".text = str(text)
+			$"../BanishPileCardBacks/InkwellCardBack".visible = true
 		else:
 			start_drag(card_being_dragged)
 	elif raycast_check_for_battlefield():

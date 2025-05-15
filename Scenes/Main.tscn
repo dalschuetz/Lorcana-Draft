@@ -127,6 +127,13 @@ position = Vector2(394, 360)
 scale = Vector2(0.338333, 0.338333)
 texture = ExtResource("14_1p5hy")
 
+[node name="InkwellCardBack" type="Sprite2D" parent="BanishPileCardBacks"]
+visible = false
+visibility_layer = 2
+position = Vector2(1746, 967)
+scale = Vector2(0.338, 0.338)
+texture = ExtResource("14_1p5hy")
+
 [node name="PlayerInk" type="RichTextLabel" parent="."]
 offset_left = 1740.0
 offset_top = 801.0
